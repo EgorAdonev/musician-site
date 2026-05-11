@@ -1,0 +1,1311 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="blnfkr: музыкальный продюсер и битмейкер. Биты, инструменталы, кредиты, релизы и социальные сети." data-i18n-attr="content:metaDescription">
+  <title>blnfkr | producer & beatmaker</title>
+  <link rel="icon" href="assets/images/brand/favicon.ico" sizes="any">
+  <style>
+    :root {
+      --red: #ed2e38;
+      --charcoal: #333333;
+      --blush: #fff8fa;
+      --pink: #f9d4dc;
+      --black: #000000;
+      --ink: var(--blush);
+      --ink-2: var(--pink);
+      --paper: var(--black);
+      --muted: var(--charcoal);
+      --accent: var(--red);
+      --line: rgb(0 0 0 / 0.18);
+      --shadow: 0 24px 80px rgb(0 0 0 / 0.56);
+      --font-display: "ABCMonumentGrotesk", "ABC Monument Grotesk", "Haas Grotesk Medium", "Helvetica Neue", Arial, sans-serif;
+      --font-ui: "Haas Grotesk Medium", "Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --font-body: "LinotypeHelveticaNeueLTStdLt", "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--ink);
+    }
+
+    body {
+      overflow-x: hidden;
+      min-width: 320px;
+      margin: 0;
+      color: var(--paper);
+      font-family: var(--font-body);
+      background:
+        radial-gradient(circle at 14% 22%, rgb(237 46 56 / 0.08), transparent 34rem),
+        radial-gradient(circle at 82% 62%, rgb(249 194 204 / 0.32), transparent 28rem),
+        linear-gradient(180deg, var(--ink), rgb(255 244 247));
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgb(0 0 0 / 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(0 0 0 / 0.04) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: overlay;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 4px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .nav {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: max(1rem, env(safe-area-inset-top)) clamp(1rem, 3vw, 2.5rem) 1rem;
+      background: linear-gradient(180deg, rgb(252 240 243 / 0.92), rgb(252 240 243 / 0.2));
+      border-bottom: 1px solid rgb(0 0 0 / 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-mark {
+      width: clamp(3.6rem, 7vw, 5.8rem);
+      aspect-ratio: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--ink);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgb(252 240 243 / 0.72);
+    }
+
+    .lang-button {
+      min-width: 2.75rem;
+      min-height: 2.25rem;
+      border: 0;
+      border-radius: 4px;
+      color: var(--paper);
+      background: transparent;
+      font-family: var(--font-ui);
+      font-size: 0.74rem;
+      font-weight: 950;
+      line-height: 1;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 180ms ease-out, background 180ms ease-out, color 180ms ease-out;
+    }
+
+    .lang-button:hover {
+      transform: translateY(-1px);
+      color: var(--accent);
+    }
+
+    .lang-button.is-active {
+      color: var(--ink);
+      background: var(--pink);
+    }
+
+    .nav-links a,
+    .button {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.76rem 0.95rem;
+      border: 1px solid var(--black);
+      border-radius: 6px;
+      color: var(--black);
+      background: var(--pink);
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 900;
+      line-height: 1;
+      text-transform: uppercase;
+      box-shadow: 7px 7px 0 var(--red);
+      transition: transform 180ms ease-out, background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
+    }
+
+    .nav-links a:hover,
+    .button:hover {
+      transform: translateY(-2px);
+      color: var(--paper);
+      background: var(--red);
+      border-color: var(--red);
+      box-shadow: 3px 3px 0 var(--pink);
+    }
+
+    .hero {
+      min-height: 94svh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      isolation: isolate;
+      overflow: hidden;
+      padding: clamp(7rem, 12vw, 10rem) clamp(1rem, 4vw, 4rem) clamp(3rem, 8vw, 6rem);
+      background: var(--ink);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgb(252 240 243 / 0.94), rgb(252 240 243 / 0.66) 43%, rgb(252 240 243 / 0.18)),
+        linear-gradient(0deg, var(--ink), transparent 42%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 28vh;
+      z-index: 1;
+      pointer-events: none;
+      background: linear-gradient(0deg, var(--ink), transparent);
+    }
+
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-art img {
+      position: absolute;
+      user-select: none;
+    }
+
+    .hero-emblem {
+      right: clamp(2rem, 7vw, 7rem);
+      bottom: clamp(4rem, 8vw, 8rem);
+      width: min(38vw, 430px);
+      max-height: 72vh;
+      object-fit: contain;
+      opacity: 0.86;
+      filter: drop-shadow(0 0 38px rgb(237 46 56 / 0.36));
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 1180px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(15rem, 24rem);
+      align-items: end;
+      gap: clamp(2rem, 5vw, 5rem);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      margin: 0 0 1rem;
+      padding: 0.35rem 0.55rem;
+      color: var(--ink);
+      background: var(--pink);
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      transform: rotate(-1deg);
+    }
+
+    h1 {
+      max-width: 100%;
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(3.4rem, 12.6vw, 11.2rem);
+      font-weight: 950;
+      line-height: 0.76;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-shadow: 0.045em 0.04em 0 var(--red), -0.025em -0.025em 0 var(--pink);
+    }
+
+    .hero-copy {
+      max-width: 60ch;
+      margin: clamp(1.25rem, 3vw, 2rem) 0 0;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.45vw, 1.25rem);
+      line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 2rem;
+    }
+
+    .button.primary {
+      color: var(--black);
+      background: var(--pink);
+      border-color: var(--black);
+    }
+
+    .button.primary:hover {
+      background: var(--red);
+      border-color: var(--red);
+      color: var(--paper);
+      box-shadow: 3px 3px 0 var(--pink);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      z-index: 2;
+      right: clamp(1rem, 4vw, 4rem);
+      bottom: 1rem;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .profile-links {
+      padding-top: clamp(3rem, 7vw, 6rem);
+      padding-bottom: clamp(3rem, 7vw, 6rem);
+      background:
+        linear-gradient(115deg, rgb(237 46 56 / 0.12), transparent 38%),
+        linear-gradient(0deg, rgb(249 212 220 / 0.7), transparent 62%),
+        var(--ink);
+    }
+
+    .profile-shell {
+      width: min(100%, 1280px);
+      margin: 0 auto;
+    }
+
+    .profile-head {
+      max-width: 62rem;
+      margin-bottom: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .profile-head h2 {
+      max-width: 12ch;
+    }
+
+    .profile-copy {
+      max-width: 58ch;
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.35vw, 1.2rem);
+      line-height: 1.55;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+      gap: clamp(0.85rem, 2vw, 1.4rem);
+    }
+
+    .profile-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 24rem;
+      overflow: hidden;
+      border: 1px solid var(--black);
+      border-radius: 8px;
+      color: var(--black);
+      background: var(--pink);
+      box-shadow: 10px 10px 0 var(--red);
+      transition: transform 200ms cubic-bezier(.22, 1, .36, 1), box-shadow 200ms ease-out;
+    }
+
+    .profile-card:hover {
+      transform: translate(-3px, -3px) rotate(-0.35deg);
+      box-shadow: 14px 14px 0 var(--black);
+    }
+
+    .profile-card:nth-child(2) {
+      background: var(--black);
+      color: var(--blush);
+      box-shadow: 10px 10px 0 var(--pink);
+    }
+
+    .profile-card:nth-child(3) {
+      background: var(--red);
+      color: var(--blush);
+      box-shadow: 10px 10px 0 var(--black);
+    }
+
+    .profile-card:nth-child(4n) {
+      background: var(--blush);
+      color: var(--black);
+      box-shadow: 10px 10px 0 var(--pink);
+    }
+
+    .profile-card:nth-child(5n) {
+      background: var(--charcoal);
+      color: var(--blush);
+      box-shadow: 10px 10px 0 var(--red);
+    }
+
+    .profile-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-bottom: 1px solid currentColor;
+      filter: saturate(1.12) contrast(1.05);
+    }
+
+    .profile-card-body {
+      display: grid;
+      align-content: space-between;
+      gap: 1.25rem;
+      padding: 1rem;
+    }
+
+    .profile-card h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 3.4vw, 3.25rem);
+      line-height: 0.88;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+
+    .profile-card p {
+      margin: 0.75rem 0 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .profile-card .button {
+      width: fit-content;
+      margin-top: 0.2rem;
+      color: var(--black);
+      background: var(--blush);
+    }
+
+    section {
+      position: relative;
+      padding: clamp(4rem, 9vw, 8rem) clamp(1rem, 4vw, 4rem);
+    }
+
+    .section-grid {
+      width: min(100%, 1180px);
+      display: grid;
+      grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+      align-items: start;
+      gap: clamp(2rem, 6vw, 6rem);
+      margin: 0 auto;
+    }
+
+    .kicker {
+      margin: 0 0 1rem;
+      color: var(--red);
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      font-weight: 950;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      max-width: 10ch;
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(2.35rem, 5.6vw, 6.6rem);
+      font-weight: 950;
+      line-height: 0.9;
+      text-transform: uppercase;
+      text-wrap: balance;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+    }
+
+    .story p {
+      max-width: 62ch;
+      margin: 0 0 1.15rem;
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: clamp(1.05rem, 1.55vw, 1.35rem);
+      line-height: 1.68;
+      text-wrap: pretty;
+    }
+
+    .story .section-grid {
+      grid-template-columns: 1fr;
+      gap: clamp(1.4rem, 5vw, 2.75rem);
+    }
+
+    .story h2 {
+      max-width: min(100%, 11ch);
+      font-size: clamp(3rem, 8.2vw, 7rem);
+      line-height: 1.04;
+    }
+
+    .story .section-grid > div:last-child {
+      width: min(100%, 48rem);
+    }
+
+    .story [data-i18n="creditsLabel"] {
+      margin-top: 2rem;
+      margin-bottom: 0.9rem;
+      color: var(--muted);
+      font-family: var(--font-ui);
+      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+      font-weight: 950;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .credits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.8rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .credits li {
+      padding: 0.55rem 0.7rem;
+      border: 1px solid rgb(237 46 56 / 0.45);
+      border-radius: 999px;
+      color: var(--black);
+      background: rgb(249 194 204 / 0.62);
+      font-family: var(--font-ui);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    .releases {
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, var(--ink), rgb(249 194 204)),
+        var(--ink);
+    }
+
+    .release-grid {
+      width: min(100%, 1280px);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+      gap: clamp(0.75rem, 1.6vw, 1.2rem);
+      margin: clamp(2rem, 5vw, 4rem) auto 0;
+    }
+
+    .release {
+      position: relative;
+      min-height: 0;
+      aspect-ratio: 1;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--ink-2);
+      box-shadow: 0 16px 42px rgb(0 0 0 / 0.38);
+    }
+
+    .release img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      transition: transform 340ms cubic-bezier(.22, 1, .36, 1), filter 340ms ease-out;
+    }
+
+    .release:hover img {
+      transform: scale(1.045) rotate(-1deg);
+      filter: saturate(1.35) contrast(1.1);
+    }
+
+    .release span {
+      position: absolute;
+      left: 0.7rem;
+      bottom: 0.7rem;
+      max-width: calc(100% - 1.4rem);
+      padding: 0.38rem 0.5rem;
+      border-radius: 4px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+    }
+
+    .social {
+      padding-top: clamp(3rem, 6vw, 5.5rem);
+      padding-bottom: clamp(1rem, 2.5vw, 2rem);
+      background:
+        linear-gradient(90deg, rgb(237 46 56 / 0.1), transparent 48%),
+        var(--ink);
+    }
+
+    .social-panel {
+      width: min(100%, 1180px);
+      display: grid;
+      grid-template-columns: minmax(12rem, 0.82fr) minmax(12rem, 0.82fr) minmax(0, 1.36fr);
+      align-items: start;
+      gap: clamp(1rem, 2.4vw, 2rem);
+      margin: 0 auto;
+    }
+
+    .phone-shot {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.7rem;
+      background: var(--ink-2);
+      box-shadow: var(--shadow);
+      max-width: 280px;
+    }
+
+    .phone-shot img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 360px;
+      margin: 0 auto;
+      object-fit: cover;
+      object-position: 50% 35%;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+    }
+
+    .social-copy p {
+      max-width: 62ch;
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.4vw, 1.2rem);
+      line-height: 1.65;
+      text-wrap: pretty;
+    }
+
+    .link-stack {
+      max-width: 34rem;
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 1.35rem;
+    }
+
+    .link-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgb(252 240 243 / 0.78);
+      font-family: var(--font-ui);
+      font-weight: 950;
+      text-transform: uppercase;
+      transition: transform 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out;
+    }
+
+    .link-row:hover {
+      transform: translateX(6px);
+      color: var(--pink);
+      border-color: var(--red);
+    }
+
+    .link-row small {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-size: 0.72rem;
+    }
+
+    .link-row span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 2rem clamp(1rem, 4vw, 4rem) max(2rem, env(safe-area-inset-bottom));
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 0.85rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 1280px) {
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(1.4rem, 5vw, 2.5rem);
+      }
+
+      h2 {
+        max-width: 100%;
+        font-size: clamp(2.65rem, 8.2vw, 5.2rem);
+      }
+
+      .story p {
+        max-width: 64ch;
+      }
+
+      .social-panel {
+        grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr);
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        min-height: 0;
+        grid-template-columns: minmax(11rem, 0.45fr) minmax(0, 0.55fr);
+        grid-template-rows: 1fr;
+      }
+
+      .profile-card img {
+        height: 100%;
+        min-height: 16rem;
+        border-right: 1px solid currentColor;
+        border-bottom: 0;
+      }
+
+      .phone-shot {
+        max-width: 320px;
+      }
+
+      .social-copy {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav {
+        align-items: flex-start;
+      }
+
+      .language-toggle {
+        order: -1;
+      }
+
+      .nav-links a {
+        padding-inline: 0.65rem;
+        font-size: 0.7rem;
+      }
+
+      .hero {
+        min-height: 96svh;
+      }
+
+      .hero-emblem {
+        right: auto;
+        left: 48%;
+        bottom: 15rem;
+        width: min(44vw, 240px);
+        opacity: 0.62;
+      }
+
+      .hero-inner,
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scroll-hint {
+        display: none;
+      }
+
+      h1 {
+        font-size: clamp(3.25rem, 18vw, 5.2rem);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        position: absolute;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .language-toggle {
+        width: 100%;
+      }
+
+      .lang-button {
+        flex: 1;
+      }
+
+      .hero-actions .button,
+      .nav-links a {
+        flex: 1 1 auto;
+      }
+
+      .hero {
+        padding-top: 12rem;
+      }
+
+      .hero-emblem {
+        left: 42%;
+        bottom: 21rem;
+        width: min(55vw, 210px);
+      }
+
+      .release-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .profile-card {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card img {
+        height: auto;
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 1px solid currentColor;
+      }
+
+      .release {
+        min-height: 0;
+      }
+
+      .social-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-shot {
+        max-width: min(100%, 22rem);
+      }
+
+      .footer {
+        display: block;
+      }
+
+      .footer span {
+        display: block;
+        margin-bottom: 0.45rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav" aria-label="Главная навигация" data-i18n-attr="aria-label:navAria">
+    <a class="brand-mark" href="#top" aria-label="blnfkr, наверх" data-i18n-attr="aria-label:brandAria">
+      <img src="assets/images/brand/logo-light.png" alt="">
+    </a>
+    <nav class="nav-links" aria-label="Социальные ссылки" data-i18n-attr="aria-label:socialLinksAria">
+      <div class="language-toggle" role="group" aria-label="Выбор языка" data-i18n-attr="aria-label:languageToggleAria">
+        <button class="lang-button is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer">Apple Music</a>
+      <a href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer">YouTube</a>
+      <a href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="#profiles" data-i18n="profilesNav">Profiles</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-art" aria-hidden="true">
+        <img class="hero-emblem" src="assets/images/brand/logo.jpg" alt="">
+      </div>
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow" data-i18n="heroEyebrow">Producer / Beatmaker</p>
+          <h1 id="hero-title">blnfkr</h1>
+          <p class="hero-copy" data-i18n="heroCopy">
+            Молодой,  опытный музыкальный продюсер: биты, инструменталы и ссылки, где можно сразу включить треки.
+          </p>
+          <div class="hero-actions" aria-label="Основные действия" data-i18n-attr="aria-label:primaryActionsAria">
+            <a class="button" href="#profiles" data-i18n="profilesCta">Профили и музыка</a>
+            <a class="button primary" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer" data-i18n="listenCta">Слушать</a>
+            <a class="button" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer" data-i18n="youtubeCta">Биты на YouTube</a>
+          </div>
+        </div>
+      </div>
+      <span class="scroll-hint" data-i18n="scrollHint">история ниже</span>
+    </section>
+
+    <section class="profile-links" id="profiles" aria-labelledby="profiles-title">
+      <div class="profile-shell">
+        <div class="profile-head">
+          <p class="kicker" data-i18n="profilesKicker">Listen / Watch / Follow</p>
+          <h2 id="profiles-title" data-i18n="profilesTitle">Ссылки без посредников</h2>
+          <p class="profile-copy" data-i18n="profilesCopy">
+            Всё, что раньше лежало на отдельной странице ссылок, теперь здесь: релизы, биты, видео и Instagram.
+          </p>
+        </div>
+        <div class="profile-grid" aria-label="Ссылки на музыку и профили" data-i18n-attr="aria-label:profilesGridAria">
+          <article class="profile-card">
+            <img src="assets/images/releases/done-cover.jpg" alt="Обложка Rolling Dice" data-i18n-attr="alt:altRollingDice">
+            <div class="profile-card-body">
+              <div>
+                <h3>Franks</h3>
+                <p data-i18n="franksCardCopy">Совместный трек с DTurbo на Apple Music.</p>
+              </div>
+              <a class="button" href="https://music.apple.com/us/song/franks-feat-bln-fkr/6766273812" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/done-cover.jpg" alt="Обложка Rolling Dice" data-i18n-attr="alt:altRollingDice">
+            <div class="profile-card-body">
+              <div>
+                <h3>Rolling Dice</h3>
+                <p data-i18n="rollingDiceCardCopy">Релиз на Apple Music с прямым переходом к альбому.</p>
+              </div>
+              <a class="button" href="https://music.apple.com/ru/album/rolling-dice/1680563706?l=en" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/foreva-ballin.jpg" alt="Обложка Foreva Ballin'" data-i18n-attr="alt:altForevaBallin">
+            <div class="profile-card-body">
+              <div>
+                <h3>Lights, Camera, Action</h3>
+                <p data-i18n="lightsCardCopy">Трек с DTurbo на Apple Music.</p>
+              </div>
+              <a class="button" href="https://music.apple.com/ru/album/lights-camera-action-feat-dturbo/1677932729?i=1677932730" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/emotions-4.jpg" alt="Квадратный визуал blnfkr" data-i18n-attr="alt:altSquareVisual">
+            <div class="profile-card-body">
+              <div>
+                <h3>Emotions 4</h3>
+                <p data-i18n="emotions4CardCopy">EP на Apple Music.</p>
+              </div>
+              <a class="button" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/emotions-3.png" alt="Квадратная обложка blnfkr" data-i18n-attr="alt:altSquareCover">
+            <div class="profile-card-body">
+              <div>
+                <h3>Emotions 3</h3>
+                <p data-i18n="emotions3CardCopy">Single с DTurbo на Apple Music.</p>
+              </div>
+              <a class="button" href="https://music.apple.com/ru/album/emotions-3-feat-dturbo-single/1722837872?l=en-GB" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/radio-waves.png" alt="Обложка Radio Waves" data-i18n-attr="alt:altRadioWaves">
+            <div class="profile-card-body">
+              <div>
+                <h3>Radio Waves</h3>
+                <p data-i18n="radioWavesCardCopy">Релиз на Apple Music.</p>
+              </div>
+              <a class="button" href="https://music.apple.com/ru/album/radio-waves/1674026929?i=1674026930&l=en" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/no-love.png" alt="Обложка No Love" data-i18n-attr="alt:altNoLove">
+            <div class="profile-card-body">
+              <div>
+                <h3>SoundCloud</h3>
+                <p data-i18n="soundcloudCardCopy">Треки и наброски на SoundCloud.</p>
+              </div>
+              <a class="button" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/dear-father.png" alt="Обложка из архива blnfkr" data-i18n-attr="alt:altArchiveCover">
+            <div class="profile-card-body">
+              <div>
+                <h3>Yandex Music</h3>
+                <p data-i18n="yandexCardCopy">Профиль артиста на Яндекс Музыке.</p>
+              </div>
+              <a class="button" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/solo.png" alt="Квадратная обложка из проекта blnfkr" data-i18n-attr="alt:altProjectCover">
+            <div class="profile-card-body">
+              <div>
+                <h3>VK Music</h3>
+                <p data-i18n="vkCardCopy">Профиль артиста во VK Music.</p>
+              </div>
+              <a class="button" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/emotions-cover.jpg" alt="Обложка Emotions" data-i18n-attr="alt:altEmotions">
+            <div class="profile-card-body">
+              <div>
+                <h3>Spotify</h3>
+                <p data-i18n="spotifyCardCopy">Профиль артиста на Spotify.</p>
+              </div>
+              <a class="button" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/emotions-4.jpg" alt="Квадратный визуал blnfkr" data-i18n-attr="alt:altSquareVisual">
+            <div class="profile-card-body">
+              <div>
+                <h3>YouTube</h3>
+                <p data-i18n="youtubePlaylistCardCopy">Плейлист Emotions 4 на YouTube.</p>
+              </div>
+              <a class="button" href="https://youtube.com/playlist?list=OLAK5uy_kHs_-Qt39mZEkz0U_LQ-y2Rsz1KjQXtfw" target="_blank" rel="noreferrer" data-i18n="youtubeCardCta">Смотреть</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/radio-waves.png" alt="Обложка Radio Waves" data-i18n-attr="alt:altRadioWaves">
+            <div class="profile-card-body">
+              <div>
+                <h3>Radio Waves Video</h3>
+                <p data-i18n="youtubeRadioCardCopy">Видео Radio Waves на YouTube.</p>
+              </div>
+              <a class="button" href="https://youtu.be/UpeiR01d_Ww" target="_blank" rel="noreferrer" data-i18n="youtubeCardCta">Смотреть</a>
+            </div>
+          </article>
+          <article class="profile-card">
+            <img src="assets/images/releases/foreva-ballin.jpg" alt="Обложка Foreva Ballin'" data-i18n-attr="alt:altForevaBallin">
+            <div class="profile-card-body">
+              <div>
+                <h3>Instagram</h3>
+                <p data-i18n="instagramCardCopy">Сниппеты, фото, короткие видео и живые следы вокруг музыки.</p>
+              </div>
+              <a class="button" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer" data-i18n="instagramCardCta">Зайти в профиль</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" aria-labelledby="story-title">
+      <div class="section-grid">
+        <div>
+          <p class="kicker" data-i18n="storyKicker">История</p>
+          <h2 id="story-title" data-i18n="storyTitle">8+ лет в битмейкинге</h2>
+        </div>
+        <div>
+          <p data-i18n="storyP1">
+            Привет! Я пишу биты и инструменталы, а ещё я музыкальный продюсер. Всё начиналось как хобби, но за годы вокруг него собрался свой архив, свой темп и свой круг артистов.
+          </p>
+          <p data-i18n="storyP2">
+            Я сотрудничал со многими артистами, а в 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу более 8 лет: без лишнего шума, но с постоянной практикой, сессиями, демками и релизами.
+          </p>
+          <p data-i18n="creditsLabel">Credits:</p>
+          <ul class="credits" aria-label="Credits" data-i18n-attr="aria-label:creditsAria">
+            <li>Soundcloud Radio</li>
+            <li>Dash Radio</li>
+            <li>Mvkalo</li>
+            <li>DTurbo</li>
+            <li>Aimee Britannia</li>
+            <li>$WI$$</li>
+            <li>RTONTHABEAT</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="releases" aria-labelledby="releases-title">
+      <div class="section-grid">
+        <div>
+          <p class="kicker" data-i18n="archiveKicker">Визуальный архив</p>
+          <h2 id="releases-title" data-i18n="archiveTitle">Обложки как стиль</h2>
+        </div>
+      </div>
+      <div class="release-grid" aria-label="Обложки и визуалы blnfkr" data-i18n-attr="aria-label:releaseGridAria">
+        <figure class="release"><img src="assets/images/releases/done-cover.jpg" alt="Обложка Rolling Dice" data-i18n-attr="alt:altRollingDice"><span>Rolling Dice</span></figure>
+        <figure class="release"><img src="assets/images/releases/emotions-cover.jpg" alt="Обложка Emotions" data-i18n-attr="alt:altEmotions"><span>Emotions</span></figure>
+        <figure class="release"><img src="assets/images/releases/radio-waves.png" alt="Обложка Radio Waves" data-i18n-attr="alt:altRadioWaves"><span>Radio Waves</span></figure>
+        <figure class="release"><img src="assets/images/releases/no-love.png" alt="Обложка No Love" data-i18n-attr="alt:altNoLove"><span>No Love</span></figure>
+        <figure class="release"><img src="assets/images/releases/dear-father.png" alt="Обложка из архива blnfkr" data-i18n-attr="alt:altArchiveCover"><span>Dear Father</span></figure>
+        <figure class="release"><img src="assets/images/releases/emotions-4.jpg" alt="Квадратный визуал blnfkr" data-i18n-attr="alt:altSquareVisual"><span>Emotions 4</span></figure>
+        <figure class="release"><img src="assets/images/releases/emotions-3.png" alt="Квадратная обложка blnfkr" data-i18n-attr="alt:altSquareCover"><span>Emotions 3</span></figure>
+        <figure class="release"><img src="assets/images/releases/solo.png" alt="Квадратная обложка из проекта blnfkr" data-i18n-attr="alt:altProjectCover"><span>Solo</span></figure>
+        <figure class="release"><img src="assets/images/releases/foreva-ballin.jpg" alt="Квадратная обложка Foreva Ballin'" data-i18n-attr="alt:altForevaBallin"><span>Foreva Ballin'</span></figure>
+      </div>
+    </section>
+
+    <section class="social" aria-labelledby="social-title">
+      <div class="social-panel">
+        <div class="phone-shot">
+          <img src="assets/images/social/foreva-ballin-orig.jpg" alt="Фото blnfkr из Instagram" data-i18n-attr="alt:altSocialPhotoOne">
+        </div>
+        <div class="social-copy">
+          <p class="kicker" data-i18n="socialKicker">Instagram / Life / Beats</p>
+          <h2 id="social-title" data-i18n="socialTitle">Отрывки, фото, видео</h2>
+          <p data-i18n="socialCopy">
+            В Instagram выходят отрывки битов, фото и видео о жизни. На YouTube можно поймать продакшн-след, на Apple Music слушать релизы, а все главные переходы теперь собраны прямо здесь.
+          </p>
+          <div class="link-stack">
+            <a class="link-row" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span>@areyoublindfucker</span><small>Instagram</small></a>
+            <a class="link-row" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span>bln fkr</span><small>Apple Music</small></a>
+            <a class="link-row" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer"><span>@prod.blindfucker</span><small>YouTube</small></a>
+            <a class="link-row" href="#profiles"><span data-i18n="profilesInlineLink">Профили и музыка</span><small data-i18n="profilesInlineMeta">On site</small></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span data-i18n="footerRole">blnfkr, producer & beatmaker</span>
+    <span data-i18n="footerRights">© blnfkr, all rights reserved</span>
+  </footer>
+
+  <script>
+    const translations = {
+      ru: {
+        documentTitle: "blnfkr | продюсер и битмейкер",
+        metaDescription: "blnfkr: музыкальный продюсер и битмейкер. Биты, инструменталы, кредиты, релизы и социальные сети.",
+        navAria: "Главная навигация",
+        brandAria: "blnfkr, наверх",
+        socialLinksAria: "Социальные ссылки",
+        languageToggleAria: "Выбор языка",
+        primaryActionsAria: "Основные действия",
+        creditsAria: "Credits",
+        releaseGridAria: "Обложки и визуалы blnfkr",
+        heroEyebrow: "Producer / Beatmaker",
+        heroCopy: "Молодой,  опытный музыкальный продюсер: инструменталы, песни и ссылки, где можно сразу включить треки.",
+        listenCta: "Слушать",
+        youtubeCta: "Биты на YouTube",
+        linksCta: "Все ссылки",
+        profilesNav: "Профили",
+        profilesCta: "Профили и музыка",
+        profilesKicker: "Listen / Watch / Follow",
+        profilesTitle: "Ссылки без посредников",
+        profilesCopy: "Всё, что раньше лежало на отдельной странице ссылок, теперь здесь: релизы, биты, видео и Instagram.",
+        profilesGridAria: "Ссылки на музыку и профили",
+        franksCardCopy: "Совместный трек с DTurbo на Apple Music.",
+        rollingDiceCardCopy: "Релиз на Apple Music с прямым переходом к альбому.",
+        lightsCardCopy: "Трек с DTurbo на Apple Music.",
+        emotions4CardCopy: "EP на Apple Music.",
+        emotions3CardCopy: "Single с DTurbo на Apple Music.",
+        radioWavesCardCopy: "Релиз на Apple Music.",
+        appleTrackCta: "Слушать",
+        appleCardCopy: "Релизы, артистская страница и быстрый старт прослушивания.",
+        appleCardCta: "Открыть музыку",
+        soundcloudCardCopy: "Треки и наброски на SoundCloud.",
+        yandexCardCopy: "Профиль артиста на Яндекс Музыке.",
+        vkCardCopy: "Профиль артиста во VK Music.",
+        spotifyCardCopy: "Профиль артиста на Spotify.",
+        openProfileCta: "Открыть",
+        youtubePlaylistCardCopy: "Плейлист Emotions 4 на YouTube.",
+        youtubeRadioCardCopy: "Видео Radio Waves на YouTube.",
+        youtubeCardCopy: "Биты, продакшн-след и видео без перехода через витрину ссылок.",
+        youtubeCardCta: "Смотреть",
+        instagramCardCopy: "Сниппеты, фото, короткие видео и живые следы вокруг музыки.",
+        instagramCardCta: "Зайти в профиль",
+        profilesInlineLink: "Профили и музыка",
+        profilesInlineMeta: "На сайте",
+        scrollHint: "история ниже",
+        storyKicker: "История",
+        storyTitle: "8+ лет в битмейкинге",
+        storyP1: "Привет! Я пишу биты и инструменталы, а ещё я музыкальный продюсер. Всё начиналось как хобби, но за годы вокруг него собрался свой архив, свой темп и свой круг артистов.",
+        storyP2: "Я сотрудничал со многими артистами, а в 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу более 8 лет: без лишнего шума, но с постоянной практикой, сессиями, демками и релизами.",
+        creditsLabel: "Credits:",
+        archiveKicker: "Визуальный архив",
+        archiveTitle: "Обложки как стиль",
+        socialKicker: "Instagram / Life / Beats",
+        socialTitle: "Отрывки, фото, видео",
+        socialCopy: "В Instagram выходят отрывки битов, фото и видео о жизни. На YouTube можно поймать продакшн-след, на Apple Music слушать релизы, а все главные переходы теперь собраны прямо здесь.",
+        footerRole: "blnfkr, producer & beatmaker",
+        footerRights: "© blnfkr, все права защищены",
+        altRollingDice: "Обложка Rolling Dice",
+        altEmotions: "Обложка Emotions",
+        altRadioWaves: "Обложка Radio Waves",
+        altNoLove: "Обложка No Love",
+        altArchiveCover: "Обложка из архива blnfkr",
+        altSquareVisual: "Квадратный визуал blnfkr",
+        altSquareCover: "Квадратная обложка blnfkr",
+        altProjectCover: "Квадратная обложка из проекта blnfkr",
+        altForevaBallin: "Квадратная обложка Foreva Ballin'",
+        altSocialPhotoOne: "Фото blnfkr из Instagram",
+        altSocialPhotoTwo: "Фото blnfkr из Instagram"
+      },
+      en: {
+        documentTitle: "blnfkr | producer & beatmaker",
+        metaDescription: "blnfkr: music producer and beatmaker. Beats, instrumentals, credits, releases, and social links.",
+        navAria: "Main navigation",
+        brandAria: "blnfkr, back to top",
+        socialLinksAria: "Social links",
+        languageToggleAria: "Language selector",
+        primaryActionsAria: "Primary actions",
+        creditsAria: "Credits",
+        releaseGridAria: "Covers and visuals by blnfkr",
+        heroEyebrow: "Producer / Beatmaker",
+        heroCopy: "Young, experienced, and self-made: beats, instrumentals and direct links to press play.",
+        listenCta: "Listen now",
+        youtubeCta: "Beats on YouTube",
+        linksCta: "All links",
+        profilesNav: "Profiles",
+        profilesCta: "Profiles and music",
+        profilesKicker: "Listen / Watch / Follow",
+        profilesTitle: "No middleman links",
+        profilesCopy: "Everything that used to sit on a separate link page is here now: releases, beats, videos, and Instagram.",
+        profilesGridAria: "Music and profile links",
+        franksCardCopy: "A DTurbo collaboration on Apple Music.",
+        rollingDiceCardCopy: "Release on Apple Music with a direct album link.",
+        lightsCardCopy: "Track with DTurbo on Apple Music.",
+        emotions4CardCopy: "EP on Apple Music.",
+        emotions3CardCopy: "Single with DTurbo on Apple Music.",
+        radioWavesCardCopy: "Release on Apple Music.",
+        appleTrackCta: "Listen",
+        appleCardCopy: "Releases, artist page, and a direct path to listening.",
+        appleCardCta: "Open music",
+        soundcloudCardCopy: "Tracks and sketches on SoundCloud.",
+        yandexCardCopy: "Artist profile on Yandex Music.",
+        vkCardCopy: "Artist profile on VK Music.",
+        spotifyCardCopy: "Artist profile on Spotify.",
+        openProfileCta: "Open",
+        youtubePlaylistCardCopy: "Emotions 4 playlist on YouTube.",
+        youtubeRadioCardCopy: "Radio Waves video on YouTube.",
+        youtubeCardCopy: "Beats, production trail, and videos without a link storefront.",
+        youtubeCardCta: "Watch",
+        instagramCardCopy: "Snippets, photos, short videos, and live traces around the music.",
+        instagramCardCta: "Open profile",
+        profilesInlineLink: "Profiles and music",
+        profilesInlineMeta: "On site",
+        scrollHint: "story below",
+        storyKicker: "Story",
+        storyTitle: "8+ years of beatmaking & production",
+        storyP1: "Hi! I make beats and instrumentals, and I produce music under the name blnfkr. It started as a hobby, but over the years it turned into an archive, a rhythm, and a circle of artists around the sound.",
+        storyP2: "I have worked with many artists, and in 2022 one of my tracks was played on American Dash Radio and Soundcloud Radio. I have been making music for more than eight years: no extra noise, just steady practice, sessions, demos, and releases.",
+        creditsLabel: "Credits:",
+        archiveKicker: "Visual archive",
+        archiveTitle: "Covers as style",
+        socialKicker: "Instagram / Life / Beats",
+        socialTitle: "Snippets, photos, videos",
+        socialCopy: "Instagram is where beat snippets, photos, and life videos land. YouTube holds the production trail, Apple Music carries the releases, and the main exits now live right here.",
+        footerRole: "blnfkr, producer & beatmaker",
+        footerRights: "© blnfkr, all rights reserved",
+        altRollingDice: "Rolling Dice cover artwork",
+        altEmotions: "Emotions cover artwork",
+        altRadioWaves: "Radio Waves cover artwork",
+        altNoLove: "No Love cover artwork",
+        altArchiveCover: "Archive cover artwork by blnfkr",
+        altSquareVisual: "Square visual by blnfkr",
+        altSquareCover: "Square cover artwork by blnfkr",
+        altProjectCover: "Square cover from the blnfkr project archive",
+        altForevaBallin: "Foreva Ballin' cover artwork",
+        altSocialPhotoOne: "Instagram photo from blnfkr",
+        altSocialPhotoTwo: "Instagram photo from blnfkr"
+      }
+    };
+
+    const storageKey = "blnfkr-lang";
+    const buttons = document.querySelectorAll("[data-lang]");
+
+    function getSavedLanguage() {
+      try {
+        const requested = new URLSearchParams(window.location.search).get("lang");
+        if (requested === "en" || requested === "ru") {
+          return requested;
+        }
+        const saved = localStorage.getItem(storageKey);
+        return saved === "en" || saved === "ru" ? saved : "ru";
+      } catch {
+        return "ru";
+      }
+    }
+
+    function setLanguage(lang) {
+      const dictionary = translations[lang] || translations.ru;
+      document.documentElement.lang = lang;
+      document.title = dictionary.documentTitle;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) {
+          element.textContent = dictionary[key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.dataset.i18nAttr.split(",").forEach((pair) => {
+          const [attribute, key] = pair.split(":").map((part) => part.trim());
+          if (attribute && key && dictionary[key]) {
+            element.setAttribute(attribute, dictionary[key]);
+          }
+        });
+      });
+
+      buttons.forEach((button) => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      try {
+        localStorage.setItem(storageKey, lang);
+      } catch {
+        /* localStorage can be blocked in private contexts; the page still works. */
+      }
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(getSavedLanguage());
+  </script>
+</body>
+</html>
