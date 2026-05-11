@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const html = fs.readFileSync('index.html', 'utf8');
-const match = html.match(/const translations = (\{[\s\S]*?\n    \});\n\n    const storageKey/);
+const match = html.match(/const translations = (\{[\s\S]*?\n\s*\});\s*\n\s*const storageKey/);
 
 if (!match) {
   throw new Error('translations object not found');
@@ -29,10 +29,14 @@ const requiredSnippets = [
   'data-lang="en"',
   'const storageKey = "blnfkr-lang"',
   'localStorage.getItem(storageKey)',
-  'localStorage.setItem(storageKey, lang)',
-  'document.documentElement.lang = lang',
+  'localStorage.setItem(storageKey, activeLang)',
+  'document.documentElement.lang = activeLang',
   'new URLSearchParams(window.location.search).get("lang")',
-  'Listen now',
+  '<noscript>',
+  'const activeLang = translations[lang] ? lang : "ru"',
+  'document.documentElement.dir = "ltr"',
+  'overflow-wrap: anywhere',
+  'Apple Music',
   '8+ years of beatmaking & production',
   'Snippets, photos, videos',
   'Слушать',
