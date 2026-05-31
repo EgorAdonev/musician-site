@@ -1,5 +1,5 @@
 # Tooling (ffmpeg binaries, build tools)
-_tools/
+_tools/*
 
 # Dependencies
 node_modules/
