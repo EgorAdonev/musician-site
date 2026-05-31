@@ -229,11 +229,82 @@
       pointer-events: auto;
     }
 
-    .hyperflight iframe {
+    .hyperflight-media {
+      position: relative;
       width: 100%;
       height: 100%;
-      border: 0;
-      background: #05070c;
+      display: block;
+      overflow: hidden;
+      background: #000;
+      transform: scale(1.03);
+      will-change: transform;
+    }
+
+    .hyperflight-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      filter: saturate(1.1) brightness(0.96);
+      will-change: opacity;
+    }
+
+    .hyperflight-frame:first-child {
+      opacity: 1;
+    }
+
+    body.is-cinematic-flight .hyperflight-media {
+      animation: hyperflight-avif-push 2.4s linear both;
+    }
+
+    body.is-cinematic-flight .hyperflight-frame {
+      animation-duration: 2.4s;
+      animation-fill-mode: both;
+      animation-timing-function: step-end;
+    }
+
+    body.is-cinematic-flight .hyperflight-frame:nth-child(1) { animation-name: hyperflight-frame-1; }
+    body.is-cinematic-flight .hyperflight-frame:nth-child(2) { animation-name: hyperflight-frame-2; }
+    body.is-cinematic-flight .hyperflight-frame:nth-child(3) { animation-name: hyperflight-frame-3; }
+    body.is-cinematic-flight .hyperflight-frame:nth-child(4) { animation-name: hyperflight-frame-4; }
+
+    @keyframes hyperflight-avif-push {
+      0% {
+        transform: scale(1.08) translate3d(2.4%, 0, 0);
+        filter: saturate(1.08) brightness(0.86);
+      }
+      42% {
+        transform: scale(1.18) translate3d(-1.4%, -0.8%, 0);
+        filter: saturate(1.18) brightness(0.98);
+      }
+      100% {
+        transform: scale(1.28) translate3d(-3.2%, -1.6%, 0);
+        filter: saturate(1.05) brightness(0.72);
+      }
+    }
+
+    @keyframes hyperflight-frame-1 {
+      0%, 24.99% { opacity: 1; }
+      25%, 100% { opacity: 0; }
+    }
+
+    @keyframes hyperflight-frame-2 {
+      0%, 24.99% { opacity: 0; }
+      25%, 49.99% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    @keyframes hyperflight-frame-3 {
+      0%, 49.99% { opacity: 0; }
+      50%, 74.99% { opacity: 1; }
+      75%, 100% { opacity: 0; }
+    }
+
+    @keyframes hyperflight-frame-4 {
+      0%, 74.99% { opacity: 0; }
+      75%, 100% { opacity: 1; }
     }
 
     .hyperflight-panel {
@@ -911,7 +982,12 @@
   <a class="skip-link" href="#audio">К плееру</a>
   <div class="camera-flash" aria-hidden="true"></div>
   <div class="hyperflight" data-hyperflight aria-hidden="true">
-    <iframe data-hyperflight-frame src="hyperframes-palace/index.html" title="3D HyperFrames palace flight"></iframe>
+    <div class="hyperflight-media" data-hyperflight-media aria-hidden="true">
+      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-01.avif" alt="">
+      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-02.avif" alt="">
+      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-03.avif" alt="">
+      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-04.avif" alt="">
+    </div>
     <div class="hyperflight-panel">
       <button class="action-button small hyperflight-skip" type="button" data-hyperflight-skip>Skip flight</button>
     </div>
@@ -928,6 +1004,7 @@
       <a href="#gallery" data-room-link>Gallery</a>
       <a href="#archive" data-room-link>Archive</a>
       <a href="#signals" data-room-link>Signals</a>
+      <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer">Journey</a>
       <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
       <button class="chip-button" type="button" data-lang="en">EN</button>
     </nav>
@@ -946,10 +1023,6 @@
             <a class="action-button" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer">Apple Music</a>
             <a class="action-button" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer">YouTube</a>
           </div>
-          <div class="variant-row" aria-label="A/B visual variants">
-            <button class="chip-button is-active" type="button" data-variant="a">Variant A: acid palace</button>
-            <button class="chip-button" type="button" data-variant="b">Variant B: chrome heat</button>
-          </div>
         </div>
         <div class="palace-stage" aria-label="Rotating release covers">
           <div class="orbital-ring" aria-hidden="true"></div>
@@ -964,7 +1037,7 @@
             <figure class="cover-object" style="--i:7"><img src="assets/images/releases/radio-waves.png" alt=""></figure>
             <figure class="cover-object" style="--i:8"><img src="assets/images/releases/solo.png" alt=""></figure>
           </div>
-          <div class="artist-core"><span>PLAY LOCAL</span></div>
+          <div class="artist-core"><span>Foreva' Ballin' out now</span></div>
         </div>
       </div>
     </section>
@@ -979,20 +1052,20 @@
             <div class="player-title">
               <div>
                 <div class="track-name" data-current-track>monster ft. DTurbo' 140 bpm</div>
-                <p data-i18n="currentTrackHint">Локальный файл, без внешнего стриминга.</p>
+                <p data-i18n="currentTrackHint">online radio</p>
               </div>
-              <button class="action-button primary" type="button" data-play>Play</button>
             </div>
             <div class="visual-stack">
               <canvas class="meter-canvas" data-meter width="900" height="360" aria-label="Equalizer visualization"></canvas>
               <canvas class="wave-canvas" data-wave width="900" height="180" aria-label="Waveform visualization"></canvas>
             </div>
-            <audio class="native-audio" data-audio preload="metadata" controls controlslist="nodownload"></audio>
+            <audio hidden class="native-audio" data-audio preload="metadata" controls controlslist="nodownload"></audio>
             <input class="progress" data-progress type="range" min="0" max="1000" value="0" aria-label="Track position">
             <div class="time-row"><span data-time-current>0:00</span><span data-time-total>0:00</span></div>
             <div class="control-row">
-              <button class="action-button small" type="button" data-prev>Prev</button>
-              <button class="action-button small" type="button" data-next>Next</button>
+              <button class="action-button small" type="button" data-prev>⏮</button>
+              <button class="action-button primary" type="button" data-play>Play</button>
+              <button class="action-button small" type="button" data-next>⏭</button>
               <button class="action-button small" type="button" data-room-link-button="#gallery" data-i18n="moveGallery">В галерею</button>
             </div>
           </div>
@@ -1005,15 +1078,15 @@
       <div class="room-grid">
         <div class="room-copy">
           <p class="room-label" data-i18n="galleryRoom">Cover Gallery</p>
-          <h2 id="gallery-title" data-i18n="galleryTitle">Обложки вращаются как зал</h2>
-          <p class="body-copy kinetic-lines" data-kinetic data-i18n="galleryCopy">Карусель вдохновлена Pretext text-wrap и image spinner: текст обтекает центр, а обложки движутся как экспонаты в круговой комнате.</p>
+          <h2 id="gallery-title" data-i18n="galleryTitle">Карусель дискографии</h2>
+          <p class="body-copy kinetic-lines" data-kinetic data-i18n="galleryCopy">Альбомы как экспонаты</p>
           <div class="hero-actions">
             <a class="action-button primary" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer">Emotions 4</a>
             <a class="action-button" href="https://youtube.com/playlist?list=OLAK5uy_kHs_-Qt39mZEkz0U_LQ-y2Rsz1KjQXtfw" target="_blank" rel="noreferrer">YouTube playlist</a>
           </div>
         </div>
         <div class="spinner-wrap">
-          <div class="text-wrap-field" data-wrap-text>NOCTURNAL DISTORTED SELF MADE RADIO WAVES LOCAL TRACKS FUTURE PALACE</div>
+          <div class="text-wrap-field" data-wrap-text>BLN FKR FUTURE WORLDWIDE</div>
           <div class="cover-spinner" aria-label="Album cover spinner">
             <figure class="spinner-card" style="--i:0"><img src="assets/images/releases/dear-father.png" alt="Dear Father cover" loading="lazy" decoding="async"></figure>
             <figure class="spinner-card" style="--i:1"><img src="assets/images/releases/done-cover.jpg" alt="Done cover" loading="lazy" decoding="async"></figure>
@@ -1033,8 +1106,8 @@
       <div class="room-grid">
         <div class="room-copy">
           <p class="room-label" data-i18n="archiveRoom">Archive</p>
-          <h2 id="archive-title" data-i18n="archiveTitle">Опыт без витрины</h2>
-          <p class="body-copy" data-i18n="archiveCopy">Больше восьми лет практики, релизы с DTurbo, SoundCloud sketches, Apple Music, YouTube и радио-след. Информация подана как доказательства внутри комнаты, без длинной биографии.</p>
+          <h2 id="archive-title" data-i18n="archiveTitle">История</h2>
+          <p class="body-copy" data-i18n="archiveCopy">Привет! Я blnfkr, пишу биты и инструменталы. Начинал как хобби, а теперь это архив релизов, демо и коллабораций.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.</p>
         </div>
         <div class="proof-grid">
           <article class="proof-panel">
@@ -1042,12 +1115,18 @@
             <p data-i18n="proofYears">лет в битмейкинге и продакшне.</p>
           </article>
           <article class="proof-panel">
-            <strong>2022</strong>
+            <strong>В 2022 г.</strong>
             <p data-i18n="proofRadio">трек звучал на Dash Radio и Soundcloud Radio.</p>
           </article>
+          <p class="room-label">Credits</p>
           <article class="proof-panel">
-            <strong>7</strong>
-            <p data-i18n="proofTracks">локальных треков доступны прямо на сайте.</p>
+            <strong>Soundcloud Radio</strong>
+            <strong>Dash Radio</strong>
+            <strong>Mvkalo</strong>
+            <strong>DTurbo</strong>
+            <strong>Aimee Britannia</strong>
+            <strong>$WI$$</strong>
+            <strong>RTONTHABEAT</strong>
           </article>
         </div>
       </div>
@@ -1055,17 +1134,17 @@
         <a class="release-panel" href="https://music.apple.com/ru/album/radio-waves/1674026929?i=1674026930&l=en" target="_blank" rel="noreferrer">
           <img src="assets/images/releases/radio-waves.png" alt="Radio Waves cover" loading="lazy" decoding="async">
           <h3>Radio Waves</h3>
-          <p>Radio mark, video trail, and cover language.</p>
+          <p>Cosmic vibes</p>
         </a>
         <a class="release-panel" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer">
           <img src="assets/images/releases/emotions-4.jpg" alt="Emotions 4 cover" loading="lazy" decoding="async">
           <h3>Emotions 4</h3>
-          <p>EP energy with a direct Apple Music route.</p>
+          <p>EP energy</p>
         </a>
         <a class="release-panel" href="https://youtu.be/UpeiR01d_Ww" target="_blank" rel="noreferrer">
           <img src="assets/images/releases/foreva-ballin.jpg" alt="Foreva Ballin cover" loading="lazy" decoding="async">
           <h3>Foreva Ballin</h3>
-          <p>Distorted cover art as the identity system.</p>
+          <p>New album</p>
         </a>
       </div>
     </section>
@@ -1073,8 +1152,8 @@
     <section class="room signals-room" id="signals" aria-labelledby="signals-title">
       <div class="room-copy" style="width:min(1220px,100%);margin:0 auto 2rem;">
         <p class="room-label" data-i18n="signalsRoom">Signal Room</p>
-        <h2 id="signals-title" data-i18n="signalsTitle">Выходы из дворца</h2>
-        <p class="body-copy" data-i18n="signalsCopy">Все внешние маршруты собраны в одной комнате: слушать, смотреть, проверять сниппеты, открывать профили.</p>
+        <h2 id="signals-title" data-i18n="signalsTitle">Профили и соцсети</h2>
+        <p class="body-copy" data-i18n="signalsCopy">В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы, и остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда.</p>
       </div>
       <div class="signal-grid">
         <a class="signal-panel" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span>A</span><h3>Apple Music</h3><p>Artist page and release routes.</p><small>Open music</small></a>
@@ -1090,46 +1169,46 @@
 
   <footer class="footer">
     <span>blnfkr, producer & beatmaker</span>
-    <span>HyperFrames palace motion source: hyperframes-palace/</span>
+    <span>© blnfkr, все права защищены</span>
   </footer>
 
   <script type="module">
     const tracks = [
-      { title: "monster ft. DTurbo' 140 bpm", file: "assets/tracks/monster ft. DTurbo' 140 bpm.mp3", bpm: "140" },
-      { title: "more pillz 170 bpm ft. DTurbo'", file: "assets/tracks/more pillz 170 bpm ft. DTurbo'.mp3", bpm: "170" },
-      { title: "realest 97 bpm", file: "assets/tracks/realest 97 bpm (real life remake).mp3", bpm: "97" },
-      { title: "rock dance 105 bpm", file: "assets/tracks/rock dance (medlyak remake) 105 bpm.mp3", bpm: "105" },
-      { title: "Siamese cat 132 bpm", file: "assets/tracks/Siamese cat 132 bpm.mp3", bpm: "132" },
-      { title: "Stitch lipped 145 instr", file: "assets/tracks/Stitch lipped 145 instr .mp3", bpm: "145" },
-      { title: "winter 105 bpm", file: "assets/tracks/winter 105 bpm.mp3", bpm: "105" }
+      { title: "monster ft. DTurbo'", file: "assets/tracks/monster ft. DTurbo' 140 bpm.mp3", bpm: "140" },
+      { title: "more pillz ft. DTurbo'", file: "assets/tracks/more pillz 170 bpm ft. DTurbo'.mp3", bpm: "170" },
+      { title: "realest", file: "assets/tracks/realest 97 bpm (real life remake).mp3", bpm: "97" },
+      { title: "rock dance", file: "assets/tracks/rock dance (medlyak remake) 105 bpm.mp3", bpm: "105" },
+      { title: "siamese cat", file: "assets/tracks/Siamese cat 132 bpm.mp3", bpm: "132" },
+      { title: "stitch lipped", file: "assets/tracks/Stitch lipped 145 instr .mp3", bpm: "145" },
+      { title: "winter", file: "assets/tracks/winter 105 bpm.mp3", bpm: "105" }
     ];
 
     const translations = {
       ru: {
         heroRoom: "Atrium signal",
-        heroCopy: "Футуристичный дворец битов: локальные треки, обложки, радио-след и прямые выходы на музыку.",
-        playFirst: "Запустить трек",
+        heroCopy: "Я молодой музыкальный продюсер. Этот сайт - мой особняк: здесь треки, дискография, моё появление на радио, а также песни и ссылки, где можно сразу включить треки.",
+        playFirst: "Слушать треки",
         audioRoom: "Audio Lab",
-        audioTitle: "Свет реагирует на трек",
-        audioCopy: "Плеер использует локальные MP3 из папки assets/tracks. Эквалайзер и waveform строятся через Web Audio после клика по Play.",
-        currentTrackHint: "Локальный файл, без внешнего стриминга.",
+        audioTitle: "Слушаем треки на сайте",
+        audioCopy: "Здесь плеер, нажмите Play",
+        currentTrackHint: "online radio",
         moveGallery: "В галерею",
         galleryRoom: "Cover Gallery",
-        galleryTitle: "Обложки вращаются как зал",
-        galleryCopy: "Карусель вдохновлена Pretext text-wrap и image spinner: текст обтекает центр, а обложки движутся как экспонаты в круговой комнате.",
+        galleryTitle: "Карусель дискографии",
+        galleryCopy: "Альбомы как экспонаты",
         archiveRoom: "Archive",
-        archiveTitle: "Опыт без витрины",
-        archiveCopy: "Больше восьми лет практики, релизы с DTurbo, SoundCloud sketches, Apple Music, YouTube и радио-след. Информация подана как доказательства внутри комнаты, без длинной биографии.",
+        archiveTitle: "История",
+        archiveCopy: "Привет! Я blnfkr, пишу биты и инструменталы. Здесь мои релизы, инфо про демо и коллаборации.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.",
         proofYears: "лет в битмейкинге и продакшне.",
         proofRadio: "трек звучал на Dash Radio и Soundcloud Radio.",
         proofTracks: "локальных треков доступны прямо на сайте.",
         signalsRoom: "Signal Room",
-        signalsTitle: "Выходы из дворца",
-        signalsCopy: "Все внешние маршруты собраны в одной комнате: слушать, смотреть, проверять сниппеты, открывать профили."
+        signalsTitle: "Профили и соцсети",
+        signalsCopy: "В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы, и остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда."
       },
       en: {
         heroRoom: "Atrium signal",
-        heroCopy: "A futuristic beat palace: local tracks, cover artifacts, radio proof, and direct routes to music.",
+        heroCopy: "Beat palace by blnfkr: tracks, discography, radio appearance",
         playFirst: "Play a track",
         audioRoom: "Audio Lab",
         audioTitle: "Light reacts to the track",
@@ -1160,7 +1239,7 @@
     const timeCurrent = document.querySelector("[data-time-current]");
     const timeTotal = document.querySelector("[data-time-total]");
     const hyperflight = document.querySelector("[data-hyperflight]");
-    const hyperflightFrame = document.querySelector("[data-hyperflight-frame]");
+    const hyperflightMedia = document.querySelector("[data-hyperflight-media]");
     const hyperflightSkip = document.querySelector("[data-hyperflight-skip]");
     const meter = document.querySelector("[data-meter]");
     const wave = document.querySelector("[data-wave]");
@@ -1177,6 +1256,10 @@
     let flightRaf = 0;
     let pendingFlightTarget = null;
     const roomTargets = ["#atrium", "#audio", "#gallery", "#archive", "#signals"];
+
+    hyperflightMedia?.querySelectorAll("img").forEach(img => {
+      img.decode?.().catch(() => {});
+    });
 
     const formatTime = value => {
       if (!Number.isFinite(value)) return "0:00";
@@ -1365,16 +1448,18 @@
     };
 
     const travelTo = target => {
-      if (prefersReducedMotion || !hyperflight || !hyperflightFrame) {
+      if (prefersReducedMotion || !hyperflight || !hyperflightMedia) {
         scrollToTarget(target);
         return;
       }
       if (!target || document.body.classList.contains("is-cinematic-flight")) return;
       pendingFlightTarget = target;
       const start = performance.now();
-      const duration = 12000;
-      hyperflightFrame.src = `hyperframes-palace/index.html?flight=${Date.now()}`;
+      const duration = 2400;
       hyperflight.setAttribute("aria-hidden", "false");
+      hyperflightMedia.style.animation = "none";
+      hyperflightMedia.offsetHeight;
+      hyperflightMedia.style.animation = "";
       document.body.classList.add("is-cinematic-flight");
 
       const tick = now => {
@@ -1489,7 +1574,7 @@
       const next = current + (event.deltaY > 0 ? 1 : -1);
       if (next < 0 || next >= roomTargets.length) return;
       event.preventDefault();
-      travelTo(roomTargets[next]);
+      scrollToTarget(roomTargets[next]);
     }, { passive: false });
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
