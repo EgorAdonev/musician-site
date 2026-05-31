@@ -1,0 +1,492 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>blnfkr 3D palace flight</title>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+      color: #effff6;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    #palace-rooms {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 44%, rgba(97,0,255,0.18), rgba(0,0,0,0) 35%),
+        #000;
+      perspective: 980px;
+      perspective-origin: 50% 52%;
+    }
+
+    .camera {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      overflow: visible;
+    }
+
+    .world {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1920px;
+      height: 1080px;
+      margin-left: -960px;
+      margin-top: -540px;
+      transform-style: preserve-3d;
+    }
+
+    .room3d {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      transform-style: preserve-3d;
+    }
+
+    .atrium { transform: translateZ(0); }
+    .audio { transform: translateZ(-1550px); }
+    .gallery { transform: translateZ(-3100px); }
+    .archive { transform: translateZ(-4650px); }
+    .signal { transform: translateZ(-6200px); }
+
+    .plane {
+      position: absolute;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+
+    .floor {
+      left: -420px;
+      bottom: -410px;
+      width: 2760px;
+      height: 1180px;
+      transform: rotateX(74deg) translateZ(-170px);
+      background:
+        radial-gradient(ellipse at 46% 16%, rgba(0,255,133,0.22), rgba(0,0,0,0) 34%),
+        radial-gradient(ellipse at 70% 58%, rgba(97,0,255,0.38), rgba(0,0,0,0) 48%),
+        linear-gradient(112deg, rgba(41,0,108,0.9), rgba(26,0,20,0.82) 42%, rgba(0,0,0,0.98));
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow:
+        inset 0 0 0 2px rgba(97,0,255,0.2),
+        inset 0 0 160px rgba(0,0,0,0.48);
+    }
+
+    .ceiling {
+      left: -420px;
+      top: -520px;
+      width: 2760px;
+      height: 1000px;
+      transform: rotateX(-72deg) translateZ(-220px);
+      background:
+        radial-gradient(ellipse at 52% 78%, rgba(0,255,133,0.16), rgba(0,0,0,0) 34%),
+        linear-gradient(96deg, rgba(26,0,20,0.96), rgba(41,0,108,0.72) 55%, rgba(0,0,0,0.98));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 0 120px rgba(97,0,255,0.26);
+    }
+
+    .back-wall {
+      left: 210px;
+      top: 80px;
+      width: 1500px;
+      height: 760px;
+      transform: translateZ(-760px);
+      background:
+        radial-gradient(circle at 48% 45%, rgba(255,255,255,0.14), rgba(255,255,255,0) 21%),
+        radial-gradient(circle at 74% 26%, rgba(0,255,133,0.16), rgba(0,0,0,0) 25%),
+        linear-gradient(135deg, rgba(97,0,255,0.5), rgba(41,0,108,0.5) 42%, rgba(0,0,0,0.96));
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow:
+        inset 0 0 0 2px rgba(0,255,133,0.08),
+        inset 0 0 140px rgba(0,0,0,0.32);
+    }
+
+    .left-wall,
+    .right-wall {
+      top: 20px;
+      width: 980px;
+      height: 920px;
+      background:
+        radial-gradient(ellipse at 50% 34%, rgba(97,0,255,0.28), rgba(0,0,0,0) 42%),
+        linear-gradient(180deg, rgba(26,0,20,0.94), rgba(0,0,0,0.98));
+      border: 1px solid rgba(255,255,255,0.13);
+      box-shadow: inset 0 0 90px rgba(97,0,255,0.22);
+    }
+
+    .left-wall {
+      left: -500px;
+      transform: rotateY(74deg) translateZ(-130px);
+    }
+
+    .right-wall {
+      right: -500px;
+      transform: rotateY(-74deg) translateZ(-130px);
+    }
+
+    .portal {
+      left: 670px;
+      top: 225px;
+      width: 580px;
+      height: 580px;
+      border: 2px solid rgba(127,255,132,0.72);
+      border-radius: 50%;
+      transform: translateZ(-700px);
+      box-shadow:
+        0 0 80px rgba(127,255,132,0.36),
+        inset 0 0 80px rgba(84,215,255,0.18);
+      background:
+        radial-gradient(circle, rgba(239,255,246,0.18), rgba(84,215,255,0.08) 28%, rgba(5,7,12,0.82) 66%);
+    }
+
+    .portal::before,
+    .portal::after {
+      content: "";
+      position: absolute;
+      inset: 9%;
+      border: 1px solid rgba(84,215,255,0.46);
+      border-radius: 50%;
+      transform: translateZ(90px) scale(0.84);
+      box-shadow: 0 0 44px rgba(84,215,255,0.28);
+    }
+
+    .portal::after {
+      inset: 20%;
+      border-color: rgba(211,77,255,0.5);
+      transform: translateZ(170px) scale(0.66);
+    }
+
+    .depth-rib {
+      top: 108px;
+      width: 3px;
+      height: 760px;
+      background: linear-gradient(180deg, rgba(239,255,246,0), rgba(127,255,132,0.55), rgba(239,255,246,0));
+      box-shadow: 0 0 22px rgba(127,255,132,0.36);
+      transform-origin: 50% 50%;
+      opacity: 0.52;
+    }
+
+    .depth-rib.r1 { left: 520px; transform: translateZ(260px) rotateY(-28deg); }
+    .depth-rib.r2 { left: 710px; transform: translateZ(80px) rotateY(-12deg); }
+    .depth-rib.r3 { right: 710px; transform: translateZ(80px) rotateY(12deg); }
+    .depth-rib.r4 { right: 520px; transform: translateZ(260px) rotateY(28deg); }
+
+    .holo-core {
+      left: 790px;
+      top: 340px;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      transform: translateZ(260px);
+      background:
+        radial-gradient(circle at 38% 35%, rgba(239,255,246,0.45), rgba(84,215,255,0.24) 28%, rgba(97,0,255,0.3) 48%, rgba(5,7,12,0.2) 68%);
+      filter: drop-shadow(0 0 48px rgba(84,215,255,0.36));
+    }
+
+    .column {
+      top: 170px;
+      width: 64px;
+      height: 720px;
+      border: 1px solid rgba(239,255,246,0.16);
+      background:
+        linear-gradient(90deg, rgba(239,255,246,0.08), rgba(127,255,132,0.24), rgba(5,7,12,0.78)),
+        #0b1015;
+      box-shadow: 0 0 48px rgba(127,255,132,0.16);
+    }
+
+    .column.a { left: 315px; transform: translateZ(-260px) rotateY(-16deg); }
+    .column.b { right: 315px; transform: translateZ(-260px) rotateY(16deg); }
+    .column.c { left: 115px; transform: translateZ(-120px) rotateY(-24deg); }
+    .column.d { right: 115px; transform: translateZ(-120px) rotateY(24deg); }
+
+    .copy-block {
+      left: 260px;
+      top: 300px;
+      width: 420px;
+      transform: translateZ(-340px) rotateY(8deg);
+      padding: 20px;
+      background: rgba(0,0,0,0.7);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 0;
+      box-shadow:
+        0 0 0 1px rgba(97,0,255,0.42),
+        0 0 54px rgba(97,0,255,0.22);
+    }
+
+    .copy-block.right {
+      left: auto;
+      right: 210px;
+      transform: translateZ(-340px) rotateY(-8deg);
+    }
+
+    .label {
+      margin: 0 0 18px;
+      color: #7fff84;
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    h1 {
+      max-width: 610px;
+      margin: 0;
+      font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+      font-size: 38px;
+      line-height: 0.9;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    p {
+      max-width: 580px;
+      margin: 16px 0 0;
+      color: #c9d7dc;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .cover-plane {
+      width: 330px;
+      height: 330px;
+      border: 2px solid rgba(255,255,255,0.78);
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 2px rgba(0,255,133,0.3),
+        0 0 74px rgba(0,255,133,0.22),
+        0 0 110px rgba(97,0,255,0.18);
+      background: #000;
+    }
+
+    .cover-plane img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cover-a { left: 780px; top: 215px; transform: translateZ(-240px) rotateY(-7deg); }
+    .cover-b { left: 1085px; top: 365px; transform: translateZ(-360px) rotateY(-18deg); }
+    .cover-c { left: 630px; top: 430px; transform: translateZ(-480px) rotateY(14deg); }
+
+    .meter-bars {
+      left: 1010px;
+      top: 300px;
+      width: 620px;
+      height: 360px;
+      transform: translateZ(140px) rotateY(-13deg);
+      display: flex;
+      align-items: end;
+      gap: 10px;
+      padding: 20px;
+      border: 1px solid rgba(239,255,246,0.18);
+      border-radius: 8px;
+      background: rgba(5,7,12,0.68);
+    }
+
+    .bar {
+      width: 20px;
+      height: calc(var(--h) * 1%);
+      min-height: 24px;
+      background: linear-gradient(180deg, #effff6, #54d7ff 46%, #7fff84);
+      box-shadow: 0 0 28px rgba(84,215,255,0.45);
+    }
+
+    .waveform {
+      left: 220px;
+      top: 705px;
+      width: 1060px;
+      height: 90px;
+      transform: translateZ(210px) rotateX(5deg);
+      background:
+        linear-gradient(90deg, rgba(127,255,132,0), rgba(127,255,132,0.9), rgba(211,77,255,0.8), rgba(84,215,255,0));
+      clip-path: polygon(0 50%, 4% 42%, 8% 64%, 12% 24%, 16% 70%, 20% 46%, 24% 62%, 28% 28%, 32% 73%, 36% 36%, 40% 58%, 44% 20%, 48% 78%, 52% 34%, 56% 60%, 60% 25%, 64% 72%, 68% 44%, 72% 66%, 76% 30%, 80% 74%, 84% 42%, 88% 62%, 92% 36%, 96% 56%, 100% 50%, 100% 100%, 0 100%);
+      filter: drop-shadow(0 0 18px rgba(127,255,132,0.5));
+    }
+
+  </style>
+</head>
+<body>
+  <div id="palace-rooms" data-composition-id="palace-rooms" data-start="0" data-duration="12" data-width="1920" data-height="1080">
+    <div class="camera" data-layout-allow-overflow>
+      <div class="world" data-layout-allow-overflow>
+        <section class="room3d atrium" data-layout-allow-overflow>
+          <div class="plane floor"></div>
+          <div class="plane ceiling"></div>
+          <div class="plane back-wall"></div>
+          <div class="plane left-wall"></div>
+          <div class="plane right-wall"></div>
+          <div class="plane portal"></div>
+          <div class="plane depth-rib r1"></div>
+          <div class="plane depth-rib r2"></div>
+          <div class="plane depth-rib r3"></div>
+          <div class="plane depth-rib r4"></div>
+          <div class="plane holo-core"></div>
+          <div class="plane column a"></div>
+          <div class="plane column b"></div>
+          <div class="plane column c"></div>
+          <div class="plane column d"></div>
+          <div class="plane copy-block">
+            <p class="label">Atrium</p>
+            <h1>BLNFKR FUTURE PALACE</h1>
+            <p>Camera enters the artist world through chrome, cover light, and local audio signal.</p>
+          </div>
+          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/dear-father.png" alt=""></div>
+          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/done-cover.jpg" alt=""></div>
+          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/foreva-ballin.jpg" alt=""></div>
+        </section>
+
+        <section class="room3d audio" data-layout-allow-overflow>
+          <div class="plane floor"></div>
+          <div class="plane ceiling"></div>
+          <div class="plane back-wall"></div>
+          <div class="plane left-wall"></div>
+          <div class="plane right-wall"></div>
+          <div class="plane portal"></div>
+          <div class="plane depth-rib r1"></div>
+          <div class="plane depth-rib r2"></div>
+          <div class="plane depth-rib r3"></div>
+          <div class="plane depth-rib r4"></div>
+          <div class="plane column a"></div>
+          <div class="plane column b"></div>
+          <div class="plane copy-block">
+            <p class="label">Audio Lab</p>
+            <h1>WAVEFORM ROOM</h1>
+            <p>Equalizer bars become architecture while the track drives cyan and acid light.</p>
+          </div>
+          <div class="plane meter-bars">
+            <i class="bar" style="--h:38"></i><i class="bar" style="--h:78"></i><i class="bar" style="--h:48"></i><i class="bar" style="--h:92"></i><i class="bar" style="--h:62"></i><i class="bar" style="--h:84"></i><i class="bar" style="--h:44"></i><i class="bar" style="--h:72"></i><i class="bar" style="--h:58"></i><i class="bar" style="--h:96"></i><i class="bar" style="--h:52"></i><i class="bar" style="--h:80"></i><i class="bar" style="--h:46"></i><i class="bar" style="--h:88"></i><i class="bar" style="--h:60"></i>
+          </div>
+          <div class="plane waveform"></div>
+          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/done-cover.jpg?room=audio" alt=""></div>
+          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/dear-father.png?room=audio" alt=""></div>
+          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/foreva-ballin.jpg?room=audio" alt=""></div>
+        </section>
+
+        <section class="room3d gallery" data-layout-allow-overflow>
+          <div class="plane floor"></div>
+          <div class="plane ceiling"></div>
+          <div class="plane back-wall"></div>
+          <div class="plane left-wall"></div>
+          <div class="plane right-wall"></div>
+          <div class="plane portal"></div>
+          <div class="plane depth-rib r1"></div>
+          <div class="plane depth-rib r2"></div>
+          <div class="plane depth-rib r3"></div>
+          <div class="plane depth-rib r4"></div>
+          <div class="plane column c"></div>
+          <div class="plane column d"></div>
+          <div class="plane copy-block right">
+            <p class="label">Cover Gallery</p>
+            <h1>ROTATING COVER HALL</h1>
+            <p>Album art hangs as physical planes in the palace, moving like artifacts around the camera.</p>
+          </div>
+          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/radio-waves.png" alt=""></div>
+          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/solo.png" alt=""></div>
+          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/no-love.png" alt=""></div>
+        </section>
+
+        <section class="room3d archive" data-layout-allow-overflow>
+          <div class="plane floor"></div>
+          <div class="plane ceiling"></div>
+          <div class="plane back-wall"></div>
+          <div class="plane left-wall"></div>
+          <div class="plane right-wall"></div>
+          <div class="plane portal"></div>
+          <div class="plane depth-rib r1"></div>
+          <div class="plane depth-rib r2"></div>
+          <div class="plane depth-rib r3"></div>
+          <div class="plane depth-rib r4"></div>
+          <div class="plane copy-block">
+            <p class="label">Archive</p>
+            <h1>RADIO PROOF ROOM</h1>
+            <p>Eight plus years of production, DTurbo releases, SoundCloud sketches, and radio traces.</p>
+          </div>
+          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/emotions-3.png" alt=""></div>
+          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/emotions-4.jpg" alt=""></div>
+          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/emotions-cover.jpg" alt=""></div>
+        </section>
+
+        <section class="room3d signal" data-layout-allow-overflow>
+          <div class="plane floor"></div>
+          <div class="plane ceiling"></div>
+          <div class="plane back-wall"></div>
+          <div class="plane left-wall"></div>
+          <div class="plane right-wall"></div>
+          <div class="plane portal"></div>
+          <div class="plane depth-rib r1"></div>
+          <div class="plane depth-rib r2"></div>
+          <div class="plane depth-rib r3"></div>
+          <div class="plane depth-rib r4"></div>
+          <div class="plane holo-core"></div>
+          <div class="plane copy-block right">
+            <p class="label">Signal Room</p>
+            <h1>DIRECT ROUTES OUT</h1>
+            <p>Apple Music, YouTube, Instagram, SoundCloud, Spotify, Yandex, and VK leave from one chamber.</p>
+          </div>
+          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/radio-waves.png?room=signal" alt=""></div>
+          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/no-love.png?room=signal" alt=""></div>
+          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/solo.png?room=signal" alt=""></div>
+        </section>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="../assets/vendor/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set(".world", { z: 720, rotationX: -3, rotationY: 0 }, 0);
+    tl.set(".room3d", { opacity: 1 }, 0);
+    tl.set(".portal", { scale: 0.82, opacity: 0.74 }, 0);
+
+    tl.from(".atrium .copy-block", { y: 80, z: -240, rotationY: 22, opacity: 0, duration: 0.8, immediateRender: false, ease: "expo.out" }, 0.2);
+    tl.from(".atrium .column", { y: 120, opacity: 0, duration: 0.6, stagger: 0.08, immediateRender: false, ease: "power3.out" }, 0.35);
+    tl.from(".atrium .depth-rib, .atrium .holo-core", { z: -320, opacity: 0, duration: 0.7, stagger: 0.05, immediateRender: false, ease: "power3.out" }, 0.42);
+    tl.from(".atrium .cover-plane", { z: -420, rotationY: -55, opacity: 0, duration: 0.75, stagger: 0.12, immediateRender: false, ease: "power4.out" }, 0.55);
+    tl.from(".atrium .portal", { scale: 0.45, opacity: 0, duration: 0.7, immediateRender: false, ease: "power2.out" }, 0.7);
+
+    tl.to(".world", { z: 2250, rotationY: -3, rotationX: -4, duration: 2.35, ease: "power2.inOut" }, 1.6);
+    tl.to(".atrium .portal", { scale: 1.35, opacity: 1, duration: 1.1, ease: "sine.inOut" }, 1.9);
+    tl.from(".audio .copy-block", { x: -80, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 3.0);
+    tl.from(".audio .cover-plane", { z: -360, rotationY: -34, opacity: 0, duration: 0.62, stagger: 0.1, immediateRender: false, ease: "power4.out" }, 3.06);
+    tl.from(".audio .meter-bars .bar", { scaleY: 0.15, opacity: 0, transformOrigin: "50% 100%", duration: 0.45, stagger: 0.035, immediateRender: false, ease: "power4.out" }, 3.16);
+    tl.from(".audio .waveform", { scaleX: 0.1, opacity: 0, transformOrigin: "0% 50%", duration: 0.55, immediateRender: false, ease: "power3.out" }, 3.25);
+
+    tl.to(".world", { z: 3820, rotationY: 3, rotationX: -4, duration: 2.45, ease: "power2.inOut" }, 4.2);
+    tl.to(".audio .portal", { scale: 1.35, opacity: 1, duration: 1.1, ease: "sine.inOut" }, 4.5);
+    tl.from(".gallery .copy-block", { x: 90, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 5.7);
+    tl.from(".gallery .cover-plane", { y: 90, rotationY: -44, opacity: 0, duration: 0.6, stagger: 0.12, immediateRender: false, ease: "power4.out" }, 5.86);
+
+    tl.to(".world", { z: 5360, rotationY: -3, rotationX: -4, duration: 2.45, ease: "power2.inOut" }, 7.0);
+    tl.to(".gallery .portal", { scale: 1.35, opacity: 1, duration: 1.1, ease: "sine.inOut" }, 7.3);
+    tl.from(".archive .copy-block", { x: -80, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 8.5);
+    tl.from(".archive .cover-plane", { z: -420, rotationY: 44, opacity: 0, duration: 0.62, stagger: 0.12, immediateRender: false, ease: "power4.out" }, 8.7);
+
+    tl.to(".world", { z: 6920, rotationY: 3, rotationX: -4, duration: 2.35, ease: "power2.inOut" }, 9.8);
+    tl.to(".archive .portal", { scale: 1.35, opacity: 1, duration: 1.1, ease: "sine.inOut" }, 10.1);
+    tl.from(".signal .copy-block", { x: 90, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 11.25);
+    tl.from(".signal .cover-plane", { y: 80, rotationY: -28, opacity: 0, duration: 0.62, stagger: 0.1, immediateRender: false, ease: "power4.out" }, 11.36);
+
+    tl.to(".portal", { boxShadow: "0 0 120px rgba(127,255,132,0.5), inset 0 0 100px rgba(84,215,255,0.28)", duration: 1.6, ease: "sine.inOut" }, 12.0);
+    tl.to(".world", { z: 7240, rotationY: 0, rotationX: -2, duration: 1.9, ease: "power2.out" }, 12.5);
+    tl.to(".signal .copy-block", { opacity: 0, y: -28, duration: 0.65, ease: "power2.in" }, 14.25);
+    tl.timeScale(1.25);
+
+    window.__timelines["palace-rooms"] = tl;
+    if (new URLSearchParams(window.location.search).has("flight")) {
+      gsap.delayedCall(0, () => tl.play(0));
+    }
+  </script>
+</body>
+</html>

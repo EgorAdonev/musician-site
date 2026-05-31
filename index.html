@@ -3,26 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="blnfkr: музыкальный продюсер и битмейкер. Биты, инструменталы, кредиты, релизы и социальные сети." data-i18n-attr="content:metaDescription">
-  <title>blnfkr | producer & beatmaker</title>
+  <meta name="description" content="blnfkr, producer and beatmaker. Futuristic palace landing with local tracks, album covers, waveform, equalizer, and direct music links.">
+  <title>blnfkr | future palace</title>
   <link rel="icon" href="assets/images/brand/favicon.ico" sizes="any">
   <style>
     :root {
-      --red: #ed2e38;
-      --charcoal: #333333;
-      --blush: #fff8fa;
-      --pink: #f9d4dc;
-      --black: #000000;
-      --ink: var(--blush);
-      --ink-2: var(--pink);
-      --paper: var(--black);
-      --muted: var(--charcoal);
-      --accent: var(--red);
-      --line: rgb(0 0 0 / 0.18);
-      --shadow: 0 24px 80px rgb(0 0 0 / 0.56);
-      --font-display: "ABCMonumentGrotesk", "ABC Monument Grotesk", "Haas Grotesk Medium", "Helvetica Neue", Arial, sans-serif;
-      --font-ui: "Haas Grotesk Medium", "Haas Grotesk", "Helvetica Neue", Arial, sans-serif;
-      --font-body: "LinotypeHelveticaNeueLTStdLt", "Helvetica Neue Light", "Helvetica Neue", Arial, sans-serif;
+      --void: oklch(10% 0.026 286);
+      --floor: oklch(15% 0.052 301);
+      --paper: oklch(95% 0.018 118);
+      --muted: oklch(76% 0.045 246);
+      --acid: oklch(78% 0.24 138);
+      --violet: oklch(64% 0.25 311);
+      --cyan: oklch(82% 0.19 204);
+      --hot: oklch(68% 0.24 30);
+      --sunday: oklch(92% 0.19 105);
+      --line: rgb(232 255 246 / 0.18);
+      --glass: rgb(10 14 21 / 0.72);
+      --glass-strong: rgb(4 7 12 / 0.86);
+      --shadow-acid: 0 0 34px rgb(94 255 117 / 0.24);
+      --font-display: "Arial Black", Impact, "Helvetica Neue Condensed Black", "Helvetica Neue", Arial, sans-serif;
+      --font-body: "Helvetica Neue", Arial, system-ui, sans-serif;
+      color-scheme: dark;
     }
 
     * {
@@ -31,33 +32,49 @@
 
     html {
       scroll-behavior: smooth;
-      background: var(--ink);
+      background: var(--void);
     }
 
     body {
-      overflow-x: hidden;
       min-width: 320px;
       margin: 0;
+      overflow-x: hidden;
       color: var(--paper);
       font-family: var(--font-body);
       background:
-        radial-gradient(circle at 14% 22%, rgb(237 46 56 / 0.08), transparent 34rem),
-        radial-gradient(circle at 82% 62%, rgb(249 194 204 / 0.32), transparent 28rem),
-        linear-gradient(180deg, var(--ink), rgb(255 244 247));
+        radial-gradient(circle at 18% 6%, rgb(109 255 118 / 0.13), rgb(0 0 0 / 0) 30rem),
+        radial-gradient(circle at 86% 32%, rgb(202 62 255 / 0.17), rgb(0 0 0 / 0) 28rem),
+        linear-gradient(180deg, var(--void), var(--floor) 46%, oklch(8% 0.032 270));
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 10;
+      z-index: 60;
       pointer-events: none;
-      opacity: 0.18;
+      opacity: 0.12;
       background-image:
-        linear-gradient(rgb(0 0 0 / 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgb(0 0 0 / 0.04) 1px, transparent 1px);
-      background-size: 4px 4px;
-      mix-blend-mode: overlay;
+        linear-gradient(rgb(232 255 246 / 0.1) 1px, rgb(0 0 0 / 0) 1px),
+        linear-gradient(90deg, rgb(232 255 246 / 0.08) 1px, rgb(0 0 0 / 0) 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(180deg, black, rgb(0 0 0 / 0.25));
+    }
+
+    body.is-travelling .camera-flash {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    body.is-cinematic-flight {
+      overflow: hidden;
+    }
+
+    body.variant-b {
+      --acid: oklch(82% 0.18 204);
+      --violet: oklch(66% 0.23 30);
+      --cyan: oklch(84% 0.2 138);
+      --hot: oklch(67% 0.26 324);
     }
 
     a {
@@ -65,28 +82,43 @@
       text-decoration: none;
     }
 
-    button {
+    button,
+    select {
       font: inherit;
     }
 
-    a:focus-visible,
-    button:focus-visible {
-      outline: 3px solid var(--red);
-      outline-offset: 4px;
-    }
-
-    img {
+    img,
+    canvas {
       display: block;
       max-width: 100%;
     }
 
-    figure {
-      margin: 0;
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--acid);
+      outline-offset: 4px;
     }
 
-    .nav {
+    .skip-link {
       position: fixed;
-      z-index: 20;
+      z-index: 100;
+      top: 1rem;
+      left: 1rem;
+      transform: translateY(-160%);
+      padding: 0.7rem 0.9rem;
+      color: var(--void);
+      background: var(--acid);
+      border-radius: 6px;
+      font-weight: 900;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .topbar {
+      position: fixed;
+      z-index: 50;
       top: 0;
       left: 0;
       right: 0;
@@ -94,31 +126,36 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: max(1rem, env(safe-area-inset-top)) clamp(1rem, 3vw, 2.5rem) 1rem;
-      background: linear-gradient(180deg, rgb(252 240 243 / 0.92), rgb(252 240 243 / 0.2));
-      border-bottom: 1px solid rgb(0 0 0 / 0.08);
-      backdrop-filter: blur(10px);
+      padding: max(0.8rem, env(safe-area-inset-top)) clamp(0.85rem, 3vw, 2.4rem) 0.8rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgb(4 7 12 / 0.92), rgb(4 7 12 / 0.54));
+      backdrop-filter: blur(16px);
     }
 
-    .brand-mark {
-      width: clamp(3.6rem, 7vw, 5.8rem);
-      aspect-ratio: 1;
+    .brand {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: var(--ink);
+      gap: 0.8rem;
+      min-width: 0;
     }
 
-    .brand-mark img {
-      width: 100%;
-      height: 100%;
+    .brand img {
+      width: 3rem;
+      aspect-ratio: 1;
       object-fit: cover;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow-acid);
     }
 
-    .nav-links {
+    .brand span {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 2vw, 1.35rem);
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .room-nav {
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -126,799 +163,618 @@
       flex-wrap: wrap;
     }
 
-    .language-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.25rem;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      background: rgb(252 240 243 / 0.72);
-    }
-
-    .lang-button {
-      min-width: 2.75rem;
-      min-height: 2.75rem;
-      border: 0;
-      border-radius: 4px;
-      color: var(--paper);
-      background: transparent;
-      font-family: var(--font-ui);
-      font-size: 0.74rem;
-      font-weight: 950;
-      line-height: 1;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: transform 180ms ease-out, background 180ms ease-out, color 180ms ease-out;
-    }
-
-    .lang-button:hover {
-      transform: translateY(-1px);
-      color: var(--accent);
-    }
-
-    .lang-button.is-active {
-      color: var(--ink);
-      background: var(--pink);
-    }
-
-    .nav-links a,
-    .button {
-      max-width: 100%;
-      min-height: 2.75rem;
+    .room-nav a,
+    .chip-button,
+    .action-button {
+      min-height: 2.45rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.76rem 0.95rem;
-      border: 1px solid var(--black);
-      border-radius: 6px;
-      color: var(--black);
-      background: var(--pink);
-      font-family: var(--font-ui);
+      gap: 0.45rem;
+      padding: 0.65rem 0.82rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--paper);
+      background: rgb(232 255 246 / 0.06);
       font-size: 0.78rem;
       font-weight: 900;
       line-height: 1;
-      text-align: center;
-      text-transform: uppercase;
-      white-space: normal;
-      overflow-wrap: anywhere;
-      box-shadow: 7px 7px 0 var(--red);
-      transition: transform 180ms ease-out, background 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
+      letter-spacing: 0;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
     }
 
-    .nav-links a:hover,
-    .button:hover {
+    .room-nav a:hover,
+    .chip-button:hover,
+    .action-button:hover {
       transform: translateY(-2px);
-      color: var(--paper);
-      background: var(--red);
-      border-color: var(--red);
-      box-shadow: 3px 3px 0 var(--pink);
+      border-color: rgb(128 255 154 / 0.64);
+      background: rgb(128 255 154 / 0.14);
     }
 
-    .hero {
-      min-height: 94svh;
+    .chip-button.is-active,
+    .action-button.primary {
+      color: var(--void);
+      background: var(--acid);
+      border-color: var(--acid);
+      box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(247 231 49 / 0.16);
+    }
+
+    .camera-flash {
+      position: fixed;
+      inset: -10%;
+      z-index: 40;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.92);
+      background:
+        radial-gradient(circle at 48% 42%, rgb(232 255 246 / 0.36), rgb(232 255 246 / 0) 28%),
+        linear-gradient(100deg, rgb(103 255 132 / 0), rgb(103 255 132 / 0.2), rgb(218 64 255 / 0));
+      filter: blur(10px);
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    .hyperflight {
+      position: fixed;
+      inset: 0;
+      z-index: 45;
+      opacity: 0;
+      pointer-events: none;
+      background: #05070c;
+      transition: opacity 320ms ease;
+    }
+
+    body.is-cinematic-flight .hyperflight {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hyperflight iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #05070c;
+    }
+
+    .hyperflight-panel {
+      position: absolute;
+      right: clamp(1rem, 3vw, 3rem);
+      bottom: clamp(1rem, 3vw, 3rem);
+      width: auto;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      backdrop-filter: none;
+    }
+
+    .hyperflight-skip {
+      margin-top: 0;
+      border-color: rgb(0 255 133 / 0.8);
+      color: var(--void);
+      background: var(--acid);
+    }
+
+    .room {
       position: relative;
-      display: grid;
-      align-items: end;
+      min-height: 100svh;
       isolation: isolate;
-      overflow: hidden;
-      padding: clamp(7rem, 12vw, 10rem) clamp(1rem, 4vw, 4rem) clamp(3rem, 8vw, 6rem);
-      background: var(--ink);
+      overflow: clip;
+      scroll-margin-top: 4.8rem;
+      padding: clamp(6.4rem, 10vw, 9rem) clamp(1rem, 4vw, 4.5rem) clamp(3.5rem, 8vw, 7rem);
     }
 
-    .hero::before {
+    .room::before {
       content: "";
       position: absolute;
       inset: 0;
-      z-index: 1;
-      pointer-events: none;
+      z-index: -2;
       background:
-        linear-gradient(90deg, rgb(252 240 243 / 0.94), rgb(252 240 243 / 0.66) 43%, rgb(252 240 243 / 0.18)),
-        linear-gradient(0deg, var(--ink), transparent 42%);
+        linear-gradient(115deg, rgb(95 255 125 / 0.04), rgb(214 58 255 / 0.04)),
+        radial-gradient(circle at var(--pulse-x, 18%) var(--pulse-y, 30%), rgb(128 255 154 / 0.14), rgb(0 0 0 / 0) 30rem);
+    }
+
+    .room-grid {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+      align-items: center;
+      gap: clamp(2rem, 6vw, 6rem);
+    }
+
+    .room-copy {
+      min-width: 0;
+    }
+
+    .room-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 0 0 1rem;
+      color: var(--acid);
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .room-label::before {
+      content: "";
+      width: 2.8rem;
+      height: 2px;
+      background: var(--acid);
+      box-shadow: 0 0 18px rgb(128 255 154 / 0.7);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2 {
+      max-width: 11ch;
+      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-weight: 950;
+      line-height: 0.9;
+      letter-spacing: 0;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      font-size: clamp(4rem, 15vw, 9.4rem);
+    }
+
+    h2 {
+      font-size: clamp(2.45rem, 8vw, 6rem);
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+      line-height: 1.05;
+      margin-bottom: 0.6rem;
+      font-family: var(--font-display);
+    }
+
+    .lead,
+    .body-copy {
+      max-width: 66ch;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 1.7vw, 1.22rem);
+      line-height: 1.72;
+      text-wrap: pretty;
+    }
+
+    .kinetic-lines {
+      display: grid;
+      gap: 0.35rem;
+      min-height: calc(var(--pretext-lines, 3) * 1.55rem);
+    }
+
+    .kinetic-lines span {
+      display: block;
+      transform: translateX(calc(var(--line-i) * 0.55rem));
+      animation: lineDrift 6.5s ease-in-out infinite alternate;
+      animation-delay: calc(var(--line-i) * -420ms);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      padding-top: clamp(6.7rem, 10vw, 9rem);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -4;
+      background:
+        linear-gradient(90deg, rgb(4 7 12 / 0.9), rgb(4 7 12 / 0.45) 42%, rgb(4 7 12 / 0.86)),
+        linear-gradient(0deg, var(--void), rgb(4 7 12 / 0) 38%),
+        url("assets/images/brand/palace-room-futurist.jpg") center / cover;
+      transform: scale(1.02);
+      transform-origin: center;
+      animation: palaceBreath 14s ease-in-out infinite alternate;
     }
 
     .hero::after {
       content: "";
       position: absolute;
-      inset: auto 0 0;
-      height: 28vh;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(0deg, var(--ink), transparent);
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 30svh;
+      z-index: -1;
+      background: linear-gradient(180deg, rgb(4 7 12 / 0), var(--void));
     }
 
-    .hero-art {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .hero-art img {
-      position: absolute;
-      user-select: none;
-    }
-
-    .hero-emblem {
-      right: clamp(2rem, 7vw, 7rem);
-      bottom: clamp(4rem, 8vw, 8rem);
-      width: min(38vw, 430px);
-      max-height: 72vh;
-      object-fit: contain;
-      opacity: 0.86;
-      filter: drop-shadow(0 0 38px rgb(237 46 56 / 0.36));
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      width: min(100%, 1180px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(15rem, 24rem);
+    .hero .room-grid {
       align-items: end;
-      gap: clamp(2rem, 5vw, 5rem);
     }
 
-    .eyebrow {
-      width: fit-content;
-      margin: 0 0 1rem;
-      padding: 0.35rem 0.55rem;
-      color: var(--ink);
-      background: var(--pink);
-      font-family: var(--font-ui);
-      font-size: 0.78rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      transform: rotate(-1deg);
-    }
-
-    h1 {
-      max-width: 100%;
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(3.4rem, 12.6vw, 11.2rem);
-      font-weight: 950;
-      line-height: 0.76;
-      text-transform: uppercase;
-      white-space: nowrap;
-      text-shadow: 0.045em 0.04em 0 var(--red), -0.025em -0.025em 0 var(--pink);
-    }
-
-    .hero-copy {
-      max-width: 60ch;
-      margin: clamp(1.25rem, 3vw, 2rem) 0 0;
-      color: var(--paper);
-      font-family: var(--font-body);
-      font-size: clamp(1rem, 1.45vw, 1.25rem);
-      line-height: 1.65;
-    }
-
-    .hero-actions {
+    .hero-actions,
+    .control-row,
+    .variant-row {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       gap: 0.7rem;
-      margin-top: 2rem;
+      margin-top: 1.3rem;
     }
 
-    .button.primary {
-      color: var(--black);
-      background: var(--pink);
-      border-color: var(--black);
+    .action-button {
+      text-transform: none;
+      font-size: 0.95rem;
+      padding-inline: 1rem;
     }
 
-    .button.primary:hover {
-      background: var(--red);
-      border-color: var(--red);
-      color: var(--paper);
-      box-shadow: 3px 3px 0 var(--pink);
+    .action-button.small {
+      min-height: 2.3rem;
+      padding: 0.55rem 0.72rem;
+      font-size: 0.78rem;
     }
 
-    .scroll-hint {
+    .palace-stage {
+      position: relative;
+      min-height: clamp(28rem, 46vw, 38rem);
+      perspective: 1100px;
+    }
+
+    .orbital-ring {
       position: absolute;
-      z-index: 2;
-      right: clamp(1rem, 4vw, 4rem);
-      bottom: 1rem;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
+      inset: 3%;
+      border: 1px solid rgb(232 255 246 / 0.13);
+      border-radius: 50%;
+      transform: rotateX(65deg) rotateZ(-18deg);
+      box-shadow: inset 0 0 50px rgb(98 255 128 / 0.09), 0 0 48px rgb(209 77 255 / 0.12);
     }
 
-    .profile-links {
-      padding-top: clamp(3rem, 7vw, 6rem);
-      padding-bottom: clamp(3rem, 7vw, 6rem);
-      background:
-        linear-gradient(115deg, rgb(237 46 56 / 0.12), transparent 38%),
-        linear-gradient(0deg, rgb(249 212 220 / 0.7), transparent 62%),
-        var(--ink);
+    .cover-orbit {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      animation: orbit 18s linear infinite;
     }
 
-    .profile-shell {
-      width: min(100%, 1280px);
-      margin: 0 auto;
-    }
-
-    .profile-head {
-      max-width: 62rem;
-      margin-bottom: clamp(1.5rem, 4vw, 3rem);
-    }
-
-    .profile-head h2 {
-      max-width: 12ch;
-    }
-
-    .profile-copy {
-      max-width: 58ch;
-      margin: 1rem 0 0;
-      color: var(--muted);
-      font-family: var(--font-body);
-      font-size: clamp(1rem, 1.35vw, 1.2rem);
-      line-height: 1.55;
-    }
-
-    .profile-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
-      gap: clamp(0.85rem, 2vw, 1.4rem);
-    }
-
-    .profile-card {
-      position: relative;
-      display: grid;
-      grid-template-rows: auto 1fr;
-      min-width: 0;
-      min-height: 24rem;
-      overflow: hidden;
-      border: 1px solid var(--black);
-      border-radius: 8px;
-      color: var(--black);
-      background: var(--pink);
-      box-shadow: 10px 10px 0 var(--red);
-      transition: transform 200ms cubic-bezier(.22, 1, .36, 1), box-shadow 200ms ease-out;
-    }
-
-    .profile-card:hover {
-      transform: translate(-3px, -3px) rotate(-0.35deg);
-      box-shadow: 14px 14px 0 var(--black);
-    }
-
-    .profile-card:nth-child(2) {
-      background: var(--black);
-      color: var(--blush);
-      box-shadow: 10px 10px 0 var(--pink);
-    }
-
-    .profile-card:nth-child(3) {
-      background: var(--red);
-      color: var(--blush);
-      box-shadow: 10px 10px 0 var(--black);
-    }
-
-    .profile-card:nth-child(4n) {
-      background: var(--blush);
-      color: var(--black);
-      box-shadow: 10px 10px 0 var(--pink);
-    }
-
-    .profile-card:nth-child(5n) {
-      background: var(--charcoal);
-      color: var(--blush);
-      box-shadow: 10px 10px 0 var(--red);
-    }
-
-    .profile-media {
-      width: 100%;
+    .cover-object {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(6.4rem, 14vw, 10rem);
       aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      position: relative;
+      transform:
+        translate(-50%, -50%)
+        rotateY(calc(var(--i) * 40deg))
+        translateZ(clamp(12rem, 28vw, 23rem));
+      border: 1px solid rgb(232 255 246 / 0.28);
+      border-radius: 8px;
       overflow: hidden;
-      border-bottom: 1px solid currentColor;
-      background:
-        radial-gradient(circle at 22% 18%, rgb(237 46 56 / 0.26), transparent 32%),
-        linear-gradient(145deg, var(--blush), var(--pink));
+      background: var(--glass-strong);
+      box-shadow: 0 0 26px rgb(0 0 0 / 0.5);
+      backface-visibility: hidden;
     }
 
-    .profile-media img {
+    .cover-object img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(1.12) contrast(1.05);
     }
 
-    .profile-media img.platform-icon {
-      width: min(62%, 10rem);
-      height: auto;
-      object-fit: contain;
-      filter: none;
-    }
-
-    .profile-media.is-soundcloud img.platform-icon {
-      width: min(76%, 14rem);
-    }
-
-    .profile-media.is-spotify img.platform-icon {
-      width: min(64%, 12rem);
-    }
-
-    .profile-media.is-yandex img.platform-icon {
-      width: min(88%, 18rem);
-    }
-
-    .apple-badge {
+    .artist-core {
       position: absolute;
-      top: 0.8rem;
-      right: 0.8rem;
-      width: clamp(2.5rem, 5vw, 3.4rem);
-      aspect-ratio: 1;
+      inset: 27%;
       display: grid;
       place-items: center;
-      padding: 0.38rem;
-      border: 1px solid rgb(0 0 0 / 0.22);
-      border-radius: 999px;
-      background: rgb(255 248 250 / 0.9);
-      box-shadow: 0 0.55rem 1.2rem rgb(0 0 0 / 0.2);
+      border: 1px solid rgb(128 255 154 / 0.28);
+      border-radius: 14px;
+      background:
+        linear-gradient(160deg, rgb(4 7 12 / 0.86), rgb(34 15 42 / 0.8)),
+        url("assets/images/brand/logo-light.png") center / cover;
+      transform: rotateX(8deg) rotateY(-12deg);
+      box-shadow: 0 24px 90px rgb(0 0 0 / 0.55), var(--shadow-acid);
     }
 
-    .apple-badge img {
+    .artist-core span {
+      padding: 0.45rem 0.55rem;
+      color: var(--void);
+      background: var(--acid);
+      border-radius: 6px;
+      font-weight: 950;
+    }
+
+    .audio-shell {
+      position: relative;
+      width: min(1220px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+      align-items: stretch;
+    }
+
+    .audio-room {
+      padding-top: clamp(5.4rem, 7vw, 7rem);
+    }
+
+    .audio-room h2 {
+      max-width: 8ch;
+      font-size: clamp(2.35rem, 6vw, 5.15rem);
+    }
+
+    .instrument,
+    .track-list,
+    .release-panel,
+    .signal-panel,
+    .proof-panel {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(160deg, rgb(10 14 21 / 0.86), rgb(13 7 20 / 0.76));
+    }
+
+    .instrument {
+      padding: clamp(1rem, 2.5vw, 1.4rem);
+      box-shadow: inset 0 0 70px rgb(128 255 154 / 0.04);
+    }
+
+    .player-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .player-title p {
+      margin-bottom: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .track-name {
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.5rem);
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    .visual-stack {
+      display: grid;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .meter-canvas {
+      width: 100%;
+      height: clamp(9rem, 22vw, 16rem);
+      border: 1px solid rgb(232 255 246 / 0.12);
+      border-radius: 10px;
+      background: rgb(0 0 0 / 0.28);
+    }
+
+    .wave-canvas {
+      width: 100%;
+      height: 7rem;
+      border: 1px solid rgb(232 255 246 / 0.12);
+      border-radius: 10px;
+      background: rgb(0 0 0 / 0.2);
+    }
+
+    .progress {
+      width: 100%;
+      accent-color: var(--acid);
+    }
+
+    .native-audio {
+      width: 100%;
+      margin: 0.15rem 0 0.35rem;
+      filter: hue-rotate(72deg) saturate(1.35);
+    }
+
+    .time-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .track-list {
+      padding: 0.5rem;
+      display: grid;
+      gap: 0.45rem;
+      align-content: start;
+    }
+
+    .track-item {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.75rem;
+      border: 1px solid rgb(232 255 246 / 0.08);
+      border-radius: 8px;
+      color: var(--paper);
+      background: rgb(232 255 246 / 0.04);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+    }
+
+    .track-item:hover,
+    .track-item.is-active {
+      transform: translateX(0.2rem);
+      border-color: rgb(128 255 154 / 0.5);
+      background: rgb(128 255 154 / 0.1);
+    }
+
+    .track-index {
+      color: var(--acid);
+      font-weight: 950;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .track-item strong {
+      overflow-wrap: anywhere;
+      line-height: 1.25;
+    }
+
+    .track-item small {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .gallery-room .room-grid {
+      align-items: start;
+    }
+
+    .spinner-wrap {
+      min-height: clamp(25rem, 52vw, 42rem);
+      perspective: 1200px;
+      position: relative;
+    }
+
+    .text-wrap-field {
+      position: absolute;
+      inset: 4% 8%;
+      display: grid;
+      place-items: center;
+      color: rgb(232 255 246 / 0.22);
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2vw, 1.8rem);
+      line-height: 1.08;
+      pointer-events: none;
+    }
+
+    .text-wrap-field span {
+      display: block;
+      max-width: 22ch;
+      animation: textBend 7s ease-in-out infinite alternate;
+      animation-delay: calc(var(--line-i) * -300ms);
+    }
+
+    .cover-spinner {
+      position: absolute;
+      inset: 5%;
+      transform-style: preserve-3d;
+      animation: spinnerTurn 22s linear infinite;
+    }
+
+    .spinner-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: clamp(7.5rem, 17vw, 13rem);
+      aspect-ratio: 1;
+      transform:
+        translate(-50%, -50%)
+        rotateY(calc(var(--i) * 40deg))
+        translateZ(clamp(12rem, 30vw, 26rem));
+      border: 1px solid rgb(232 255 246 / 0.24);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--glass-strong);
+      box-shadow: 0 20px 44px rgb(0 0 0 / 0.42);
+      backface-visibility: hidden;
+    }
+
+    .spinner-card img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      filter: none;
-    }
-
-    .profile-media::after {
-      content: attr(data-platform);
-      position: absolute;
-      left: 0.75rem;
-      bottom: 0.75rem;
-      padding: 0.35rem 0.45rem;
-      color: var(--blush);
-      background: var(--black);
-      border: 1px solid currentColor;
-      border-radius: 4px;
-      font-family: var(--font-ui);
-      font-size: 0.68rem;
-      font-weight: 950;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .platform-logo {
-      width: min(72%, 13rem);
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      position: relative;
-      color: var(--black);
-      font-family: var(--font-ui);
-      font-weight: 950;
-      text-transform: uppercase;
-    }
-
-    .logo-word {
-      font-family: var(--font-display);
-      font-size: clamp(1.85rem, 5vw, 4rem);
-      line-height: 0.82;
-      text-align: center;
-    }
-
-    .profile-media.is-apple {
-      background:
-        radial-gradient(circle at 30% 24%, rgb(249 194 204 / 0.82), transparent 28%),
-        linear-gradient(145deg, var(--blush), rgb(237 46 56 / 0.18));
-    }
-
-    .apple-note {
-      width: 58%;
-      height: 58%;
-      display: block;
-      position: relative;
-      border: 1.15rem solid currentColor;
-      border-top-width: 0.78rem;
-      border-right-width: 0.78rem;
-      border-radius: 999px 999px 999px 0;
-      transform: rotate(-10deg);
-    }
-
-    .apple-note::before {
-      content: "";
-      position: absolute;
-      width: 0.85rem;
-      height: 3.8rem;
-      right: 14%;
-      top: 13%;
-      background: currentColor;
-      transform: rotate(10deg);
-    }
-
-    .apple-note::after {
-      content: "";
-      position: absolute;
-      width: 2.7rem;
-      height: 0.9rem;
-      right: 3%;
-      top: 10%;
-      background: currentColor;
-      transform: rotate(10deg);
-    }
-
-    .profile-media.is-soundcloud {
-      background:
-        radial-gradient(circle at 30% 22%, rgb(255 255 255 / 0.62), transparent 24%),
-        linear-gradient(145deg, #ff7a18, #ff2d00 62%, #d42300);
-      color: var(--black);
-    }
-
-    .profile-media.is-yandex {
-      background: var(--black);
-    }
-
-    .profile-media.is-vk {
-      background: linear-gradient(145deg, #0077ff, #003b8f);
-      color: var(--blush);
-    }
-
-    .vk-mark {
-      font-size: clamp(4rem, 10vw, 7.5rem);
-      letter-spacing: 0;
-    }
-
-    .profile-media.is-spotify {
-      background: linear-gradient(145deg, #1ed760, #0b3d1d 70%, var(--black));
-      color: var(--black);
-    }
-
-    .profile-media.is-youtube {
-      background:
-        radial-gradient(circle at 30% 20%, rgb(255 255 255 / 0.32), transparent 30%),
-        linear-gradient(145deg, #ff0033, #8f0017 72%, var(--black));
-      color: var(--blush);
-    }
-
-    .youtube-play {
-      width: 72%;
-      height: 48%;
-      display: grid;
-      place-items: center;
-      border-radius: 1.2rem;
-      background: #ff0033;
-      box-shadow: 0 0 0 0.75rem currentColor inset;
-    }
-
-    .youtube-play::before {
-      content: "";
-      width: 0;
-      height: 0;
-      margin-left: 0.45rem;
-      border-top: 1.6rem solid transparent;
-      border-bottom: 1.6rem solid transparent;
-      border-left: 2.55rem solid currentColor;
-    }
-
-    .profile-media.is-instagram {
-      background:
-        radial-gradient(circle at 72% 22%, #ffd36b 0 11%, transparent 12%),
-        radial-gradient(circle at 22% 80%, #7a2cff, transparent 36%),
-        linear-gradient(145deg, #f9c2cc, #ed2e38 48%, #4b1aff);
-      color: var(--blush);
-    }
-
-    .instagram-camera {
-      width: 62%;
-      height: 62%;
-      display: block;
-      border: 0.82rem solid currentColor;
-      border-radius: 1.8rem;
-      position: relative;
-    }
-
-    .instagram-camera::before {
-      content: "";
-      position: absolute;
-      inset: 24%;
-      border: 0.72rem solid currentColor;
-      border-radius: 999px;
-    }
-
-    .instagram-camera::after {
-      content: "";
-      position: absolute;
-      right: 13%;
-      top: 13%;
-      width: 0.85rem;
-      height: 0.85rem;
-      border-radius: 999px;
-      background: currentColor;
-    }
-
-    .profile-card-body {
-      display: grid;
-      align-content: space-between;
-      min-width: 0;
-      gap: 1.25rem;
-      padding: 1rem;
-    }
-
-    .profile-card h3 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(1.7rem, 3.4vw, 3.25rem);
-      line-height: 0.88;
-      text-transform: uppercase;
-      overflow-wrap: anywhere;
-    }
-
-    .profile-card p {
-      margin: 0.75rem 0 0;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.45;
-      overflow-wrap: anywhere;
-      hyphens: auto;
-    }
-
-    .profile-card .button {
-      width: fit-content;
-      max-width: 100%;
-      margin-top: 0.2rem;
-      color: var(--black);
-      background: var(--blush);
-    }
-
-    section {
-      position: relative;
-      padding: clamp(4rem, 9vw, 8rem) clamp(1rem, 4vw, 4rem);
-    }
-
-    .section-grid {
-      width: min(100%, 1180px);
-      display: grid;
-      grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
-      align-items: start;
-      gap: clamp(2rem, 6vw, 6rem);
-      margin: 0 auto;
-    }
-
-    .kicker {
-      margin: 0 0 1rem;
-      color: var(--red);
-      font-family: var(--font-ui);
-      font-size: 0.85rem;
-      font-weight: 950;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      max-width: 10ch;
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: clamp(2.35rem, 5.6vw, 6.6rem);
-      font-weight: 950;
-      line-height: 0.9;
-      text-transform: uppercase;
-      text-wrap: balance;
-      overflow-wrap: normal;
-      word-break: normal;
-      hyphens: none;
-    }
-
-    .story p {
-      max-width: 62ch;
-      margin: 0 0 1.15rem;
-      color: var(--paper);
-      font-family: var(--font-body);
-      font-size: clamp(1.05rem, 1.55vw, 1.35rem);
-      line-height: 1.68;
-      text-wrap: pretty;
-    }
-
-    .story .section-grid {
-      grid-template-columns: 1fr;
-      gap: clamp(1.4rem, 5vw, 2.75rem);
-    }
-
-    .story h2 {
-      max-width: min(100%, 11ch);
-      font-size: clamp(3rem, 8.2vw, 7rem);
-      line-height: 1.04;
-    }
-
-    .story .section-grid > div:last-child {
-      width: min(100%, 48rem);
-    }
-
-    .story [data-i18n="creditsLabel"] {
-      margin-top: 2rem;
-      margin-bottom: 0.9rem;
-      color: var(--muted);
-      font-family: var(--font-ui);
-      font-size: clamp(0.95rem, 1.15vw, 1.05rem);
-      font-weight: 950;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    .credits {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      margin-top: 1.8rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .credits li {
-      padding: 0.55rem 0.7rem;
-      border: 1px solid rgb(237 46 56 / 0.45);
-      border-radius: 999px;
-      color: var(--black);
-      background: rgb(249 194 204 / 0.62);
-      font-family: var(--font-ui);
-      font-size: 0.82rem;
-      font-weight: 900;
-    }
-
-    .releases {
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, var(--ink), rgb(249 194 204)),
-        var(--ink);
+      object-fit: cover;
     }
 
     .release-grid {
-      width: min(100%, 1280px);
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
-      gap: clamp(0.75rem, 1.6vw, 1.2rem);
-      margin: clamp(2rem, 5vw, 4rem) auto 0;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.8rem;
+      margin-top: 1.6rem;
     }
 
-    .release {
-      position: relative;
-      min-height: 0;
-      aspect-ratio: 1;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--ink-2);
-      box-shadow: 0 16px 42px rgb(0 0 0 / 0.38);
+    .release-panel,
+    .signal-panel,
+    .proof-panel {
+      padding: 1rem;
     }
 
-    .release img {
+    a.release-panel {
+      color: inherit;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    a.release-panel:hover {
+      transform: translateY(-0.28rem);
+      border-color: rgb(128 255 154 / 0.5);
+      background: rgb(128 255 154 / 0.08);
+    }
+
+    .release-panel img {
       width: 100%;
-      height: 100%;
       aspect-ratio: 1;
       object-fit: cover;
-      transition: transform 340ms cubic-bezier(.22, 1, .36, 1), filter 340ms ease-out;
-    }
-
-    .release:hover img {
-      transform: scale(1.045) rotate(-1deg);
-      filter: saturate(1.35) contrast(1.1);
-    }
-
-    .release span {
-      position: absolute;
-      left: 0.7rem;
-      bottom: 0.7rem;
-      max-width: calc(100% - 1.4rem);
-      padding: 0.38rem 0.5rem;
-      border-radius: 4px;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: var(--font-ui);
-      font-size: 0.75rem;
-      font-weight: 950;
-      text-transform: uppercase;
-      overflow-wrap: anywhere;
-    }
-
-    .social {
-      padding-top: clamp(3rem, 6vw, 5.5rem);
-      padding-bottom: clamp(1rem, 2.5vw, 2rem);
-      background:
-        linear-gradient(90deg, rgb(237 46 56 / 0.1), transparent 48%),
-        var(--ink);
-    }
-
-    .social-panel {
-      width: min(100%, 1180px);
-      display: grid;
-      grid-template-columns: minmax(12rem, 0.82fr) minmax(12rem, 0.82fr) minmax(0, 1.36fr);
-      align-items: start;
-      gap: clamp(1rem, 2.4vw, 2rem);
-      margin: 0 auto;
-    }
-
-    .phone-shot {
-      border: 1px solid var(--line);
       border-radius: 8px;
-      padding: 0.7rem;
-      background: var(--ink-2);
-      box-shadow: var(--shadow);
-      max-width: 280px;
+      border: 1px solid rgb(232 255 246 / 0.12);
+      margin-bottom: 0.9rem;
     }
 
-    .phone-shot img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      max-height: 360px;
-      margin: 0 auto;
-      object-fit: cover;
-      object-position: 50% 35%;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-    }
-
-    .social-copy p {
-      max-width: 62ch;
-      margin: 1rem 0 0;
+    .release-panel p,
+    .signal-panel p,
+    .proof-panel p {
       color: var(--muted);
-      font-family: var(--font-body);
-      font-size: clamp(1rem, 1.4vw, 1.2rem);
-      line-height: 1.65;
-      text-wrap: pretty;
+      line-height: 1.58;
     }
 
-    .link-stack {
-      max-width: 34rem;
+    .proof-grid,
+    .signal-grid {
+      width: min(1220px, 100%);
+      margin: 0 auto;
       display: grid;
-      gap: 0.55rem;
-      margin-top: 1.35rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.9rem;
     }
 
-    .link-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-width: 0;
-      gap: 1rem;
-      padding: 0.85rem 1rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgb(252 240 243 / 0.78);
-      font-family: var(--font-ui);
-      font-weight: 950;
-      text-transform: uppercase;
-      transition: transform 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out;
+    .proof-panel strong {
+      display: block;
+      color: var(--acid);
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 4.8rem);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
 
-    .link-row:hover {
-      transform: translateX(6px);
-      color: var(--pink);
-      border-color: var(--red);
+    .signal-panel {
+      display: grid;
+      min-height: 14rem;
+      align-content: space-between;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
-    .link-row small {
-      flex: 0 0 auto;
-      color: var(--muted);
-      font-size: 0.72rem;
+    .signal-panel:hover {
+      transform: translateY(-0.28rem);
+      border-color: rgb(128 255 154 / 0.48);
+      background: rgb(128 255 154 / 0.08);
     }
 
-    .link-row span {
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .noscript-banner {
-      position: fixed;
-      z-index: 30;
-      left: 1rem;
-      right: 1rem;
-      bottom: 1rem;
-      padding: 0.8rem 1rem;
-      border: 1px solid var(--black);
-      border-radius: 8px;
-      color: var(--black);
-      background: var(--pink);
-      font-family: var(--font-ui);
-      font-size: 0.78rem;
+    .signal-panel small {
+      color: var(--acid);
       font-weight: 900;
-      line-height: 1.25;
-      text-transform: uppercase;
-      box-shadow: 7px 7px 0 var(--red);
+    }
+
+    .signal-panel span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      aspect-ratio: 1;
+      border: 1px solid rgb(232 255 246 / 0.18);
+      border-radius: 8px;
+      color: var(--void);
+      background: var(--acid);
+      font-weight: 950;
     }
 
     .footer {
@@ -926,668 +782,746 @@
       justify-content: space-between;
       gap: 1rem;
       flex-wrap: wrap;
-      padding: 2rem clamp(1rem, 4vw, 4rem) max(2rem, env(safe-area-inset-bottom));
+      padding: 1.5rem clamp(1rem, 4vw, 4.5rem);
       color: var(--muted);
       border-top: 1px solid var(--line);
-      font-size: 0.85rem;
-      font-weight: 850;
-      text-transform: uppercase;
+      background: rgb(4 7 12 / 0.9);
     }
 
-    @media (max-width: 1280px) {
-      .section-grid {
-        grid-template-columns: 1fr;
-        gap: clamp(1.4rem, 5vw, 2.5rem);
-      }
-
-      h2 {
-        max-width: 100%;
-        font-size: clamp(2.65rem, 8.2vw, 5.2rem);
-      }
-
-      .story p {
-        max-width: 64ch;
-      }
-
-      .social-panel {
-        grid-template-columns: minmax(12rem, 1fr) minmax(12rem, 1fr);
-      }
-
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-card {
-        min-height: 0;
-        grid-template-columns: minmax(11rem, 0.45fr) minmax(0, 0.55fr);
-        grid-template-rows: 1fr;
-      }
-
-      .profile-media {
-        height: 100%;
-        min-height: 16rem;
-        border-right: 1px solid currentColor;
-        border-bottom: 0;
-      }
-
-      .phone-shot {
-        max-width: 320px;
-      }
-
-      .social-copy {
-        grid-column: 1 / -1;
-      }
+    @keyframes palaceBreath {
+      from { transform: scale(1.02) translate3d(0, 0, 0); }
+      to { transform: scale(1.08) translate3d(-1.4%, -0.6%, 0); }
     }
 
-    @media (max-width: 820px) {
-      .nav {
+    @keyframes orbit {
+      to { transform: rotateY(-360deg); }
+    }
+
+    @keyframes spinnerTurn {
+      to { transform: rotateY(360deg) rotateX(2deg); }
+    }
+
+    @keyframes lineDrift {
+      from { transform: translateX(calc(var(--line-i) * 0.3rem)); filter: blur(0); }
+      to { transform: translateX(calc(var(--line-i) * -0.45rem)); filter: blur(0.2px); }
+    }
+
+    @keyframes textBend {
+      from { transform: translateX(-0.6rem) skewX(-3deg); }
+      to { transform: translateX(0.9rem) skewX(3deg); }
+    }
+
+    @media (max-width: 880px) {
+      .topbar {
         align-items: flex-start;
       }
 
-      .language-toggle {
-        order: -1;
+      .room-nav {
+        gap: 0.3rem;
       }
 
-      .nav-links a {
-        padding-inline: 0.65rem;
-        font-size: 0.7rem;
-      }
-
-      .hero {
-        min-height: 96svh;
-      }
-
-      .hero-emblem {
-        right: auto;
-        left: 48%;
-        bottom: 15rem;
-        width: min(44vw, 240px);
-        opacity: 0.62;
-      }
-
-      .hero-inner,
-      .section-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .scroll-hint {
+      .room-nav a {
         display: none;
       }
 
-      h1 {
-        font-size: clamp(3.25rem, 18vw, 5.2rem);
+      .room-grid,
+      .audio-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        align-items: start;
+      }
+
+      .palace-stage,
+      .spinner-wrap {
+        min-height: 28rem;
+      }
+
+      .cover-object,
+      .spinner-card {
+        transform:
+          translate(-50%, -50%)
+          rotateY(calc(var(--i) * 40deg))
+          translateZ(14rem);
+      }
+
+      .artist-core {
+        inset: 30%;
       }
     }
 
     @media (max-width: 560px) {
-      .nav {
-        position: absolute;
-        flex-direction: column;
+      .brand span {
+        display: none;
       }
 
-      .nav-links {
-        justify-content: flex-start;
+      .room {
+        padding-inline: 0.85rem;
       }
 
-      .language-toggle {
-        width: 100%;
+      .topbar {
+        gap: 0.6rem;
       }
 
-      .lang-button {
-        flex: 1;
+      .chip-button {
+        min-height: 2.2rem;
+        padding-inline: 0.62rem;
       }
 
-      .hero-actions .button,
-      .nav-links a {
-        flex: 1 1 auto;
-      }
-
-      .hero {
-        padding-top: 12rem;
-      }
-
-      .hero-emblem {
-        left: 42%;
-        bottom: 21rem;
-        width: min(55vw, 210px);
-      }
-
-      .release-grid {
+      .control-row {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .profile-card {
-        grid-template-columns: 1fr;
+      .control-row .action-button {
+        width: 100%;
       }
 
-      .profile-media {
-        height: auto;
-        min-height: 0;
-        border-right: 0;
-        border-bottom: 1px solid currentColor;
+      .track-item {
+        grid-template-columns: auto minmax(0, 1fr);
       }
 
-      .release {
-        min-height: 0;
-      }
-
-      .social-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .phone-shot {
-        max-width: min(100%, 22rem);
-      }
-
-      .footer {
-        display: block;
-      }
-
-      .footer span {
-        display: block;
-        margin-bottom: 0.45rem;
+      .track-item small {
+        grid-column: 2;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
       *,
       *::before,
       *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .cover-orbit,
+      .cover-spinner {
+        transform: none;
       }
     }
   </style>
 </head>
 <body>
-  <header class="nav" aria-label="Главная навигация" data-i18n-attr="aria-label:navAria">
-    <a class="brand-mark" href="#top" aria-label="blnfkr, наверх" data-i18n-attr="aria-label:brandAria">
-      <img src="assets/images/brand/logo-light.png" alt="">
+  <a class="skip-link" href="#audio">К плееру</a>
+  <div class="camera-flash" aria-hidden="true"></div>
+  <div class="hyperflight" data-hyperflight aria-hidden="true">
+    <iframe data-hyperflight-frame src="hyperframes-palace/index.html" title="3D HyperFrames palace flight"></iframe>
+    <div class="hyperflight-panel">
+      <button class="action-button small hyperflight-skip" type="button" data-hyperflight-skip>Skip flight</button>
+    </div>
+  </div>
+
+  <header class="topbar" aria-label="Site navigation">
+    <a class="brand" href="#atrium" aria-label="blnfkr home">
+      <img src="assets/images/brand/logo.jpg" alt="">
+      <span>blnfkr palace</span>
     </a>
-    <nav class="nav-links" aria-label="Социальные ссылки" data-i18n-attr="aria-label:socialLinksAria">
-      <div class="language-toggle" role="group" aria-label="Выбор языка" data-i18n-attr="aria-label:languageToggleAria">
-        <button class="lang-button is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
-        <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
-      </div>
-      <a href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer">Apple Music</a>
-      <a href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer">YouTube</a>
-      <a href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer">Instagram</a>
-      <a href="#profiles" data-i18n="profilesNav">Profiles</a>
+    <nav class="room-nav" aria-label="Rooms">
+      <a href="#atrium" data-room-link>Atrium</a>
+      <a href="#audio" data-room-link>Audio Lab</a>
+      <a href="#gallery" data-room-link>Gallery</a>
+      <a href="#archive" data-room-link>Archive</a>
+      <a href="#signals" data-room-link>Signals</a>
+      <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
+      <button class="chip-button" type="button" data-lang="en">EN</button>
     </nav>
   </header>
-  <noscript>
-    <div class="noscript-banner">Language switching needs JavaScript. Music links and page content still work.</div>
-  </noscript>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-art" aria-hidden="true">
-        <img class="hero-emblem" src="assets/images/brand/logo.jpg" alt="">
-      </div>
-      <div class="hero-inner">
-        <div>
-          <p class="eyebrow" data-i18n="heroEyebrow">Producer / Beatmaker</p>
+  <main id="atrium">
+    <section class="room hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="room-grid">
+        <div class="room-copy">
+          <p class="room-label" data-i18n="heroRoom">Atrium signal</p>
           <h1 id="hero-title">blnfkr</h1>
-          <p class="hero-copy" data-i18n="heroCopy">
-            Молодой,  опытный музыкальный продюсер: биты, инструменталы и ссылки, где можно сразу включить треки.
-          </p>
-          <div class="hero-actions" aria-label="Основные действия" data-i18n-attr="aria-label:primaryActionsAria">
-            <a class="button" href="#profiles" data-i18n="profilesCta">Слушать</a>
-            <a class="button primary" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer" data-i18n="listenCta">Слушать</a>
-            <a class="button" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer" data-i18n="youtubeCta">Биты на YouTube</a>
+          <div class="lead kinetic-lines" data-kinetic data-i18n="heroCopy">Футуристичный дворец битов: локальные треки, обложки, радио-след и прямые выходы на музыку.</div>
+          <div class="hero-actions">
+            <button class="action-button primary" type="button" data-play-hero data-i18n="playFirst">Запустить трек</button>
+            <a class="action-button" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer">Apple Music</a>
+            <a class="action-button" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer">YouTube</a>
+          </div>
+          <div class="variant-row" aria-label="A/B visual variants">
+            <button class="chip-button is-active" type="button" data-variant="a">Variant A: acid palace</button>
+            <button class="chip-button" type="button" data-variant="b">Variant B: chrome heat</button>
+          </div>
+        </div>
+        <div class="palace-stage" aria-label="Rotating release covers">
+          <div class="orbital-ring" aria-hidden="true"></div>
+          <div class="cover-orbit" aria-hidden="true">
+            <figure class="cover-object" style="--i:0"><img src="assets/images/releases/dear-father.png" alt=""></figure>
+            <figure class="cover-object" style="--i:1"><img src="assets/images/releases/done-cover.jpg" alt=""></figure>
+            <figure class="cover-object" style="--i:2"><img src="assets/images/releases/emotions-3.png" alt=""></figure>
+            <figure class="cover-object" style="--i:3"><img src="assets/images/releases/emotions-4.jpg" alt=""></figure>
+            <figure class="cover-object" style="--i:4"><img src="assets/images/releases/emotions-cover.jpg" alt=""></figure>
+            <figure class="cover-object" style="--i:5"><img src="assets/images/releases/foreva-ballin.jpg" alt=""></figure>
+            <figure class="cover-object" style="--i:6"><img src="assets/images/releases/no-love.png" alt=""></figure>
+            <figure class="cover-object" style="--i:7"><img src="assets/images/releases/radio-waves.png" alt=""></figure>
+            <figure class="cover-object" style="--i:8"><img src="assets/images/releases/solo.png" alt=""></figure>
+          </div>
+          <div class="artist-core"><span>PLAY LOCAL</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="room audio-room" id="audio" aria-labelledby="audio-title">
+      <div class="audio-shell">
+        <div class="room-copy">
+          <p class="room-label" data-i18n="audioRoom">Audio Lab</p>
+          <h2 id="audio-title" data-i18n="audioTitle">Свет реагирует на трек</h2>
+          <p class="body-copy" data-i18n="audioCopy">Плеер использует локальные MP3 из папки assets/tracks. Эквалайзер и waveform строятся через Web Audio после клика по Play.</p>
+          <div class="instrument" aria-label="Audio player">
+            <div class="player-title">
+              <div>
+                <div class="track-name" data-current-track>monster ft. DTurbo' 140 bpm</div>
+                <p data-i18n="currentTrackHint">Локальный файл, без внешнего стриминга.</p>
+              </div>
+              <button class="action-button primary" type="button" data-play>Play</button>
+            </div>
+            <div class="visual-stack">
+              <canvas class="meter-canvas" data-meter width="900" height="360" aria-label="Equalizer visualization"></canvas>
+              <canvas class="wave-canvas" data-wave width="900" height="180" aria-label="Waveform visualization"></canvas>
+            </div>
+            <audio class="native-audio" data-audio preload="metadata" controls controlslist="nodownload"></audio>
+            <input class="progress" data-progress type="range" min="0" max="1000" value="0" aria-label="Track position">
+            <div class="time-row"><span data-time-current>0:00</span><span data-time-total>0:00</span></div>
+            <div class="control-row">
+              <button class="action-button small" type="button" data-prev>Prev</button>
+              <button class="action-button small" type="button" data-next>Next</button>
+              <button class="action-button small" type="button" data-room-link-button="#gallery" data-i18n="moveGallery">В галерею</button>
+            </div>
+          </div>
+        </div>
+        <div class="track-list" data-track-list aria-label="Track list"></div>
+      </div>
+    </section>
+
+    <section class="room gallery-room" id="gallery" aria-labelledby="gallery-title">
+      <div class="room-grid">
+        <div class="room-copy">
+          <p class="room-label" data-i18n="galleryRoom">Cover Gallery</p>
+          <h2 id="gallery-title" data-i18n="galleryTitle">Обложки вращаются как зал</h2>
+          <p class="body-copy kinetic-lines" data-kinetic data-i18n="galleryCopy">Карусель вдохновлена Pretext text-wrap и image spinner: текст обтекает центр, а обложки движутся как экспонаты в круговой комнате.</p>
+          <div class="hero-actions">
+            <a class="action-button primary" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer">Emotions 4</a>
+            <a class="action-button" href="https://youtube.com/playlist?list=OLAK5uy_kHs_-Qt39mZEkz0U_LQ-y2Rsz1KjQXtfw" target="_blank" rel="noreferrer">YouTube playlist</a>
+          </div>
+        </div>
+        <div class="spinner-wrap">
+          <div class="text-wrap-field" data-wrap-text>NOCTURNAL DISTORTED SELF MADE RADIO WAVES LOCAL TRACKS FUTURE PALACE</div>
+          <div class="cover-spinner" aria-label="Album cover spinner">
+            <figure class="spinner-card" style="--i:0"><img src="assets/images/releases/dear-father.png" alt="Dear Father cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:1"><img src="assets/images/releases/done-cover.jpg" alt="Done cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:2"><img src="assets/images/releases/emotions-3.png" alt="Emotions 3 cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:3"><img src="assets/images/releases/emotions-4.jpg" alt="Emotions 4 cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:4"><img src="assets/images/releases/emotions-cover.jpg" alt="Emotions cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:5"><img src="assets/images/releases/foreva-ballin.jpg" alt="Foreva Ballin cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:6"><img src="assets/images/releases/no-love.png" alt="No Love cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:7"><img src="assets/images/releases/radio-waves.png" alt="Radio Waves cover" loading="lazy" decoding="async"></figure>
+            <figure class="spinner-card" style="--i:8"><img src="assets/images/releases/solo.png" alt="Solo cover" loading="lazy" decoding="async"></figure>
           </div>
         </div>
       </div>
-      <span class="scroll-hint" data-i18n="scrollHint">история ниже</span>
     </section>
 
-    <section class="profile-links" id="profiles" aria-labelledby="profiles-title">
-      <div class="profile-shell">
-        <div class="profile-head">
-          <p class="kicker" data-i18n="profilesKicker">Listen / Watch / Follow</p>
-          <h2 id="profiles-title" data-i18n="profilesTitle">Музыка и профили</h2>
-          <p class="profile-copy" data-i18n="profilesCopy">
-            Здесь собраны прямые переходы к релизам, профилям и видео, чтобы не искать их по отдельным страницам.
-          </p>
+    <section class="room archive-room" id="archive" aria-labelledby="archive-title">
+      <div class="room-grid">
+        <div class="room-copy">
+          <p class="room-label" data-i18n="archiveRoom">Archive</p>
+          <h2 id="archive-title" data-i18n="archiveTitle">Опыт без витрины</h2>
+          <p class="body-copy" data-i18n="archiveCopy">Больше восьми лет практики, релизы с DTurbo, SoundCloud sketches, Apple Music, YouTube и радио-след. Информация подана как доказательства внутри комнаты, без длинной биографии.</p>
         </div>
-        <div class="profile-grid" aria-label="Ссылки на музыку и профили" data-i18n-attr="aria-label:profilesGridAria">
-          <article class="profile-card">
-            <div class="profile-media is-apple" data-platform="Apple Music" role="img" aria-label="Apple Music">
-              <img class="platform-icon" src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Franks</h3>
-                <p data-i18n="franksCardCopy">Совместный трек с DTurbo на Apple Music.</p>
-              </div>
-              <a class="button" href="https://music.apple.com/us/song/franks-feat-bln-fkr/6766273812" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
-            </div>
+        <div class="proof-grid">
+          <article class="proof-panel">
+            <strong>8+</strong>
+            <p data-i18n="proofYears">лет в битмейкинге и продакшне.</p>
           </article>
-          <article class="profile-card">
-            <div class="profile-media is-apple" data-platform="Apple Music" role="img" aria-label="Apple Music">
-              <img class="platform-icon" src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Lights, Camera, Action</h3>
-                <p data-i18n="lightsCardCopy">Трек с DTurbo на Apple Music.</p>
-              </div>
-              <a class="button" href="https://music.apple.com/ru/album/lights-camera-action-feat-dturbo/1677932729?i=1677932730" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
-            </div>
+          <article class="proof-panel">
+            <strong>2022</strong>
+            <p data-i18n="proofRadio">трек звучал на Dash Radio и Soundcloud Radio.</p>
           </article>
-          <article class="profile-card">
-            <div class="profile-media" data-platform="Rolling Dice">
-              <img src="assets/images/releases/done-cover.jpg" alt="Обложка Rolling Dice" data-i18n-attr="alt:altRollingDice" loading="lazy" decoding="async">
-              <span class="apple-badge" aria-hidden="true"><img src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="" loading="lazy" decoding="async"></span>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Rolling Dice</h3>
-                <p data-i18n="rollingDiceCardCopy">Релиз на Apple Music с прямым переходом к альбому.</p>
-              </div>
-              <a class="button" href="https://music.apple.com/ru/album/rolling-dice/1680563706?l=en" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media" data-platform="Emotions 4">
-              <img src="assets/images/releases/emotions-4.jpg" alt="Квадратный визуал blnfkr" data-i18n-attr="alt:altSquareVisual" loading="lazy" decoding="async">
-              <span class="apple-badge" aria-hidden="true"><img src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="" loading="lazy" decoding="async"></span>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Emotions 4</h3>
-                <p data-i18n="emotions4CardCopy">EP на Apple Music.</p>
-              </div>
-              <a class="button" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media" data-platform="Emotions 3">
-              <img src="assets/images/releases/emotions-3.png" alt="Квадратная обложка blnfkr" data-i18n-attr="alt:altSquareCover" loading="lazy" decoding="async">
-              <span class="apple-badge" aria-hidden="true"><img src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="" loading="lazy" decoding="async"></span>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Emotions 3</h3>
-                <p data-i18n="emotions3CardCopy">Single с DTurbo на Apple Music.</p>
-              </div>
-              <a class="button" href="https://music.apple.com/ru/album/emotions-3-feat-dturbo-single/1722837872?l=en-GB" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media" data-platform="Radio Waves">
-              <img src="assets/images/releases/radio-waves.png" alt="Обложка Radio Waves" data-i18n-attr="alt:altRadioWaves" loading="lazy" decoding="async">
-              <span class="apple-badge" aria-hidden="true"><img src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="" loading="lazy" decoding="async"></span>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Radio Waves</h3>
-                <p data-i18n="radioWavesCardCopy">Релиз на Apple Music.</p>
-              </div>
-              <a class="button" href="https://music.apple.com/ru/album/radio-waves/1674026929?i=1674026930&l=en" target="_blank" rel="noreferrer" data-i18n="appleTrackCta">Слушать</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-soundcloud" data-platform="SoundCloud" role="img" aria-label="SoundCloud">
-              <img class="platform-icon" src="assets/images/social/SoundCloudmark_Minimum_size.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>SoundCloud</h3>
-                <p data-i18n="soundcloudCardCopy">Треки и наброски на SoundCloud.</p>
-              </div>
-              <a class="button" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-spotify" data-platform="Spotify" role="img" aria-label="Spotify">
-              <img class="platform-icon" src="assets/Spotify_Primary_Logo_RGB_Green.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Spotify</h3>
-                <p data-i18n="spotifyCardCopy">Профиль артиста на Spotify.</p>
-              </div>
-              <a class="button" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-youtube" data-platform="YouTube" role="img" aria-label="YouTube">
-              <div class="platform-logo" aria-hidden="true"><span class="youtube-play"></span></div>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>YouTube</h3>
-                <p data-i18n="youtubePlaylistCardCopy">Плейлист Emotions 4 на YouTube.</p>
-              </div>
-              <a class="button" href="https://youtube.com/playlist?list=OLAK5uy_kHs_-Qt39mZEkz0U_LQ-y2Rsz1KjQXtfw" target="_blank" rel="noreferrer" data-i18n="youtubeCardCta">Смотреть</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-youtube" data-platform="YouTube" role="img" aria-label="YouTube">
-              <div class="platform-logo" aria-hidden="true"><span class="youtube-play"></span></div>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Radio Waves Video</h3>
-                <p data-i18n="youtubeRadioCardCopy">Видео Radio Waves на YouTube.</p>
-              </div>
-              <a class="button" href="https://youtu.be/UpeiR01d_Ww" target="_blank" rel="noreferrer" data-i18n="youtubeCardCta">Смотреть</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-instagram" data-platform="Instagram" role="img" aria-label="Instagram">
-              <div class="platform-logo" aria-hidden="true"><span class="instagram-camera"></span></div>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Insta</h3>
-                <p data-i18n="instagramCardCopy">Сниппеты, фото, короткие видео и живые следы вокруг музыки.</p>
-              </div>
-              <a class="button" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer" data-i18n="instagramCardCta">Зайти в профиль</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-yandex" data-platform="Yandex Music" role="img" aria-label="Yandex Music">
-              <img class="platform-icon" src="assets/yandex_music_eng_whitebg.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>Yandex Music</h3>
-                <p data-i18n="yandexCardCopy">Профиль артиста на Яндекс Музыке.</p>
-              </div>
-              <a class="button" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
-            </div>
-          </article>
-          <article class="profile-card">
-            <div class="profile-media is-vk" data-platform="VK Music" role="img" aria-label="VK Music">
-              <div class="platform-logo" aria-hidden="true"><span class="logo-word vk-mark">VK</span></div>
-            </div>
-            <div class="profile-card-body">
-              <div>
-                <h3>VK Music</h3>
-                <p data-i18n="vkCardCopy">Профиль артиста во VK Music.</p>
-              </div>
-              <a class="button" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer" data-i18n="openProfileCta">Открыть</a>
-            </div>
+          <article class="proof-panel">
+            <strong>7</strong>
+            <p data-i18n="proofTracks">локальных треков доступны прямо на сайте.</p>
           </article>
         </div>
       </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-title">
-      <div class="section-grid">
-        <div>
-          <p class="kicker" data-i18n="storyKicker">История</p>
-          <h2 id="story-title" data-i18n="storyTitle">8+ лет в битмейкинге</h2>
-        </div>
-        <div>
-          <p data-i18n="storyP1">
-            Привет! Я blnfkr, пишу биты и инструменталы. Начинал как хобби, а теперь это архив релизов, демо и коллабораций.
-          </p>
-          <p data-i18n="storyP2">
-            В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.
-          </p>
-          <p data-i18n="creditsLabel">Credits:</p>
-          <ul class="credits" aria-label="Credits" data-i18n-attr="aria-label:creditsAria">
-            <li>Soundcloud Radio</li>
-            <li>Dash Radio</li>
-            <li>Mvkalo</li>
-            <li>DTurbo</li>
-            <li>Aimee Britannia</li>
-            <li>$WI$$</li>
-            <li>RTONTHABEAT</li>
-          </ul>
-        </div>
+      <div class="release-grid" aria-label="Release archive">
+        <a class="release-panel" href="https://music.apple.com/ru/album/radio-waves/1674026929?i=1674026930&l=en" target="_blank" rel="noreferrer">
+          <img src="assets/images/releases/radio-waves.png" alt="Radio Waves cover" loading="lazy" decoding="async">
+          <h3>Radio Waves</h3>
+          <p>Radio mark, video trail, and cover language.</p>
+        </a>
+        <a class="release-panel" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer">
+          <img src="assets/images/releases/emotions-4.jpg" alt="Emotions 4 cover" loading="lazy" decoding="async">
+          <h3>Emotions 4</h3>
+          <p>EP energy with a direct Apple Music route.</p>
+        </a>
+        <a class="release-panel" href="https://youtu.be/UpeiR01d_Ww" target="_blank" rel="noreferrer">
+          <img src="assets/images/releases/foreva-ballin.jpg" alt="Foreva Ballin cover" loading="lazy" decoding="async">
+          <h3>Foreva Ballin</h3>
+          <p>Distorted cover art as the identity system.</p>
+        </a>
       </div>
     </section>
 
-    <section class="releases" aria-labelledby="releases-title">
-      <div class="section-grid">
-        <div>
-          <p class="kicker" data-i18n="archiveKicker">Визуальный архив</p>
-          <h2 id="releases-title" data-i18n="archiveTitle">Обложки как стиль</h2>
-        </div>
+    <section class="room signals-room" id="signals" aria-labelledby="signals-title">
+      <div class="room-copy" style="width:min(1220px,100%);margin:0 auto 2rem;">
+        <p class="room-label" data-i18n="signalsRoom">Signal Room</p>
+        <h2 id="signals-title" data-i18n="signalsTitle">Выходы из дворца</h2>
+        <p class="body-copy" data-i18n="signalsCopy">Все внешние маршруты собраны в одной комнате: слушать, смотреть, проверять сниппеты, открывать профили.</p>
       </div>
-      <div class="release-grid" aria-label="Обложки и визуалы blnfkr" data-i18n-attr="aria-label:releaseGridAria">
-        <figure class="release"><img src="assets/images/releases/done-cover.jpg" alt="Обложка Rolling Dice" data-i18n-attr="alt:altRollingDice" loading="lazy" decoding="async"><span>Rolling Dice</span></figure>
-        <figure class="release"><img src="assets/images/releases/emotions-cover.jpg" alt="Обложка Emotions" data-i18n-attr="alt:altEmotions" loading="lazy" decoding="async"><span>Emotions</span></figure>
-        <figure class="release"><img src="assets/images/releases/radio-waves.png" alt="Обложка Radio Waves" data-i18n-attr="alt:altRadioWaves" loading="lazy" decoding="async"><span>Radio Waves</span></figure>
-        <figure class="release"><img src="assets/images/releases/no-love.png" alt="Обложка No Love" data-i18n-attr="alt:altNoLove" loading="lazy" decoding="async"><span>No Love</span></figure>
-        <figure class="release"><img src="assets/images/releases/dear-father.png" alt="Обложка из архива blnfkr" data-i18n-attr="alt:altArchiveCover" loading="lazy" decoding="async"><span>Dear Father</span></figure>
-        <figure class="release"><img src="assets/images/releases/emotions-4.jpg" alt="Квадратный визуал blnfkr" data-i18n-attr="alt:altSquareVisual" loading="lazy" decoding="async"><span>Emotions 4</span></figure>
-        <figure class="release"><img src="assets/images/releases/emotions-3.png" alt="Квадратная обложка blnfkr" data-i18n-attr="alt:altSquareCover" loading="lazy" decoding="async"><span>Emotions 3</span></figure>
-        <figure class="release"><img src="assets/images/releases/solo.png" alt="Квадратная обложка из проекта blnfkr" data-i18n-attr="alt:altProjectCover" loading="lazy" decoding="async"><span>Solo</span></figure>
-        <figure class="release"><img src="assets/images/releases/foreva-ballin.jpg" alt="Квадратная обложка Foreva Ballin'" data-i18n-attr="alt:altForevaBallin" loading="lazy" decoding="async"><span>Foreva Ballin'</span></figure>
-      </div>
-    </section>
-
-    <section class="social" aria-labelledby="social-title">
-      <div class="social-panel">
-        <div class="phone-shot">
-          <img src="assets/images/social/foreva-ballin-orig.jpg" alt="Фото blnfkr из Instagram" data-i18n-attr="alt:altSocialPhotoOne" loading="lazy" decoding="async">
-        </div>
-        <div class="social-copy">
-          <p class="kicker" data-i18n="socialKicker">Instagram / Life / Beats</p>
-          <h2 id="social-title" data-i18n="socialTitle">Отрывки, фото, видео</h2>
-          <p data-i18n="socialCopy">
-            В Instagram выходят сниппеты, фото и видео из жизни. YouTube ведёт к продакшн-следу, Apple Music к релизам, а остальные переходы собраны здесь.
-          </p>
-          <div class="link-stack">
-            <a class="link-row" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span>@areyoublindfucker</span><small>Instagram</small></a>
-            <a class="link-row" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span>bln fkr</span><small>Apple Music</small></a>
-            <a class="link-row" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer"><span>@prod.blindfucker</span><small>YouTube</small></a>
-            <a class="link-row" href="#profiles"><span data-i18n="profilesInlineLink">Музыка и профили</span><small data-i18n="profilesInlineMeta">На сайте</small></a>
-          </div>
-        </div>
+      <div class="signal-grid">
+        <a class="signal-panel" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span>A</span><h3>Apple Music</h3><p>Artist page and release routes.</p><small>Open music</small></a>
+        <a class="signal-panel" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer"><span>Y</span><h3>YouTube</h3><p>Beats, playlists, and production trail.</p><small>Watch videos</small></a>
+        <a class="signal-panel" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span>I</span><h3>Instagram</h3><p>Snippets, photos, and live traces.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer"><span>S</span><h3>SoundCloud</h3><p>Sketches and tracks.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer"><span>Sp</span><h3>Spotify</h3><p>Streaming profile.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer"><span>Ya</span><h3>Yandex Music</h3><p>Regional listening route.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer"><span>VK</span><h3>VK Music</h3><p>Additional regional music route.</p><small>Open profile</small></a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <span data-i18n="footerRole">blnfkr, producer & beatmaker</span>
-    <span data-i18n="footerRights">© blnfkr, all rights reserved</span>
+    <span>blnfkr, producer & beatmaker</span>
+    <span>HyperFrames palace motion source: hyperframes-palace/</span>
   </footer>
 
-  <script>
+  <script type="module">
+    const tracks = [
+      { title: "monster ft. DTurbo' 140 bpm", file: "assets/tracks/monster ft. DTurbo' 140 bpm.mp3", bpm: "140" },
+      { title: "more pillz 170 bpm ft. DTurbo'", file: "assets/tracks/more pillz 170 bpm ft. DTurbo'.mp3", bpm: "170" },
+      { title: "realest 97 bpm", file: "assets/tracks/realest 97 bpm (real life remake).mp3", bpm: "97" },
+      { title: "rock dance 105 bpm", file: "assets/tracks/rock dance (medlyak remake) 105 bpm.mp3", bpm: "105" },
+      { title: "Siamese cat 132 bpm", file: "assets/tracks/Siamese cat 132 bpm.mp3", bpm: "132" },
+      { title: "Stitch lipped 145 instr", file: "assets/tracks/Stitch lipped 145 instr .mp3", bpm: "145" },
+      { title: "winter 105 bpm", file: "assets/tracks/winter 105 bpm.mp3", bpm: "105" }
+    ];
+
     const translations = {
-        "ru": {
-                "documentTitle": "blnfkr | продюсер и битмейкер",
-                "metaDescription": "blnfkr: музыкальный продюсер и битмейкер. Биты, инструменталы, кредиты, релизы и социальные сети.",
-                "navAria": "Главная навигация",
-                "brandAria": "blnfkr, наверх",
-                "socialLinksAria": "Социальные ссылки",
-                "languageToggleAria": "Выбор языка",
-                "primaryActionsAria": "Основные действия",
-                "creditsAria": "Credits",
-                "releaseGridAria": "Обложки и визуалы blnfkr",
-                "heroEyebrow": "Producer / Beatmaker",
-                "heroCopy": "Молодой,  опытный музыкальный продюсер: инструменталы, песни и ссылки, где можно сразу включить треки.",
-                "listenCta": "Apple Music",
-                "youtubeCta": "Биты на YouTube",
-                "linksCta": "Все ссылки",
-                "profilesNav": "Профили",
-                "profilesCta": "Слушать",
-                "profilesKicker": "Listen / Watch / Follow",
-                "profilesTitle": "Музыка и профили",
-                "profilesCopy": "Здесь собраны прямые переходы к релизам, профилям и видео, чтобы не искать их по отдельным страницам.",
-                "profilesGridAria": "Ссылки на музыку и профили",
-                "franksCardCopy": "Совместный трек с DTurbo на Apple Music.",
-                "rollingDiceCardCopy": "Релиз на Apple Music с прямым переходом к альбому.",
-                "lightsCardCopy": "Трек с DTurbo на Apple Music.",
-                "emotions4CardCopy": "EP на Apple Music.",
-                "emotions3CardCopy": "Single с DTurbo на Apple Music.",
-                "radioWavesCardCopy": "Релиз на Apple Music.",
-                "appleTrackCta": "Слушать",
-                "appleCardCopy": "Релизы, артистская страница и быстрый старт прослушивания.",
-                "appleCardCta": "Открыть музыку",
-                "soundcloudCardCopy": "Треки и наброски на SoundCloud.",
-                "yandexCardCopy": "Профиль артиста на Яндекс Музыке.",
-                "vkCardCopy": "Профиль артиста во VK Music.",
-                "spotifyCardCopy": "Профиль артиста на Spotify.",
-                "openProfileCta": "Открыть",
-                "youtubePlaylistCardCopy": "Плейлист Emotions 4 на YouTube.",
-                "youtubeRadioCardCopy": "Видео Radio Waves на YouTube.",
-                "youtubeCardCopy": "Биты, продакшн-след и видео без перехода через витрину ссылок.",
-                "youtubeCardCta": "Смотреть",
-                "instagramCardCopy": "Сниппеты, фото, короткие видео и живые следы вокруг музыки.",
-                "instagramCardCta": "Зайти в профиль",
-                "profilesInlineLink": "Музыка и профили",
-                "profilesInlineMeta": "На сайте",
-                "scrollHint": "история ниже",
-                "storyKicker": "История",
-                "storyTitle": "8+ лет в битмейкинге",
-                "storyP1": "Привет! Я blnfkr, пишу биты и инструменталы. Начинал как хобби, а теперь это архив релизов, демо и коллабораций.",
-                "storyP2": "В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.",
-                "creditsLabel": "Credits:",
-                "archiveKicker": "Визуальный архив",
-                "archiveTitle": "Обложки как стиль",
-                "socialKicker": "Instagram / Life / Beats",
-                "socialTitle": "Отрывки, фото, видео",
-                "socialCopy": "В Instagram выходят сниппеты, фото и видео из жизни. YouTube ведёт к продакшн-следу, Apple Music к релизам, а остальные переходы собраны здесь.",
-                "footerRole": "blnfkr, producer & beatmaker",
-                "footerRights": "© blnfkr, все права защищены",
-                "altRollingDice": "Обложка Rolling Dice",
-                "altEmotions": "Обложка Emotions",
-                "altRadioWaves": "Обложка Radio Waves",
-                "altNoLove": "Обложка No Love",
-                "altArchiveCover": "Обложка из архива blnfkr",
-                "altSquareVisual": "Квадратный визуал blnfkr",
-                "altSquareCover": "Квадратная обложка blnfkr",
-                "altProjectCover": "Квадратная обложка из проекта blnfkr",
-                "altForevaBallin": "Квадратная обложка Foreva Ballin'",
-                "altSocialPhotoOne": "Фото blnfkr из Instagram",
-                "altSocialPhotoTwo": "Фото blnfkr из Instagram"
-        },
-        "en": {
-                "documentTitle": "blnfkr | producer & beatmaker",
-                "metaDescription": "blnfkr: music producer and beatmaker. Beats, instrumentals, credits, releases, and social links.",
-                "navAria": "Main navigation",
-                "brandAria": "blnfkr, back to top",
-                "socialLinksAria": "Social links",
-                "languageToggleAria": "Language selector",
-                "primaryActionsAria": "Primary actions",
-                "creditsAria": "Credits",
-                "releaseGridAria": "Covers and visuals by blnfkr",
-                "heroEyebrow": "Producer / Beatmaker",
-                "heroCopy": "Young, experienced, and self-made: beats, instrumentals and direct links to press play.",
-                "listenCta": "Apple Music",
-                "youtubeCta": "Beats on YouTube",
-                "linksCta": "All links",
-                "profilesNav": "Profiles",
-                "profilesCta": "Listen Now",
-                "profilesKicker": "Listen / Watch / Follow",
-                "profilesTitle": "Music and profiles",
-                "profilesCopy": "Direct paths to releases, profiles, and videos live here, so visitors do not have to hunt across separate pages.",
-                "profilesGridAria": "Music and profile links",
-                "franksCardCopy": "A DTurbo collaboration on Apple Music.",
-                "rollingDiceCardCopy": "Release on Apple Music with a direct album link.",
-                "lightsCardCopy": "Track with DTurbo on Apple Music.",
-                "emotions4CardCopy": "EP on Apple Music.",
-                "emotions3CardCopy": "Single with DTurbo on Apple Music.",
-                "radioWavesCardCopy": "Release on Apple Music.",
-                "appleTrackCta": "Listen",
-                "appleCardCopy": "Releases, artist page, and a direct path to listening.",
-                "appleCardCta": "Open music",
-                "soundcloudCardCopy": "Tracks and sketches on SoundCloud.",
-                "yandexCardCopy": "Artist profile on Yandex Music.",
-                "vkCardCopy": "Artist profile on VK Music.",
-                "spotifyCardCopy": "Artist profile on Spotify.",
-                "openProfileCta": "Open",
-                "youtubePlaylistCardCopy": "Emotions 4 playlist on YouTube.",
-                "youtubeRadioCardCopy": "Radio Waves video on YouTube.",
-                "youtubeCardCopy": "Beats, production trail, and videos without a link storefront.",
-                "youtubeCardCta": "Watch",
-                "instagramCardCopy": "Snippets, photos, short videos, and live traces around the music.",
-                "instagramCardCta": "Open profile",
-                "profilesInlineLink": "Music and profiles",
-                "profilesInlineMeta": "On site",
-                "scrollHint": "story below",
-                "storyKicker": "Story",
-                "storyTitle": "8+ years of beatmaking & production",
-                "storyP1": "Hi, I'm blnfkr. I make beats and instrumentals. It started as a hobby, and now it is an archive of releases, demos, and collaborations.",
-                "storyP2": "In 2022, one of my tracks aired on American Dash Radio and Soundcloud Radio. I've been making music for more than 8 years, with steady practice and releases.",
-                "creditsLabel": "Credits:",
-                "archiveKicker": "Visual archive",
-                "archiveTitle": "Covers as style",
-                "socialKicker": "Instagram / Life / Beats",
-                "socialTitle": "Snippets, photos, videos",
-                "socialCopy": "Instagram carries snippets, photos, and life videos. YouTube leads to the production trail, Apple Music to the releases, and the rest of the exits are gathered here.",
-                "footerRole": "blnfkr, producer & beatmaker",
-                "footerRights": "© blnfkr, all rights reserved",
-                "altRollingDice": "Rolling Dice cover artwork",
-                "altEmotions": "Emotions cover artwork",
-                "altRadioWaves": "Radio Waves cover artwork",
-                "altNoLove": "No Love cover artwork",
-                "altArchiveCover": "Archive cover artwork by blnfkr",
-                "altSquareVisual": "Square visual by blnfkr",
-                "altSquareCover": "Square cover artwork by blnfkr",
-                "altProjectCover": "Square cover from the blnfkr project archive",
-                "altForevaBallin": "Foreva Ballin' cover artwork",
-                "altSocialPhotoOne": "Instagram photo from blnfkr",
-                "altSocialPhotoTwo": "Instagram photo from blnfkr"
-        }
-};
-
-    const storageKey = "blnfkr-lang";
-    const buttons = document.querySelectorAll("[data-lang]");
-
-    function getSavedLanguage() {
-      try {
-        const requested = new URLSearchParams(window.location.search).get("lang");
-        if (requested === "en" || requested === "ru") {
-          return requested;
-        }
-        const saved = localStorage.getItem(storageKey);
-        return saved === "en" || saved === "ru" ? saved : "ru";
-      } catch {
-        return "ru";
+      ru: {
+        heroRoom: "Atrium signal",
+        heroCopy: "Футуристичный дворец битов: локальные треки, обложки, радио-след и прямые выходы на музыку.",
+        playFirst: "Запустить трек",
+        audioRoom: "Audio Lab",
+        audioTitle: "Свет реагирует на трек",
+        audioCopy: "Плеер использует локальные MP3 из папки assets/tracks. Эквалайзер и waveform строятся через Web Audio после клика по Play.",
+        currentTrackHint: "Локальный файл, без внешнего стриминга.",
+        moveGallery: "В галерею",
+        galleryRoom: "Cover Gallery",
+        galleryTitle: "Обложки вращаются как зал",
+        galleryCopy: "Карусель вдохновлена Pretext text-wrap и image spinner: текст обтекает центр, а обложки движутся как экспонаты в круговой комнате.",
+        archiveRoom: "Archive",
+        archiveTitle: "Опыт без витрины",
+        archiveCopy: "Больше восьми лет практики, релизы с DTurbo, SoundCloud sketches, Apple Music, YouTube и радио-след. Информация подана как доказательства внутри комнаты, без длинной биографии.",
+        proofYears: "лет в битмейкинге и продакшне.",
+        proofRadio: "трек звучал на Dash Radio и Soundcloud Radio.",
+        proofTracks: "локальных треков доступны прямо на сайте.",
+        signalsRoom: "Signal Room",
+        signalsTitle: "Выходы из дворца",
+        signalsCopy: "Все внешние маршруты собраны в одной комнате: слушать, смотреть, проверять сниппеты, открывать профили."
+      },
+      en: {
+        heroRoom: "Atrium signal",
+        heroCopy: "A futuristic beat palace: local tracks, cover artifacts, radio proof, and direct routes to music.",
+        playFirst: "Play a track",
+        audioRoom: "Audio Lab",
+        audioTitle: "Light reacts to the track",
+        audioCopy: "The player uses local MP3 files from assets/tracks. Equalizer and waveform are drawn with Web Audio after you press Play.",
+        currentTrackHint: "Local file, no external stream.",
+        moveGallery: "Move to gallery",
+        galleryRoom: "Cover Gallery",
+        galleryTitle: "Covers rotate like a hall",
+        galleryCopy: "The carousel is inspired by Pretext text-wrap and image spinner demos: text flows around the center while covers move like objects in a circular room.",
+        archiveRoom: "Archive",
+        archiveTitle: "Proof without a showcase",
+        archiveCopy: "More than eight years of practice, DTurbo releases, SoundCloud sketches, Apple Music, YouTube, and radio proof. Evidence sits inside the room without a long bio.",
+        proofYears: "years of beatmaking and production.",
+        proofRadio: "track aired on Dash Radio and Soundcloud Radio.",
+        proofTracks: "local tracks are playable on the site.",
+        signalsRoom: "Signal Room",
+        signalsTitle: "Routes out of the palace",
+        signalsCopy: "Every external route is gathered in one room: listen, watch, check snippets, and open profiles."
       }
-    }
+    };
 
-    function setLanguage(lang) {
-      const activeLang = translations[lang] ? lang : "ru";
-      const dictionary = translations[activeLang];
-      document.documentElement.lang = activeLang;
-      document.documentElement.dir = "ltr";
-      document.title = dictionary.documentTitle;
+    const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const audio = document.querySelector("[data-audio]");
+    const playButtons = [document.querySelector("[data-play]"), document.querySelector("[data-play-hero]")];
+    const currentTrack = document.querySelector("[data-current-track]");
+    const trackList = document.querySelector("[data-track-list]");
+    const progress = document.querySelector("[data-progress]");
+    const timeCurrent = document.querySelector("[data-time-current]");
+    const timeTotal = document.querySelector("[data-time-total]");
+    const hyperflight = document.querySelector("[data-hyperflight]");
+    const hyperflightFrame = document.querySelector("[data-hyperflight-frame]");
+    const hyperflightSkip = document.querySelector("[data-hyperflight-skip]");
+    const meter = document.querySelector("[data-meter]");
+    const wave = document.querySelector("[data-wave]");
+    const meterCtx = meter.getContext("2d");
+    const waveCtx = wave.getContext("2d");
 
-      document.querySelectorAll("[data-i18n]").forEach((element) => {
-        const key = element.dataset.i18n;
-        if (dictionary[key]) {
-          element.textContent = dictionary[key];
-        }
+    let activeTrack = 0;
+    let audioCtx;
+    let analyser;
+    let source;
+    let rafId = 0;
+    let pretextApi = null;
+    let flightTimer = 0;
+    let flightRaf = 0;
+    let pendingFlightTarget = null;
+    const roomTargets = ["#atrium", "#audio", "#gallery", "#archive", "#signals"];
+
+    const formatTime = value => {
+      if (!Number.isFinite(value)) return "0:00";
+      const minutes = Math.floor(value / 60);
+      const seconds = Math.floor(value % 60).toString().padStart(2, "0");
+      return `${minutes}:${seconds}`;
+    };
+
+    const drawIdle = () => {
+      const w = meter.width;
+      const h = meter.height;
+      meterCtx.clearRect(0, 0, w, h);
+      waveCtx.clearRect(0, 0, wave.width, wave.height);
+      for (let i = 0; i < 44; i += 1) {
+        const x = (i / 44) * w;
+        const barH = (Math.sin(i * 0.72) * 0.5 + 0.5) * h * 0.55 + 14;
+        meterCtx.fillStyle = i % 3 === 0 ? "#7fff84" : i % 3 === 1 ? "#54d7ff" : "#d34dff";
+        meterCtx.fillRect(x + 3, h - barH, Math.max(4, w / 70), barH);
+      }
+      waveCtx.strokeStyle = "#54d7ff";
+      waveCtx.lineWidth = 2;
+      waveCtx.beginPath();
+      for (let x = 0; x < wave.width; x += 8) {
+        const y = wave.height / 2 + Math.sin(x * 0.03) * wave.height * 0.22;
+        if (x === 0) waveCtx.moveTo(x, y);
+        else waveCtx.lineTo(x, y);
+      }
+      waveCtx.stroke();
+    };
+
+    const setupAudio = () => {
+      if (audioCtx) return;
+      audioCtx = new AudioContext();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 1024;
+      analyser.smoothingTimeConstant = 0.82;
+      source = audioCtx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+    };
+
+    const drawAudio = () => {
+      if (!analyser) {
+        drawIdle();
+        return;
+      }
+
+      const freq = new Uint8Array(analyser.frequencyBinCount);
+      const time = new Uint8Array(analyser.frequencyBinCount);
+      analyser.getByteFrequencyData(freq);
+      analyser.getByteTimeDomainData(time);
+
+      meterCtx.clearRect(0, 0, meter.width, meter.height);
+      const bars = 72;
+      const step = Math.floor(freq.length / bars);
+      for (let i = 0; i < bars; i += 1) {
+        const value = freq[i * step] / 255;
+        const x = (i / bars) * meter.width;
+        const barW = Math.max(3, meter.width / bars - 4);
+        const barH = Math.max(8, value * meter.height * 0.92);
+        const hue = i % 4;
+        meterCtx.fillStyle = hue === 0 ? "#7fff84" : hue === 1 ? "#54d7ff" : hue === 2 ? "#d34dff" : "#ff653d";
+        meterCtx.shadowColor = meterCtx.fillStyle;
+        meterCtx.shadowBlur = 16 * value;
+        meterCtx.fillRect(x, meter.height - barH, barW, barH);
+      }
+      meterCtx.shadowBlur = 0;
+
+      waveCtx.clearRect(0, 0, wave.width, wave.height);
+      waveCtx.strokeStyle = document.body.classList.contains("variant-b") ? "#ff653d" : "#54d7ff";
+      waveCtx.lineWidth = 2;
+      waveCtx.beginPath();
+      const slice = wave.width / time.length;
+      for (let i = 0; i < time.length; i += 1) {
+        const x = i * slice;
+        const y = (time[i] / 255) * wave.height;
+        if (i === 0) waveCtx.moveTo(x, y);
+        else waveCtx.lineTo(x, y);
+      }
+      waveCtx.stroke();
+
+      if (!audio.paused) rafId = requestAnimationFrame(drawAudio);
+    };
+
+    const setTrack = index => {
+      activeTrack = (index + tracks.length) % tracks.length;
+      const track = tracks[activeTrack];
+      audio.src = track.file;
+      currentTrack.textContent = track.title;
+      document.querySelectorAll(".track-item").forEach((item, itemIndex) => {
+        item.classList.toggle("is-active", itemIndex === activeTrack);
       });
+      progress.value = 0;
+      timeCurrent.textContent = "0:00";
+    };
 
-      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
-        element.dataset.i18nAttr.split(",").forEach((pair) => {
-          const [attribute, key] = pair.split(":").map((part) => part.trim());
-          if (attribute && key && dictionary[key]) {
-            element.setAttribute(attribute, dictionary[key]);
-          }
+    const playActive = async () => {
+      if (!audio.src) setTrack(activeTrack);
+      if (audio.paused) {
+        playButtons.forEach(button => button.textContent = "Pause");
+        try {
+          await audio.play();
+        } catch {
+          playButtons[0].textContent = "Play";
+          playButtons[1].textContent = translations[document.documentElement.lang]?.playFirst || "Play a track";
+          return;
+        }
+        try {
+          setupAudio();
+          if (audioCtx.state === "suspended") await audioCtx.resume();
+        } catch {
+          analyser = null;
+        }
+        cancelAnimationFrame(rafId);
+        drawAudio();
+      } else {
+        audio.pause();
+        playButtons[0].textContent = "Play";
+        playButtons[1].textContent = translations[document.documentElement.lang]?.playFirst || "Play a track";
+      }
+    };
+
+    const renderTrackList = () => {
+      trackList.innerHTML = "";
+      tracks.forEach((track, index) => {
+        const button = document.createElement("button");
+        button.className = "track-item";
+        button.type = "button";
+        button.innerHTML = `<span class="track-index">${String(index + 1).padStart(2, "0")}</span><strong>${track.title}</strong><small>${track.bpm} bpm</small>`;
+        button.addEventListener("click", async () => {
+          const wasPlaying = !audio.paused;
+          setTrack(index);
+          if (wasPlaying) await playActive();
         });
+        trackList.append(button);
       });
+    };
 
-      buttons.forEach((button) => {
-        const active = button.dataset.lang === activeLang;
-        button.classList.toggle("is-active", active);
-        button.setAttribute("aria-pressed", String(active));
+    const applyLanguage = lang => {
+      const dictionary = translations[lang] || translations.ru;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach(node => {
+        const key = node.dataset.i18n;
+        if (dictionary[key]) {
+          node.dataset.rawText = dictionary[key];
+          node.textContent = dictionary[key];
+        }
       });
+      document.querySelectorAll("[data-lang]").forEach(button => {
+        button.classList.toggle("is-active", button.dataset.lang === lang);
+      });
+      if (audio.paused) playButtons[1].textContent = dictionary.playFirst;
+      localStorage.setItem("blnfkr-lang", lang);
+      hydrateKineticText();
+    };
 
-      try {
-        localStorage.setItem(storageKey, activeLang);
-      } catch {
-        /* localStorage can be blocked in private contexts; the page still works. */
+    const scrollToTarget = target => {
+      document.body.classList.add("is-travelling");
+      setTimeout(() => document.body.classList.remove("is-travelling"), 300);
+      document.querySelector(target)?.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    };
+
+    const endHyperflight = (target = pendingFlightTarget) => {
+      clearTimeout(flightTimer);
+      cancelAnimationFrame(flightRaf);
+      document.body.classList.remove("is-cinematic-flight");
+      hyperflight?.setAttribute("aria-hidden", "true");
+      pendingFlightTarget = null;
+      if (target) scrollToTarget(target);
+    };
+
+    const nearestRoomIndex = () => {
+      let nearest = 0;
+      let distance = Number.POSITIVE_INFINITY;
+      roomTargets.forEach((target, index) => {
+        const node = document.querySelector(target);
+        if (!node) return;
+        const rect = node.getBoundingClientRect();
+        const currentDistance = Math.abs(rect.top);
+        if (currentDistance < distance) {
+          distance = currentDistance;
+          nearest = index;
+        }
+      });
+      return nearest;
+    };
+
+    const travelTo = target => {
+      if (prefersReducedMotion || !hyperflight || !hyperflightFrame) {
+        scrollToTarget(target);
+        return;
       }
-    }
+      if (!target || document.body.classList.contains("is-cinematic-flight")) return;
+      pendingFlightTarget = target;
+      const start = performance.now();
+      const duration = 12000;
+      hyperflightFrame.src = `hyperframes-palace/index.html?flight=${Date.now()}`;
+      hyperflight.setAttribute("aria-hidden", "false");
+      document.body.classList.add("is-cinematic-flight");
 
-    buttons.forEach((button) => {
-      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+      const tick = now => {
+        const progressValue = Math.min(1, (now - start) / duration);
+        if (progressValue < 1) flightRaf = requestAnimationFrame(tick);
+      };
+      flightRaf = requestAnimationFrame(tick);
+      flightTimer = setTimeout(() => endHyperflight(target), duration);
+    };
+
+    const simpleLines = (text, maxChars = 28) => {
+      const words = text.trim().split(/\s+/);
+      const lines = [];
+      let line = "";
+      for (const word of words) {
+        const next = line ? `${line} ${word}` : word;
+        if (next.length > maxChars && line) {
+          lines.push(line);
+          line = word;
+        } else {
+          line = next;
+        }
+      }
+      if (line) lines.push(line);
+      return lines;
+    };
+
+    const pretextLines = (text, width, font, maxChars) => {
+      if (pretextApi?.prepareWithSegments && pretextApi?.layoutNextLine) {
+        try {
+          const prepared = pretextApi.prepareWithSegments(text, font);
+          let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+          const lines = [];
+          for (let guard = 0; guard < 24; guard += 1) {
+            const line = pretextApi.layoutNextLine(prepared, cursor, width);
+            if (line === null) break;
+            lines.push(line.text);
+            cursor = line.end;
+          }
+          if (lines.length > 0) return lines;
+        } catch {
+          return simpleLines(text, maxChars);
+        }
+      }
+
+      if (pretextApi?.prepare && pretextApi?.layoutWithLines) {
+        try {
+          const prepared = pretextApi.prepare(text, font);
+          const result = pretextApi.layoutWithLines(prepared, width, 28);
+          const lines = result.lines?.map(line => line.text).filter(Boolean);
+          if (lines?.length) return lines;
+        } catch {
+          return simpleLines(text, maxChars);
+        }
+      }
+
+      return simpleLines(text, maxChars);
+    };
+
+    const hydrateKineticText = () => {
+      document.querySelectorAll("[data-kinetic]").forEach(node => {
+        if (!node.dataset.rawText) node.dataset.rawText = node.textContent.trim();
+        const text = node.dataset.rawText;
+        const width = Math.max(240, Math.min(node.clientWidth || 420, 720));
+        const lines = pretextLines(text, width, "18px Helvetica Neue", 28);
+        node.style.setProperty("--pretext-lines", String(lines.length));
+        node.innerHTML = lines.map((line, index) => `<span style="--line-i:${index}">${line}</span>`).join("");
+      });
+
+      const wrap = document.querySelector("[data-wrap-text]");
+      if (wrap) {
+        if (!wrap.dataset.rawText) wrap.dataset.rawText = wrap.textContent.trim();
+        const chunks = pretextLines(wrap.dataset.rawText, Math.max(180, wrap.clientWidth * 0.42), "700 24px Arial", 18);
+        wrap.innerHTML = chunks.map((line, index) => `<span style="--line-i:${index}">${line}</span>`).join("");
+      }
+    };
+
+    const loadPretext = async () => {
+      try {
+        pretextApi = await import("https://esm.sh/@chenglou/pretext");
+      } catch {
+        pretextApi = null;
+      } finally {
+        hydrateKineticText();
+      }
+    };
+
+    renderTrackList();
+    setTrack(0);
+    drawIdle();
+    hydrateKineticText();
+    loadPretext();
+
+    playButtons.forEach(button => button.addEventListener("click", playActive));
+    document.querySelector("[data-prev]").addEventListener("click", () => setTrack(activeTrack - 1));
+    document.querySelector("[data-next]").addEventListener("click", () => setTrack(activeTrack + 1));
+    document.querySelectorAll("[data-room-link]").forEach(link => {
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        travelTo(link.getAttribute("href"));
+      });
+    });
+    document.querySelectorAll("[data-room-link-button]").forEach(button => {
+      button.addEventListener("click", () => travelTo(button.dataset.roomLinkButton));
+    });
+    hyperflightSkip?.addEventListener("click", () => endHyperflight());
+    addEventListener("wheel", event => {
+      if (prefersReducedMotion || document.body.classList.contains("is-cinematic-flight")) return;
+      if (Math.abs(event.deltaY) < 42) return;
+      if (event.target?.closest?.("a, button, input, audio, .track-list, .native-audio")) return;
+      const current = nearestRoomIndex();
+      const next = current + (event.deltaY > 0 ? 1 : -1);
+      if (next < 0 || next >= roomTargets.length) return;
+      event.preventDefault();
+      travelTo(roomTargets[next]);
+    }, { passive: false });
+    document.querySelectorAll("[data-lang]").forEach(button => {
+      button.addEventListener("click", () => applyLanguage(button.dataset.lang));
+    });
+    document.querySelectorAll("[data-variant]").forEach(button => {
+      button.addEventListener("click", () => {
+        const isB = button.dataset.variant === "b";
+        document.body.classList.toggle("variant-b", isB);
+        document.querySelectorAll("[data-variant]").forEach(item => item.classList.toggle("is-active", item === button));
+      });
     });
 
-    setLanguage(getSavedLanguage());
+    audio.addEventListener("loadedmetadata", () => {
+      timeTotal.textContent = formatTime(audio.duration);
+    });
+    audio.addEventListener("timeupdate", () => {
+      timeCurrent.textContent = formatTime(audio.currentTime);
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        progress.value = String(Math.round((audio.currentTime / audio.duration) * 1000));
+      }
+    });
+    audio.addEventListener("ended", () => {
+      setTrack(activeTrack + 1);
+      playActive();
+    });
+    progress.addEventListener("input", () => {
+      if (Number.isFinite(audio.duration)) {
+        audio.currentTime = (Number(progress.value) / 1000) * audio.duration;
+      }
+    });
+    addEventListener("resize", hydrateKineticText, { passive: true });
+    applyLanguage(localStorage.getItem("blnfkr-lang") || "ru");
   </script>
 </body>
 </html>
