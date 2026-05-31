@@ -841,11 +841,22 @@
       justify-content: center;
       width: 2.6rem;
       aspect-ratio: 1;
-      border: 1px solid rgb(232 255 246 / 0.18);
+      border: 1px solid color-mix(in oklch, var(--paper) 14%, transparent);
       border-radius: 8px;
-      color: var(--void);
-      background: var(--acid);
-      font-weight: 950;
+      background: var(--void);
+      overflow: hidden;
+    }
+
+    .signal-panel span img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 0.3rem;
+    }
+
+    .signal-panel span svg {
+      width: 70%;
+      height: 70%;
     }
 
     .footer {
@@ -857,6 +868,133 @@
       color: var(--muted);
       border-top: 1px solid var(--line);
       background: rgb(4 7 12 / 0.9);
+    }
+
+    .menu-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.45rem;
+      width: 2.45rem;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--paper);
+      background: rgb(232 255 246 / 0.06);
+      cursor: pointer;
+      transition: background 180ms ease, border-color 180ms ease;
+    }
+
+    .menu-toggle:hover {
+      border-color: rgb(128 255 154 / 0.64);
+      background: rgb(128 255 154 / 0.14);
+    }
+
+    .menu-toggle-icon {
+      display: block;
+      width: 1.1rem;
+      height: 2px;
+      background: currentColor;
+      border-radius: 1px;
+      position: relative;
+      transition: background 240ms ease;
+    }
+
+    .menu-toggle-icon::before,
+    .menu-toggle-icon::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      border-radius: 1px;
+      transition: transform 240ms ease;
+    }
+
+    .menu-toggle-icon::before { top: -5px; }
+    .menu-toggle-icon::after { top: 5px; }
+
+    body.mobile-nav-open .menu-toggle-icon {
+      background: transparent;
+    }
+
+    body.mobile-nav-open .menu-toggle-icon::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    body.mobile-nav-open .menu-toggle-icon::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 52;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      gap: 0.8rem;
+      padding: 5rem 2rem;
+      background: rgb(4 7 12 / 0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.96);
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    body.mobile-nav-open .mobile-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    .mobile-panel a {
+      display: block;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      text-align: center;
+      padding: 0.6rem 0.4rem;
+      transition: color 180ms ease;
+    }
+
+    .mobile-panel a:hover,
+    .mobile-panel a:focus-visible {
+      color: var(--acid);
+    }
+
+    .mobile-lang {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .mobile-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.65rem 0.82rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color 180ms ease, border-color 180ms ease;
+    }
+
+    .mobile-back:hover {
+      color: var(--acid);
+      border-color: rgb(128 255 154 / 0.5);
     }
 
     @keyframes palaceBreath {
@@ -888,11 +1026,11 @@
       }
 
       .room-nav {
-        gap: 0.3rem;
+        display: none;
       }
 
-      .room-nav a {
-        display: none;
+      .menu-toggle {
+        display: inline-flex;
       }
 
       .room-grid,
@@ -1008,7 +1146,25 @@
       <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
       <button class="chip-button" type="button" data-lang="en">EN</button>
     </nav>
+    <button class="menu-toggle" type="button" aria-label="Toggle navigation" data-menu-toggle>
+      <span class="menu-toggle-icon"></span>
+    </button>
   </header>
+  <aside class="mobile-panel" data-mobile-panel aria-label="Mobile navigation" role="dialog" aria-modal="true">
+    <nav>
+      <a href="#atrium" data-room-link>Atrium</a>
+      <a href="#audio" data-room-link>Audio Lab</a>
+      <a href="#gallery" data-room-link>Gallery</a>
+      <a href="#archive" data-room-link>Archive</a>
+      <a href="#signals" data-room-link>Signals</a>
+      <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer">Journey</a>
+    </nav>
+    <button class="mobile-back" type="button" data-mobile-back>← Back</button>
+    <div class="mobile-lang">
+      <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
+      <button class="chip-button" type="button" data-lang="en">EN</button>
+    </div>
+  </aside>
 
   <main id="atrium">
     <section class="room hero" aria-labelledby="hero-title">
@@ -1115,7 +1271,7 @@
             <p data-i18n="proofYears">лет в битмейкинге и продакшне.</p>
           </article>
           <article class="proof-panel">
-            <strong>В 2022 г.</strong>
+            <strong data-i18n="proofYearLabel">В 2022 г.</strong>
             <p data-i18n="proofRadio">трек звучал на Dash Radio и Soundcloud Radio.</p>
           </article>
           <p class="room-label">Credits</p>
@@ -1153,16 +1309,16 @@
       <div class="room-copy" style="width:min(1220px,100%);margin:0 auto 2rem;">
         <p class="room-label" data-i18n="signalsRoom">Signal Room</p>
         <h2 id="signals-title" data-i18n="signalsTitle">Профили и соцсети</h2>
-        <p class="body-copy" data-i18n="signalsCopy">В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы, и остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда.</p>
+        <p class="body-copy" data-i18n="signalsCopy">В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы. Остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда.</p>
       </div>
       <div class="signal-grid">
-        <a class="signal-panel" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span>A</span><h3>Apple Music</h3><p>Artist page and release routes.</p><small>Open music</small></a>
-        <a class="signal-panel" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer"><span>Y</span><h3>YouTube</h3><p>Beats, playlists, and production trail.</p><small>Watch videos</small></a>
-        <a class="signal-panel" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span>I</span><h3>Instagram</h3><p>Snippets, photos, and live traces.</p><small>Open profile</small></a>
-        <a class="signal-panel" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer"><span>S</span><h3>SoundCloud</h3><p>Sketches and tracks.</p><small>Open profile</small></a>
-        <a class="signal-panel" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer"><span>Sp</span><h3>Spotify</h3><p>Streaming profile.</p><small>Open profile</small></a>
-        <a class="signal-panel" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer"><span>Ya</span><h3>Yandex Music</h3><p>Regional listening route.</p><small>Open profile</small></a>
-        <a class="signal-panel" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer"><span>VK</span><h3>VK Music</h3><p>Additional regional music route.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span><img src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="Apple Music"></span><h3>Apple Music</h3><p>Artist page and release links.</p><small>Open music</small></a>
+        <a class="signal-panel" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-label="YouTube"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></span><h3>YouTube</h3><p>Beats, playlists, and production trail.</p><small>Watch videos</small></a>
+        <a class="signal-panel" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-label="Instagram"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.7.5.7.3 1.4.7 2 1.3.6.6 1 1.2 1.3 2 .2.7.4 1.5.5 2.7.1 1.3.1 1.6.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.7-.3.7-.7 1.4-1.3 2-.6.6-1.2 1-2 1.3-.7.2-1.5.4-2.7.5-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.7-.5-.7-.3-1.4-.7-2-1.3-.6-.6-1-1.2-1.3-2-.2-.7-.4-1.5-.5-2.7-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.3-2 .5-2.7.3-.7.7-1.4 1.3-2 .6-.6 1.2-1 2-1.3.7-.2 1.5-.4 2.7-.5 1.3-.1 1.6-.1 4.9-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.2 5 .4 4.2.7 3.4 1 2.7 1.4 2 2.1 1.3 2.8.9 3.5.6 4.3.3 5.1.2 5.9.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.2.2 2 .5 2.8.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.4 2.8.5 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.2-.1 2-.2 2.8-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.4-1.6.5-2.8.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.2-.2-2-.5-2.8-.3-.8-.7-1.5-1.4-2.2-.7-.7-1.4-1.1-2.2-1.4-.8-.3-1.6-.4-2.8-.5C15.8 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zm0 10.3c-2.3 0-4.1-1.8-4.1-4.1s1.8-4.1 4.1-4.1 4.1 1.8 4.1 4.1-1.8 4.1-4.1 4.1zm6.3-10.5c0 .8-.6 1.4-1.4 1.4s-1.4-.6-1.4-1.4.6-1.4 1.4-1.4 1.4.6 1.4 1.4z"/></svg></span><h3>Instagram</h3><p>Snippets, photos, and live traces.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer"><span><img src="assets/images/social/SoundCloudmark_Minimum_size.png" alt="SoundCloud"></span><h3>SoundCloud</h3><p>Sketches and tracks.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer"><span><img src="assets/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify"></span><h3>Spotify</h3><p>Streaming profile.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer"><span><img src="assets/yandex_music_eng_whitebg.png" alt="Yandex Music"></span><h3>Yandex Music</h3><p>Regional listening link.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-label="VK"><path d="M12.2 2h-.4C6.7 2 3.1 2 2 3.1 1 4.1 1 7.5 1 12s0 7.9 1 8.9C3.1 22 6.7 22 11.8 22h.4c5.1 0 8.7 0 9.8-1.1 1-1 1-4.4 1-8.9s0-7.9-1-8.9C20.9 2 17.3 2 12.2 2zm5.2 14h-1.4c-.6 0-.8-.4-1.1-.9-.3-.5-.9-1.8-1.9-1.9-1.1 0-1.4.8-1.4 1.7v1.1c0 .5-.2.7-.6.7-1 .3-2.6.6-4.1-1.4-1.5-2.1-2.8-6-3-6.3-.1-.3 0-.5.4-.5h1.4c.4 0 .6.3.7.5.5 1.2 1.1 2.7 1.8 3.6.6.9.9.6.9-.1V9.9c0-1-.5-1.1-.9-1.1-.3 0 .2-.6.7-.9 1-.5 2.4-.5 2.9-.5h.6c1 0 1.1.2 1.1.8v2.4c0 .4.2.6.5.6.4 0 .7-.2 1.1-.7.8-1.1 1.3-2.6 1.3-2.6.1-.3.3-.5.7-.5h1.5c.5 0 .6.3.5.6-.2 1-2 3.1-2 3.1s-.5.7 0 1.3c.4.5 1.2 1 1.7 1.6.4.5.7 1 .9 1.6 0 .3-.1.5-.6.5z"/></svg></span><h3>VK Music</h3><p>Additional regional music link.</p><small>Open profile</small></a>
       </div>
     </section>
   </main>
@@ -1199,6 +1355,7 @@
         archiveRoom: "Archive",
         archiveTitle: "История",
         archiveCopy: "Привет! Я blnfkr, пишу биты и инструменталы. Здесь мои релизы, инфо про демо и коллаборации.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.",
+        proofYearLabel: "В 2022 г.",
         proofYears: "лет в битмейкинге и продакшне.",
         proofRadio: "трек звучал на Dash Radio и Soundcloud Radio.",
         proofTracks: "локальных треков доступны прямо на сайте.",
@@ -1208,29 +1365,32 @@
       },
       en: {
         heroRoom: "Atrium signal",
-        heroCopy: "Beat palace by blnfkr: tracks, discography, radio appearance",
-        playFirst: "Play a track",
+        heroCopy: "I am a young music producer. This site is my mansion: here are tracks, discography, my appearance on the radio, as well as songs and links where you can immediately play tracks.",
+        playFirst: "Listen to tracks",
         audioRoom: "Audio Lab",
-        audioTitle: "Light reacts to the track",
-        audioCopy: "The player uses local MP3 files from assets/tracks. Equalizer and waveform are drawn with Web Audio after you press Play.",
-        currentTrackHint: "Local file, no external stream.",
-        moveGallery: "Move to gallery",
+        audioTitle: "Listening to tracks on the site",
+        audioCopy: "Here is the player, press Play",
+        currentTrackHint: "online radio",
+        moveGallery: "To the gallery",
         galleryRoom: "Cover Gallery",
-        galleryTitle: "Covers rotate like a hall",
-        galleryCopy: "The carousel is inspired by Pretext text-wrap and image spinner demos: text flows around the center while covers move like objects in a circular room.",
+        galleryTitle: "Discography carousel",
+        galleryCopy: "Albums as exhibits",
         archiveRoom: "Archive",
-        archiveTitle: "Proof without a showcase",
-        archiveCopy: "More than eight years of practice, DTurbo releases, SoundCloud sketches, Apple Music, YouTube, and radio proof. Evidence sits inside the room without a long bio.",
-        proofYears: "years of beatmaking and production.",
-        proofRadio: "track aired on Dash Radio and Soundcloud Radio.",
-        proofTracks: "local tracks are playable on the site.",
+        archiveTitle: "History",
+        archiveCopy: "Hi! I'm blnfkr, I write beats and instrumentals. Here are my releases, info about demos and collaborations. In 2022, my track was played on American Dash Radio and Soundcloud Radio. I've been writing music for more than 8 years, without unnecessary noise, but with constant practice and releases.",
+        proofYearLabel: "In 2022",
+        proofYears: "years in beatmaking and production.",
+        proofRadio: "the track was played on Dash Radio and Soundcloud Radio.",
+        proofTracks: "local tracks available directly on the site.",
         signalsRoom: "Signal Room",
-        signalsTitle: "Routes out of the palace",
-        signalsCopy: "Every external route is gathered in one room: listen, watch, check snippets, and open profiles."
+        signalsTitle: "Profiles and social networks",
+        signalsCopy: "Snippets in In$ta, photos from life. Beats and releases on YouTube, Apple Music, and the rest of the profiles and platforms are gathered here. Everything is gathered here: to listen, to watch, to check snippets, to monitor platforms - this is the place."
       }
     };
 
     const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const roomTargets = ["#atrium", "#audio", "#gallery", "#archive", "#signals"];
+    let roomScrollLock = false;
     const audio = document.querySelector("[data-audio]");
     const playButtons = [document.querySelector("[data-play]"), document.querySelector("[data-play-hero]")];
     const currentTrack = document.querySelector("[data-current-track]");
@@ -1255,8 +1415,6 @@
     let flightTimer = 0;
     let flightRaf = 0;
     let pendingFlightTarget = null;
-    const roomTargets = ["#atrium", "#audio", "#gallery", "#archive", "#signals"];
-
     hyperflightMedia?.querySelectorAll("img").forEach(img => {
       img.decode?.().catch(() => {});
     });
@@ -1431,22 +1589,6 @@
       if (target) scrollToTarget(target);
     };
 
-    const nearestRoomIndex = () => {
-      let nearest = 0;
-      let distance = Number.POSITIVE_INFINITY;
-      roomTargets.forEach((target, index) => {
-        const node = document.querySelector(target);
-        if (!node) return;
-        const rect = node.getBoundingClientRect();
-        const currentDistance = Math.abs(rect.top);
-        if (currentDistance < distance) {
-          distance = currentDistance;
-          nearest = index;
-        }
-      });
-      return nearest;
-    };
-
     const travelTo = target => {
       if (prefersReducedMotion || !hyperflight || !hyperflightMedia) {
         scrollToTarget(target);
@@ -1539,7 +1681,7 @@
 
     const loadPretext = async () => {
       try {
-        pretextApi = await import("https://esm.sh/@chenglou/pretext");
+        pretextApi = await import("./assets/vendor/pretext/layout.js");
       } catch {
         pretextApi = null;
       } finally {
@@ -1552,6 +1694,29 @@
     drawIdle();
     hydrateKineticText();
     loadPretext();
+
+    const menuToggle = document.querySelector("[data-menu-toggle]");
+    const mobilePanel = document.querySelector("[data-mobile-panel]");
+    menuToggle?.addEventListener("click", () => {
+      const open = document.body.classList.toggle("mobile-nav-open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+    });
+    mobilePanel?.addEventListener("click", e => {
+      if (e.target.closest("[data-room-link]") || e.target.closest("[data-lang]") || e.target.closest("[data-mobile-back]")) {
+        document.body.classList.remove("mobile-nav-open");
+        menuToggle?.setAttribute("aria-expanded", "false");
+      }
+    });
+    document.querySelector("[data-mobile-back]")?.addEventListener("click", () => {
+      document.querySelector("#atrium")?.scrollIntoView({ behavior: "smooth" });
+    });
+    addEventListener("keydown", e => {
+      if (e.key === "Escape" && document.body.classList.contains("mobile-nav-open")) {
+        document.body.classList.remove("mobile-nav-open");
+        menuToggle?.setAttribute("aria-expanded", "false");
+        menuToggle?.focus();
+      }
+    });
 
     playButtons.forEach(button => button.addEventListener("click", playActive));
     document.querySelector("[data-prev]").addEventListener("click", () => setTrack(activeTrack - 1));
@@ -1566,16 +1731,33 @@
       button.addEventListener("click", () => travelTo(button.dataset.roomLinkButton));
     });
     hyperflightSkip?.addEventListener("click", () => endHyperflight());
-    addEventListener("wheel", event => {
-      if (prefersReducedMotion || document.body.classList.contains("is-cinematic-flight")) return;
-      if (Math.abs(event.deltaY) < 42) return;
-      if (event.target?.closest?.("a, button, input, audio, .track-list, .native-audio")) return;
-      const current = nearestRoomIndex();
-      const next = current + (event.deltaY > 0 ? 1 : -1);
-      if (next < 0 || next >= roomTargets.length) return;
-      event.preventDefault();
-      scrollToTarget(roomTargets[next]);
-    }, { passive: false });
+
+    let activeRoom = 0;
+    let scrollRaf = 0;
+    addEventListener("scroll", () => {
+      if (roomScrollLock || prefersReducedMotion || document.body.classList.contains("is-cinematic-flight")) return;
+      cancelAnimationFrame(scrollRaf);
+      scrollRaf = requestAnimationFrame(() => {
+        const mid = innerHeight * 0.35;
+        let found = -1;
+        for (let i = 0; i < roomTargets.length; i++) {
+          const el = document.querySelector(roomTargets[i]);
+          if (!el) continue;
+          const rect = el.getBoundingClientRect();
+          if (rect.top < mid && rect.bottom > mid) {
+            found = i;
+            break;
+          }
+        }
+        if (found >= 0 && found !== activeRoom) {
+          activeRoom = found;
+          roomScrollLock = true;
+          travelTo(roomTargets[found]);
+          setTimeout(() => { roomScrollLock = false; }, 600);
+        }
+      });
+    }, { passive: true });
+
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
