@@ -21,6 +21,11 @@
       --glass: rgb(10 14 21 / 0.72);
       --glass-strong: rgb(4 7 12 / 0.86);
       --shadow-acid: 0 0 34px rgb(94 255 117 / 0.24);
+      --meter-a: #7fff84;
+      --meter-b: #54d7ff;
+      --meter-c: #d34dff;
+      --meter-d: #ff653d;
+      --wave-stroke: #54d7ff;
       --font-display: "Arial Black", Impact, "Helvetica Neue Condensed Black", "Helvetica Neue", Arial, sans-serif;
       --font-body: "Helvetica Neue", Arial, system-ui, sans-serif;
       color-scheme: dark;
@@ -70,11 +75,87 @@
       overflow: hidden;
     }
 
-    body.variant-b {
-      --acid: oklch(82% 0.18 204);
-      --violet: oklch(66% 0.23 30);
-      --cyan: oklch(84% 0.2 138);
-      --hot: oklch(67% 0.26 324);
+    body[data-design="glass"] {
+      --void: oklch(8% 0.025 242);
+      --floor: oklch(18% 0.075 214);
+      --paper: oklch(96% 0.018 190);
+      --muted: oklch(80% 0.062 205);
+      --acid: oklch(84% 0.18 176);
+      --violet: oklch(68% 0.22 291);
+      --cyan: oklch(88% 0.2 196);
+      --hot: oklch(72% 0.21 18);
+      --line: rgb(194 255 244 / 0.28);
+      --glass: rgb(12 24 30 / 0.54);
+      --glass-strong: rgb(7 19 25 / 0.72);
+      --shadow-acid: 0 0 34px rgb(105 255 219 / 0.26);
+      --meter-a: #79ffd8;
+      --meter-b: #72ddff;
+      --meter-c: #ba72ff;
+      --meter-d: #ff775d;
+      --wave-stroke: #72ddff;
+      background:
+        radial-gradient(circle at 14% 9%, rgb(121 255 216 / 0.18), rgb(0 0 0 / 0) 34rem),
+        radial-gradient(circle at 84% 24%, rgb(186 114 255 / 0.2), rgb(0 0 0 / 0) 30rem),
+        linear-gradient(180deg, var(--void), var(--floor) 48%, oklch(8% 0.03 230));
+    }
+
+    body[data-design="spatial"] {
+      --meter-a: #7fff84;
+      --meter-b: #54d7ff;
+      --meter-c: #d34dff;
+      --meter-d: #ff653d;
+      --wave-stroke: #54d7ff;
+    }
+
+    body[data-design="glass"]::before {
+      opacity: 0.08;
+      background-size: 92px 92px;
+    }
+
+    body[data-design="glass"] .topbar,
+    body[data-design="glass"] .mobile-panel {
+      background: linear-gradient(180deg, rgb(8 22 28 / 0.72), rgb(8 22 28 / 0.42));
+      backdrop-filter: blur(24px) saturate(1.25);
+    }
+
+    body[data-design="glass"] .hero-bg {
+      background:
+        linear-gradient(90deg, rgb(4 10 14 / 0.9), rgb(4 12 18 / 0.24) 46%, rgb(4 10 14 / 0.78)),
+        linear-gradient(0deg, var(--void), rgb(4 7 12 / 0) 42%),
+        url("assets/images/brand/palace-room-futurist.jpg") center / cover;
+      filter: saturate(1.2) contrast(1.06);
+    }
+
+    body[data-design="glass"] .instrument,
+    body[data-design="glass"] .track-list,
+    body[data-design="glass"] .release-panel,
+    body[data-design="glass"] .signal-panel,
+    body[data-design="glass"] .proof-panel {
+      background:
+        linear-gradient(145deg, rgb(210 255 248 / 0.12), rgb(92 174 255 / 0.035)),
+        linear-gradient(180deg, rgb(7 22 29 / 0.7), rgb(6 12 18 / 0.5));
+      backdrop-filter: blur(18px) saturate(1.2);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 52px rgb(114 221 255 / 0.05);
+    }
+
+    body[data-design="glass"] .artist-core {
+      background:
+        linear-gradient(160deg, rgb(10 32 38 / 0.74), rgb(15 9 34 / 0.64)),
+        url("assets/images/brand/logo-light.png") center / cover;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 28px 90px rgb(0 0 0 / 0.5), 0 0 44px rgb(114 221 255 / 0.2);
+    }
+
+    body[data-design="spatial"] .room::before {
+      background:
+        linear-gradient(115deg, rgb(95 255 125 / 0.045), rgb(214 58 255 / 0.045)),
+        radial-gradient(circle at var(--pulse-x, 18%) var(--pulse-y, 30%), rgb(128 255 154 / 0.16), rgb(0 0 0 / 0) 30rem),
+        radial-gradient(circle at 86% 62%, rgb(84 215 255 / 0.08), rgb(0 0 0 / 0) 24rem);
+    }
+
+    body[data-design="spatial"] .cover-object,
+    body[data-design="spatial"] .spinner-card {
+      box-shadow: 0 0 26px rgb(0 0 0 / 0.5), 0 0 34px rgb(128 255 154 / 0.08);
     }
 
     a {
@@ -391,7 +472,9 @@
       line-height: 0.9;
       letter-spacing: 0;
       text-wrap: balance;
-      overflow-wrap: anywhere;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
     }
 
     h1 {
@@ -561,9 +644,19 @@
       width: min(1220px, 100%);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
-      gap: clamp(1.2rem, 3vw, 2rem);
-      align-items: stretch;
+      gap: clamp(1rem, 2vw, 1.6rem);
+      align-items: start;
+    }
+
+    .audio-shell > .room-copy {
+      max-width: min(720px, 100%);
+    }
+
+    .player-board {
+      display: grid;
+      grid-template-columns: minmax(360px, 0.78fr) minmax(420px, 1.22fr);
+      gap: clamp(1rem, 2vw, 1.4rem);
+      align-items: start;
     }
 
     .audio-room {
@@ -658,6 +751,7 @@
       display: grid;
       gap: 0.45rem;
       align-content: start;
+      align-self: start;
     }
 
     .track-item {
@@ -701,6 +795,17 @@
 
     .gallery-room .room-grid {
       align-items: start;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+      gap: clamp(1.5rem, 4vw, 4rem);
+    }
+
+    .gallery-room h2 {
+      max-width: min(11.5em, 100%);
+      font-size: clamp(2.45rem, 6.5vw, 5.35rem);
+      overflow-wrap: normal;
+      word-break: keep-all;
+      hyphens: none;
+      text-wrap: balance;
     }
 
     .spinner-wrap {
@@ -815,6 +920,36 @@
       font-size: clamp(2rem, 5vw, 4.8rem);
       line-height: 1;
       font-variant-numeric: tabular-nums;
+      overflow-wrap: anywhere;
+    }
+
+    .proof-grid .room-label {
+      grid-column: 1 / -1;
+      margin: 0.6rem 0 0;
+    }
+
+    .credits-panel {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .credits-panel strong {
+      min-width: 0;
+      width: 100%;
+      padding: 0.62rem clamp(0.46rem, 1vw, 0.78rem);
+      border: 1px solid rgb(128 255 154 / 0.18);
+      border-radius: 8px;
+      background: rgb(128 255 154 / 0.08);
+      font-size: clamp(0.82rem, 1.08vw, 1.12rem);
+      line-height: 1.05;
+      white-space: nowrap;
+      overflow-wrap: normal;
+      word-break: normal;
+      text-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: clip;
     }
 
     .signal-panel {
@@ -852,6 +987,11 @@
       height: 100%;
       object-fit: contain;
       padding: 0.3rem;
+    }
+
+    .signal-panel span img.brand-icon {
+      padding: 0;
+      object-fit: cover;
     }
 
     .signal-panel span svg {
@@ -1034,7 +1174,8 @@
       }
 
       .room-grid,
-      .audio-shell {
+      .audio-shell,
+      .player-board {
         grid-template-columns: 1fr;
       }
 
@@ -1116,7 +1257,7 @@
     }
   </style>
 </head>
-<body>
+<body data-design="spatial">
   <a class="skip-link" href="#audio">К плееру</a>
   <div class="camera-flash" aria-hidden="true"></div>
   <div class="hyperflight" data-hyperflight aria-hidden="true">
@@ -1137,14 +1278,16 @@
       <span>blnfkr palace</span>
     </a>
     <nav class="room-nav" aria-label="Rooms">
-      <a href="#atrium" data-room-link>Atrium</a>
-      <a href="#audio" data-room-link>Audio Lab</a>
-      <a href="#gallery" data-room-link>Gallery</a>
-      <a href="#archive" data-room-link>Archive</a>
-      <a href="#signals" data-room-link>Signals</a>
-      <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer">Journey</a>
+      <a href="#atrium" data-room-link data-i18n="navAtrium">Атриум</a>
+      <a href="#audio" data-room-link data-i18n="navAudio">Плеер</a>
+      <a href="#gallery" data-room-link data-i18n="navGallery">Галерея</a>
+      <a href="#archive" data-room-link data-i18n="navArchive">Архив</a>
+      <a href="#signals" data-room-link data-i18n="navSignals">Связь</a>
+      <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer" data-i18n="navJourney">Полет</a>
       <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
       <button class="chip-button" type="button" data-lang="en">EN</button>
+      <button class="chip-button" type="button" data-design-option="glass">Glass</button>
+      <button class="chip-button is-active" type="button" data-design-option="spatial">3D</button>
     </nav>
     <button class="menu-toggle" type="button" aria-label="Toggle navigation" data-menu-toggle>
       <span class="menu-toggle-icon"></span>
@@ -1152,17 +1295,21 @@
   </header>
   <aside class="mobile-panel" data-mobile-panel aria-label="Mobile navigation" role="dialog" aria-modal="true">
     <nav>
-      <a href="#atrium" data-room-link>Atrium</a>
-      <a href="#audio" data-room-link>Audio Lab</a>
-      <a href="#gallery" data-room-link>Gallery</a>
-      <a href="#archive" data-room-link>Archive</a>
-      <a href="#signals" data-room-link>Signals</a>
-      <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer">Journey</a>
+      <a href="#atrium" data-room-link data-i18n="navAtrium">Атриум</a>
+      <a href="#audio" data-room-link data-i18n="navAudio">Плеер</a>
+      <a href="#gallery" data-room-link data-i18n="navGallery">Галерея</a>
+      <a href="#archive" data-room-link data-i18n="navArchive">Архив</a>
+      <a href="#signals" data-room-link data-i18n="navSignals">Связь</a>
+      <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer" data-i18n="navJourney">Полет</a>
     </nav>
-    <button class="mobile-back" type="button" data-mobile-back>← Back</button>
+    <button class="mobile-back" type="button" data-mobile-back data-i18n="navBack">← Назад</button>
     <div class="mobile-lang">
       <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
       <button class="chip-button" type="button" data-lang="en">EN</button>
+    </div>
+    <div class="mobile-lang" aria-label="Design variant">
+      <button class="chip-button" type="button" data-design-option="glass">Glass</button>
+      <button class="chip-button is-active" type="button" data-design-option="spatial">3D</button>
     </div>
   </aside>
 
@@ -1171,7 +1318,7 @@
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="room-grid">
         <div class="room-copy">
-          <p class="room-label" data-i18n="heroRoom">Atrium signal</p>
+          <p class="room-label" data-i18n="heroRoom">Атриум</p>
           <h1 id="hero-title">blnfkr</h1>
           <div class="lead kinetic-lines" data-kinetic data-i18n="heroCopy">Футуристичный дворец битов: локальные треки, обложки, радио-след и прямые выходы на музыку.</div>
           <div class="hero-actions">
@@ -1201,9 +1348,11 @@
     <section class="room audio-room" id="audio" aria-labelledby="audio-title">
       <div class="audio-shell">
         <div class="room-copy">
-          <p class="room-label" data-i18n="audioRoom">Audio Lab</p>
+          <p class="room-label" data-i18n="audioRoom">Плеер</p>
           <h2 id="audio-title" data-i18n="audioTitle">Свет реагирует на трек</h2>
           <p class="body-copy" data-i18n="audioCopy">Плеер использует локальные MP3 из папки assets/tracks. Эквалайзер и waveform строятся через Web Audio после клика по Play.</p>
+        </div>
+        <div class="player-board">
           <div class="instrument" aria-label="Audio player">
             <div class="player-title">
               <div>
@@ -1215,7 +1364,7 @@
               <canvas class="meter-canvas" data-meter width="900" height="360" aria-label="Equalizer visualization"></canvas>
               <canvas class="wave-canvas" data-wave width="900" height="180" aria-label="Waveform visualization"></canvas>
             </div>
-            <audio hidden class="native-audio" data-audio preload="metadata" controls controlslist="nodownload"></audio>
+            <audio hidden class="native-audio" data-audio preload="auto" controls controlslist="nodownload"></audio>
             <input class="progress" data-progress type="range" min="0" max="1000" value="0" aria-label="Track position">
             <div class="time-row"><span data-time-current>0:00</span><span data-time-total>0:00</span></div>
             <div class="control-row">
@@ -1225,15 +1374,15 @@
               <button class="action-button small" type="button" data-room-link-button="#gallery" data-i18n="moveGallery">В галерею</button>
             </div>
           </div>
+          <div class="track-list" data-track-list aria-label="Track list"></div>
         </div>
-        <div class="track-list" data-track-list aria-label="Track list"></div>
       </div>
     </section>
 
     <section class="room gallery-room" id="gallery" aria-labelledby="gallery-title">
       <div class="room-grid">
         <div class="room-copy">
-          <p class="room-label" data-i18n="galleryRoom">Cover Gallery</p>
+          <p class="room-label" data-i18n="galleryRoom">Галерея</p>
           <h2 id="gallery-title" data-i18n="galleryTitle">Карусель дискографии</h2>
           <p class="body-copy kinetic-lines" data-kinetic data-i18n="galleryCopy">Альбомы как экспонаты</p>
           <div class="hero-actions">
@@ -1261,7 +1410,7 @@
     <section class="room archive-room" id="archive" aria-labelledby="archive-title">
       <div class="room-grid">
         <div class="room-copy">
-          <p class="room-label" data-i18n="archiveRoom">Archive</p>
+          <p class="room-label" data-i18n="archiveRoom">Архив</p>
           <h2 id="archive-title" data-i18n="archiveTitle">История</h2>
           <p class="body-copy" data-i18n="archiveCopy">Привет! Я blnfkr, пишу биты и инструменталы. Начинал как хобби, а теперь это архив релизов, демо и коллабораций.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.</p>
         </div>
@@ -1275,8 +1424,8 @@
             <p data-i18n="proofRadio">трек звучал на Dash Radio и Soundcloud Radio.</p>
           </article>
           <p class="room-label">Credits</p>
-          <article class="proof-panel">
-            <strong>Soundcloud Radio</strong>
+          <article class="proof-panel credits-panel">
+            <strong>SoundCloud Radio</strong>
             <strong>Dash Radio</strong>
             <strong>Mvkalo</strong>
             <strong>DTurbo</strong>
@@ -1307,18 +1456,18 @@
 
     <section class="room signals-room" id="signals" aria-labelledby="signals-title">
       <div class="room-copy" style="width:min(1220px,100%);margin:0 auto 2rem;">
-        <p class="room-label" data-i18n="signalsRoom">Signal Room</p>
+        <p class="room-label" data-i18n="signalsRoom">Связь</p>
         <h2 id="signals-title" data-i18n="signalsTitle">Профили и соцсети</h2>
         <p class="body-copy" data-i18n="signalsCopy">В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы. Остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда.</p>
       </div>
       <div class="signal-grid">
         <a class="signal-panel" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer"><span><img src="assets/images/Apple_Music_Icon_RGB_lg_073120.svg" alt="Apple Music"></span><h3>Apple Music</h3><p>Artist page and release links.</p><small>Open music</small></a>
         <a class="signal-panel" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-label="YouTube"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2 0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.5 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg></span><h3>YouTube</h3><p>Beats, playlists, and production trail.</p><small>Watch videos</small></a>
-        <a class="signal-panel" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-label="Instagram"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.7.5.7.3 1.4.7 2 1.3.6.6 1 1.2 1.3 2 .2.7.4 1.5.5 2.7.1 1.3.1 1.6.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.7-.3.7-.7 1.4-1.3 2-.6.6-1.2 1-2 1.3-.7.2-1.5.4-2.7.5-1.3.1-1.6.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.7-.5-.7-.3-1.4-.7-2-1.3-.6-.6-1-1.2-1.3-2-.2-.7-.4-1.5-.5-2.7-.1-1.3-.1-1.6-.1-4.9s0-3.6.1-4.9c.1-1.2.3-2 .5-2.7.3-.7.7-1.4 1.3-2 .6-.6 1.2-1 2-1.3.7-.2 1.5-.4 2.7-.5 1.3-.1 1.6-.1 4.9-.1zM12 0C8.7 0 8.3 0 7.1.1 5.8.2 5 .4 4.2.7 3.4 1 2.7 1.4 2 2.1 1.3 2.8.9 3.5.6 4.3.3 5.1.2 5.9.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.1 1.2.2 2 .5 2.8.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.4 2.8.5 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c1.2-.1 2-.2 2.8-.5.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.4-1.6.5-2.8.1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.1-1.2-.2-2-.5-2.8-.3-.8-.7-1.5-1.4-2.2-.7-.7-1.4-1.1-2.2-1.4-.8-.3-1.6-.4-2.8-.5C15.8 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zm0 10.3c-2.3 0-4.1-1.8-4.1-4.1s1.8-4.1 4.1-4.1 4.1 1.8 4.1 4.1-1.8 4.1-4.1 4.1zm6.3-10.5c0 .8-.6 1.4-1.4 1.4s-1.4-.6-1.4-1.4.6-1.4 1.4-1.4 1.4.6 1.4 1.4z"/></svg></span><h3>Instagram</h3><p>Snippets, photos, and live traces.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://www.instagram.com/areyoublindfucker" target="_blank" rel="noreferrer"><span><img class="brand-icon" src="assets/images/social/instagram-glyph.svg" alt="Instagram"></span><h3>Instagram</h3><p>Snippets, photos, and live traces.</p><small>Open profile</small></a>
         <a class="signal-panel" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer"><span><img src="assets/images/social/SoundCloudmark_Minimum_size.png" alt="SoundCloud"></span><h3>SoundCloud</h3><p>Sketches and tracks.</p><small>Open profile</small></a>
         <a class="signal-panel" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer"><span><img src="assets/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify"></span><h3>Spotify</h3><p>Streaming profile.</p><small>Open profile</small></a>
         <a class="signal-panel" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer"><span><img src="assets/yandex_music_eng_whitebg.png" alt="Yandex Music"></span><h3>Yandex Music</h3><p>Regional listening link.</p><small>Open profile</small></a>
-        <a class="signal-panel" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-label="VK"><path d="M12.2 2h-.4C6.7 2 3.1 2 2 3.1 1 4.1 1 7.5 1 12s0 7.9 1 8.9C3.1 22 6.7 22 11.8 22h.4c5.1 0 8.7 0 9.8-1.1 1-1 1-4.4 1-8.9s0-7.9-1-8.9C20.9 2 17.3 2 12.2 2zm5.2 14h-1.4c-.6 0-.8-.4-1.1-.9-.3-.5-.9-1.8-1.9-1.9-1.1 0-1.4.8-1.4 1.7v1.1c0 .5-.2.7-.6.7-1 .3-2.6.6-4.1-1.4-1.5-2.1-2.8-6-3-6.3-.1-.3 0-.5.4-.5h1.4c.4 0 .6.3.7.5.5 1.2 1.1 2.7 1.8 3.6.6.9.9.6.9-.1V9.9c0-1-.5-1.1-.9-1.1-.3 0 .2-.6.7-.9 1-.5 2.4-.5 2.9-.5h.6c1 0 1.1.2 1.1.8v2.4c0 .4.2.6.5.6.4 0 .7-.2 1.1-.7.8-1.1 1.3-2.6 1.3-2.6.1-.3.3-.5.7-.5h1.5c.5 0 .6.3.5.6-.2 1-2 3.1-2 3.1s-.5.7 0 1.3c.4.5 1.2 1 1.7 1.6.4.5.7 1 .9 1.6 0 .3-.1.5-.6.5z"/></svg></span><h3>VK Music</h3><p>Additional regional music link.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer"><span><img class="brand-icon" src="assets/images/social/vk-compact-logo.svg" alt="VK"></span><h3>VK Music</h3><p>Additional regional music link.</p><small>Open profile</small></a>
       </div>
     </section>
   </main>
@@ -1341,32 +1490,52 @@
 
     const translations = {
       ru: {
-        heroRoom: "Atrium signal",
+        navAtrium: "Атриум",
+        navAudio: "Плеер",
+        navGallery: "Галерея",
+        navArchive: "Архив",
+        navSignals: "Связь",
+        navJourney: "Полет",
+        navBack: "← Назад",
+        heroRoom: "Атриум",
         heroCopy: "Я молодой музыкальный продюсер. Этот сайт - мой особняк: здесь треки, дискография, моё появление на радио, а также песни и ссылки, где можно сразу включить треки.",
         playFirst: "Слушать треки",
-        audioRoom: "Audio Lab",
+        play: "Включить",
+        pause: "Пауза",
+        buffering: "Загрузка...",
+        audioRoom: "Плеер",
         audioTitle: "Слушаем треки на сайте",
-        audioCopy: "Здесь плеер, нажмите Play",
-        currentTrackHint: "online radio",
+        audioCopy: "Здесь плеер, нажмите Включить",
+        currentTrackHint: "локальное радио",
         moveGallery: "В галерею",
-        galleryRoom: "Cover Gallery",
+        galleryRoom: "Галерея",
         galleryTitle: "Карусель дискографии",
         galleryCopy: "Альбомы как экспонаты",
-        archiveRoom: "Archive",
+        archiveRoom: "Архив",
         archiveTitle: "История",
         archiveCopy: "Привет! Я blnfkr, пишу биты и инструменталы. Здесь мои релизы, инфо про демо и коллаборации.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.",
         proofYearLabel: "В 2022 г.",
         proofYears: "лет в битмейкинге и продакшне.",
         proofRadio: "трек звучал на Dash Radio и Soundcloud Radio.",
         proofTracks: "локальных треков доступны прямо на сайте.",
-        signalsRoom: "Signal Room",
+        signalsRoom: "Связь",
         signalsTitle: "Профили и соцсети",
         signalsCopy: "В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы, и остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда."
       },
       en: {
+        navAtrium: "Atrium",
+        navAudio: "Audio Lab",
+        navGallery: "Gallery",
+        navArchive: "Archive",
+        navSignals: "Signals",
+        navJourney: "Journey",
+        navBack: "← Back",
         heroRoom: "Atrium signal",
         heroCopy: "I am a young music producer. This site is my mansion: here are tracks, discography, my appearance on the radio, as well as songs and links where you can immediately play tracks.",
         playFirst: "Listen to tracks",
+        play: "Play",
+        pause: "Pause",
+        buffering: "Buffering...",
         audioRoom: "Audio Lab",
         audioTitle: "Listening to tracks on the site",
         audioCopy: "Here is the player, press Play",
@@ -1405,6 +1574,11 @@
     const wave = document.querySelector("[data-wave]");
     const meterCtx = meter.getContext("2d");
     const waveCtx = wave.getContext("2d");
+    const ua = navigator.userAgent;
+    const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari = /Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS|Chrome/i.test(ua);
+    const isMobileSafari = isIOS && isSafari;
+    const shouldUseHyperflight = !prefersReducedMotion && !isMobileSafari;
 
     let activeTrack = 0;
     let audioCtx;
@@ -1415,9 +1589,86 @@
     let flightTimer = 0;
     let flightRaf = 0;
     let pendingFlightTarget = null;
-    hyperflightMedia?.querySelectorAll("img").forEach(img => {
-      img.decode?.().catch(() => {});
-    });
+    let userPausedAudio = true;
+    let resumeAfterBuffer = false;
+    let bufferCheckTimer = 0;
+    const minBufferAhead = 1.2;
+    const resumeBufferAhead = 3;
+    const designVariants = new Set(["glass", "spatial"]);
+    const getCssColor = name => getComputedStyle(document.body).getPropertyValue(name).trim();
+    if (shouldUseHyperflight) {
+      hyperflightMedia?.querySelectorAll("img").forEach(img => {
+        img.decode?.().catch(() => {});
+      });
+    }
+
+    const getDictionary = () => translations[document.documentElement.lang] || translations.ru;
+
+    const setPlayButtonState = state => {
+      const dictionary = getDictionary();
+      const controlLabel = state === "pause" ? dictionary.pause : state === "buffering" ? dictionary.buffering : dictionary.play;
+      const heroLabel = state === "pause" ? dictionary.pause : state === "buffering" ? dictionary.buffering : dictionary.playFirst;
+      if (playButtons[0]) playButtons[0].textContent = controlLabel;
+      if (playButtons[1]) playButtons[1].textContent = heroLabel;
+    };
+
+    const lockPlaybackRate = () => {
+      if (audio.defaultPlaybackRate !== 1) audio.defaultPlaybackRate = 1;
+      if (audio.playbackRate !== 1) audio.playbackRate = 1;
+      if ("preservesPitch" in audio) audio.preservesPitch = true;
+      if ("mozPreservesPitch" in audio) audio.mozPreservesPitch = true;
+      if ("webkitPreservesPitch" in audio) audio.webkitPreservesPitch = true;
+    };
+
+    lockPlaybackRate();
+
+    const getBufferAhead = () => {
+      if (!audio.buffered?.length) return 0;
+      const current = audio.currentTime;
+      for (let i = 0; i < audio.buffered.length; i += 1) {
+        const start = audio.buffered.start(i);
+        const end = audio.buffered.end(i);
+        if (current >= start && current <= end) return Math.max(0, end - current);
+      }
+      return 0;
+    };
+
+    const clearBufferCheck = () => {
+      clearTimeout(bufferCheckTimer);
+      bufferCheckTimer = 0;
+    };
+
+    const retryBufferedPlayback = async () => {
+      clearBufferCheck();
+      if (!resumeAfterBuffer || userPausedAudio || !audio.src) return;
+      const nearEnd = Number.isFinite(audio.duration) && audio.duration - audio.currentTime < 0.6;
+      if (nearEnd || audio.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA || getBufferAhead() >= resumeBufferAhead) {
+        resumeAfterBuffer = false;
+        lockPlaybackRate();
+        try {
+          await audio.play();
+          setPlayButtonState("pause");
+          cancelAnimationFrame(rafId);
+          drawAudio();
+        } catch {
+          userPausedAudio = true;
+          setPlayButtonState("play");
+        }
+        return;
+      }
+      bufferCheckTimer = setTimeout(retryBufferedPlayback, 700);
+    };
+
+    const pauseUntilBuffered = () => {
+      if (userPausedAudio || resumeAfterBuffer || audio.ended || !audio.src) return;
+      const nearEnd = Number.isFinite(audio.duration) && audio.duration - audio.currentTime < 0.6;
+      if (nearEnd || getBufferAhead() >= minBufferAhead) return;
+      resumeAfterBuffer = true;
+      setPlayButtonState("buffering");
+      cancelAnimationFrame(rafId);
+      audio.pause();
+      bufferCheckTimer = setTimeout(retryBufferedPlayback, 700);
+    };
 
     const formatTime = value => {
       if (!Number.isFinite(value)) return "0:00";
@@ -1434,10 +1685,10 @@
       for (let i = 0; i < 44; i += 1) {
         const x = (i / 44) * w;
         const barH = (Math.sin(i * 0.72) * 0.5 + 0.5) * h * 0.55 + 14;
-        meterCtx.fillStyle = i % 3 === 0 ? "#7fff84" : i % 3 === 1 ? "#54d7ff" : "#d34dff";
+        meterCtx.fillStyle = i % 3 === 0 ? getCssColor("--meter-a") : i % 3 === 1 ? getCssColor("--meter-b") : getCssColor("--meter-c");
         meterCtx.fillRect(x + 3, h - barH, Math.max(4, w / 70), barH);
       }
-      waveCtx.strokeStyle = "#54d7ff";
+      waveCtx.strokeStyle = getCssColor("--wave-stroke");
       waveCtx.lineWidth = 2;
       waveCtx.beginPath();
       for (let x = 0; x < wave.width; x += 8) {
@@ -1479,7 +1730,7 @@
         const barW = Math.max(3, meter.width / bars - 4);
         const barH = Math.max(8, value * meter.height * 0.92);
         const hue = i % 4;
-        meterCtx.fillStyle = hue === 0 ? "#7fff84" : hue === 1 ? "#54d7ff" : hue === 2 ? "#d34dff" : "#ff653d";
+        meterCtx.fillStyle = hue === 0 ? getCssColor("--meter-a") : hue === 1 ? getCssColor("--meter-b") : hue === 2 ? getCssColor("--meter-c") : getCssColor("--meter-d");
         meterCtx.shadowColor = meterCtx.fillStyle;
         meterCtx.shadowBlur = 16 * value;
         meterCtx.fillRect(x, meter.height - barH, barW, barH);
@@ -1487,7 +1738,7 @@
       meterCtx.shadowBlur = 0;
 
       waveCtx.clearRect(0, 0, wave.width, wave.height);
-      waveCtx.strokeStyle = document.body.classList.contains("variant-b") ? "#ff653d" : "#54d7ff";
+      waveCtx.strokeStyle = getCssColor("--wave-stroke");
       waveCtx.lineWidth = 2;
       waveCtx.beginPath();
       const slice = wave.width / time.length;
@@ -1505,7 +1756,12 @@
     const setTrack = index => {
       activeTrack = (index + tracks.length) % tracks.length;
       const track = tracks[activeTrack];
+      resumeAfterBuffer = false;
+      clearBufferCheck();
       audio.src = track.file;
+      audio.preload = "auto";
+      audio.load();
+      lockPlaybackRate();
       currentTrack.textContent = track.title;
       document.querySelectorAll(".track-item").forEach((item, itemIndex) => {
         item.classList.toggle("is-active", itemIndex === activeTrack);
@@ -1517,12 +1773,16 @@
     const playActive = async () => {
       if (!audio.src) setTrack(activeTrack);
       if (audio.paused) {
-        playButtons.forEach(button => button.textContent = "Pause");
+        userPausedAudio = false;
+        resumeAfterBuffer = false;
+        clearBufferCheck();
+        lockPlaybackRate();
+        setPlayButtonState("pause");
         try {
           await audio.play();
         } catch {
-          playButtons[0].textContent = "Play";
-          playButtons[1].textContent = translations[document.documentElement.lang]?.playFirst || "Play a track";
+          userPausedAudio = true;
+          setPlayButtonState("play");
           return;
         }
         try {
@@ -1534,9 +1794,11 @@
         cancelAnimationFrame(rafId);
         drawAudio();
       } else {
+        userPausedAudio = true;
+        resumeAfterBuffer = false;
+        clearBufferCheck();
         audio.pause();
-        playButtons[0].textContent = "Play";
-        playButtons[1].textContent = translations[document.documentElement.lang]?.playFirst || "Play a track";
+        setPlayButtonState("play");
       }
     };
 
@@ -1559,6 +1821,7 @@
     const applyLanguage = lang => {
       const dictionary = translations[lang] || translations.ru;
       document.documentElement.lang = lang;
+      document.documentElement.dir = "ltr";
       document.querySelectorAll("[data-i18n]").forEach(node => {
         const key = node.dataset.i18n;
         if (dictionary[key]) {
@@ -1569,9 +1832,20 @@
       document.querySelectorAll("[data-lang]").forEach(button => {
         button.classList.toggle("is-active", button.dataset.lang === lang);
       });
-      if (audio.paused) playButtons[1].textContent = dictionary.playFirst;
+      if (resumeAfterBuffer) setPlayButtonState("buffering");
+      else setPlayButtonState(audio.paused ? "play" : "pause");
       localStorage.setItem("blnfkr-lang", lang);
       hydrateKineticText();
+    };
+
+    const applyDesign = (design, persist = false) => {
+      const nextDesign = designVariants.has(design) ? design : "spatial";
+      document.body.dataset.design = nextDesign;
+      document.querySelectorAll("[data-design-option]").forEach(button => {
+        button.classList.toggle("is-active", button.dataset.designOption === nextDesign);
+      });
+      if (persist) localStorage.setItem("blnfkr-design", nextDesign);
+      if (audio.paused) drawIdle();
     };
 
     const scrollToTarget = target => {
@@ -1590,7 +1864,7 @@
     };
 
     const travelTo = target => {
-      if (prefersReducedMotion || !hyperflight || !hyperflightMedia) {
+      if (!shouldUseHyperflight || !hyperflight || !hyperflightMedia) {
         scrollToTarget(target);
         return;
       }
@@ -1702,7 +1976,7 @@
       menuToggle.setAttribute("aria-expanded", String(open));
     });
     mobilePanel?.addEventListener("click", e => {
-      if (e.target.closest("[data-room-link]") || e.target.closest("[data-lang]") || e.target.closest("[data-mobile-back]")) {
+      if (e.target.closest("[data-room-link]") || e.target.closest("[data-lang]") || e.target.closest("[data-design-option]") || e.target.closest("[data-mobile-back]")) {
         document.body.classList.remove("mobile-nav-open");
         menuToggle?.setAttribute("aria-expanded", "false");
       }
@@ -1761,15 +2035,25 @@
     document.querySelectorAll("[data-lang]").forEach(button => {
       button.addEventListener("click", () => applyLanguage(button.dataset.lang));
     });
-    document.querySelectorAll("[data-variant]").forEach(button => {
-      button.addEventListener("click", () => {
-        const isB = button.dataset.variant === "b";
-        document.body.classList.toggle("variant-b", isB);
-        document.querySelectorAll("[data-variant]").forEach(item => item.classList.toggle("is-active", item === button));
-      });
+    document.querySelectorAll("[data-design-option]").forEach(button => {
+      button.addEventListener("click", () => applyDesign(button.dataset.designOption, true));
     });
 
+    audio.addEventListener("ratechange", lockPlaybackRate);
+    audio.addEventListener("waiting", pauseUntilBuffered);
+    audio.addEventListener("stalled", pauseUntilBuffered);
+    audio.addEventListener("suspend", pauseUntilBuffered);
+    audio.addEventListener("progress", retryBufferedPlayback);
+    audio.addEventListener("canplay", retryBufferedPlayback);
+    audio.addEventListener("canplaythrough", retryBufferedPlayback);
+    audio.addEventListener("playing", () => {
+      resumeAfterBuffer = false;
+      clearBufferCheck();
+      lockPlaybackRate();
+      setPlayButtonState("pause");
+    });
     audio.addEventListener("loadedmetadata", () => {
+      lockPlaybackRate();
       timeTotal.textContent = formatTime(audio.duration);
     });
     audio.addEventListener("timeupdate", () => {
@@ -1779,6 +2063,9 @@
       }
     });
     audio.addEventListener("ended", () => {
+      userPausedAudio = false;
+      resumeAfterBuffer = false;
+      clearBufferCheck();
       setTrack(activeTrack + 1);
       playActive();
     });
@@ -1788,7 +2075,12 @@
       }
     });
     addEventListener("resize", hydrateKineticText, { passive: true });
+    const urlDesign = new URLSearchParams(window.location.search).get("design");
+    applyDesign(urlDesign || localStorage.getItem("blnfkr-design") || "spatial");
     applyLanguage(localStorage.getItem("blnfkr-lang") || "ru");
   </script>
+<!-- impeccable-live-start -->
+<script src="http://localhost:8400/live.js"></script>
+<!-- impeccable-live-end -->
 </body>
 </html>

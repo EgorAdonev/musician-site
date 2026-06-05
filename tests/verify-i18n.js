@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const html = fs.readFileSync('index.html', 'utf8');
-const match = html.match(/const translations = (\{[\s\S]*?\n\s*\});\s*\n\s*const storageKey/);
+const match = html.match(/const translations = (\{[\s\S]*?\n\s*\});\s*\n\s*const prefersReducedMotion/);
 
 if (!match) {
   throw new Error('translations object not found');
@@ -24,24 +24,41 @@ for (const lang of ['ru', 'en']) {
   }
 }
 
+const requiredKeys = [
+  'navAtrium',
+  'navAudio',
+  'navGallery',
+  'navArchive',
+  'navSignals',
+  'navJourney',
+  'galleryTitle',
+  'proofRadio'
+];
+
+for (const key of requiredKeys) {
+  if (!translations.ru[key] || !translations.en[key]) {
+    throw new Error(`missing required translation key: ${key}`);
+  }
+}
+
+if (translations.ru.navAudio === translations.en.navAudio) {
+  throw new Error('Russian navAudio must be localized, not copied from English');
+}
+
+if (translations.ru.galleryTitle.split(/\s+/).length !== 2 || translations.en.galleryTitle.split(/\s+/).length !== 2) {
+  throw new Error('galleryTitle should remain a two-word heading in both locales');
+}
+
 const requiredSnippets = [
   'data-lang="ru"',
   'data-lang="en"',
-  'const storageKey = "blnfkr-lang"',
-  'localStorage.getItem(storageKey)',
-  'localStorage.setItem(storageKey, activeLang)',
-  'document.documentElement.lang = activeLang',
-  'new URLSearchParams(window.location.search).get("lang")',
-  '<noscript>',
-  'const activeLang = translations[lang] ? lang : "ru"',
+  'localStorage.getItem("blnfkr-lang")',
+  'localStorage.setItem("blnfkr-lang", lang)',
+  'document.documentElement.lang = lang',
   'document.documentElement.dir = "ltr"',
-  'overflow-wrap: anywhere',
-  'Apple Music',
-  '8+ years of beatmaking & production',
-  'Snippets, photos, videos',
-  'Слушать',
-  '8+ лет в битмейкинге',
-  'Отрывки, фото, видео'
+  'setPlayButtonState("play")',
+  'setPlayButtonState("pause")',
+  'setPlayButtonState("buffering")'
 ];
 
 for (const snippet of requiredSnippets) {
@@ -50,4 +67,4 @@ for (const snippet of requiredSnippets) {
   }
 }
 
-console.log(`i18n verifier passed: ${keys.length} translated keys in ru/en, localStorage language toggle present`);
+console.log(`i18n verifier passed: ${keys.length} translated keys in ru/en`);

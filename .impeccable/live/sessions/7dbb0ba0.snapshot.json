@@ -1,0 +1,78 @@
+{
+  "id": "7dbb0ba0",
+  "phase": "generate_requested",
+  "pageUrl": "/",
+  "sourceFile": null,
+  "expectedVariants": 3,
+  "arrivedVariants": 0,
+  "visibleVariant": 0,
+  "paramValues": {},
+  "pendingEventSeq": 2,
+  "pendingEvent": {
+    "type": "generate",
+    "id": "7dbb0ba0",
+    "action": "impeccable",
+    "count": 3,
+    "pageUrl": "/",
+    "element": {
+      "tagName": "a",
+      "id": null,
+      "classes": [
+        "action-button"
+      ],
+      "textContent": "YouTube",
+      "outerHTML": "<a class=\"action-button\" href=\"http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw\" target=\"_blank\" rel=\"noreferrer\">YouTube</a>",
+      "computedStyles": {
+        "font-family": "\"Helvetica Neue\", Arial, system-ui, sans-serif",
+        "font-size": "15.2px",
+        "font-weight": "900",
+        "line-height": "15.2px",
+        "color": "oklch(0.95 0.018 118)",
+        "background": "rgba(232, 255, 246, 0.06)",
+        "background-color": "rgba(232, 255, 246, 0.06)",
+        "padding": "10.4px 16px",
+        "margin": "0px",
+        "display": "flex",
+        "position": "static",
+        "gap": "7.2px",
+        "border-radius": "8px",
+        "box-shadow": "none"
+      },
+      "cssCustomProperties": {
+        "--void": "oklch(10% 0.026 286)",
+        "--floor": "oklch(15% 0.052 301)",
+        "--paper": "oklch(95% 0.018 118)",
+        "--muted": "oklch(76% 0.045 246)",
+        "--acid": "oklch(78% 0.24 138)",
+        "--violet": "oklch(64% 0.25 311)",
+        "--cyan": "oklch(82% 0.19 204)",
+        "--hot": "oklch(68% 0.24 30)",
+        "--sunday": "oklch(92% 0.19 105)",
+        "--line": "rgb(232 255 246 / 0.18)",
+        "--glass": "rgb(10 14 21 / 0.72)",
+        "--glass-strong": "rgb(4 7 12 / 0.86)",
+        "--shadow-acid": "0 0 34px rgb(94 255 117 / 0.24)",
+        "--meter-a": "#7fff84",
+        "--meter-b": "#54d7ff",
+        "--meter-c": "#d34dff",
+        "--meter-d": "#ff653d",
+        "--wave-stroke": "#54d7ff",
+        "--font-display": "\"Arial Black\", Impact, \"Helvetica Neue Condensed Black\", \"Helvetica Neue\", Arial, sans-serif",
+        "--font-body": "\"Helvetica Neue\", Arial, system-ui, sans-serif"
+      },
+      "parentContext": "<div class=\"hero-actions\">",
+      "boundingRect": {
+        "width": 105,
+        "height": 39
+      }
+    }
+  },
+  "deliveryLease": null,
+  "checkpointRevision": 1,
+  "activeOwner": "58ad2ca9",
+  "sourceMarkers": {},
+  "fallbackMode": null,
+  "annotationArtifacts": [],
+  "diagnostics": [],
+  "updatedAt": "2026-06-01T21:43:35.191Z"
+}
