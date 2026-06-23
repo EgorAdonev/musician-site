@@ -1311,6 +1311,25 @@
         grid-template-columns: 1fr;
       }
 
+      .hero .room-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+
+      .hero .room-copy {
+        order: 1;
+      }
+
+      .hero .studio-stage {
+        order: 2;
+      }
+
+      .hero .hero-actions {
+        order: 3;
+        grid-column: auto;
+        justify-content: flex-start;
+      }
+
       .hero {
         align-items: start;
         padding-top: clamp(4.5rem, 8vw, 6rem);
