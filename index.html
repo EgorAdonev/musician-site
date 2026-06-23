@@ -930,6 +930,16 @@
       gap: clamp(1.5rem, 4vw, 4rem);
     }
 
+    .gallery-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
+
     .gallery-room h2 {
       max-width: min(11.5em, 100%);
       font-size: clamp(2.45rem, 6.5vw, 5.35rem);
@@ -1348,6 +1358,24 @@
         min-height: 28rem;
       }
 
+      .gallery-room .room-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+
+      .gallery-room .room-copy {
+        order: 1;
+      }
+
+      .gallery-room .spinner-wrap {
+        order: 2;
+      }
+
+      .gallery-room .gallery-actions {
+        order: 3;
+        justify-content: center;
+      }
+
       .cover-object,
       .spinner-card {
         transform:
@@ -1555,10 +1583,6 @@
           <p class="room-label" data-i18n="galleryRoom">Галерея</p>
           <h2 id="gallery-title" data-i18n="galleryTitle">Карусель дискографии</h2>
           <p class="body-copy kinetic-lines" data-kinetic data-i18n="galleryCopy">Альбомы как экспонаты</p>
-          <div class="hero-actions">
-            <a class="action-button primary" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer">Emotions 4</a>
-            <a class="action-button" href="https://youtube.com/playlist?list=OLAK5uy_kHs_-Qt39mZEkz0U_LQ-y2Rsz1KjQXtfw" target="_blank" rel="noreferrer">YouTube playlist</a>
-          </div>
         </div>
         <div class="spinner-wrap">
           <div class="text-wrap-field" data-wrap-text>AREYOUBLIND AUDIO WORLD</div>
@@ -1573,6 +1597,10 @@
             <figure class="spinner-card" style="--i:7"><img src="assets/images/releases/radio-waves.png" alt="Radio Waves cover" loading="lazy" decoding="async"></figure>
             <figure class="spinner-card" style="--i:8"><img src="assets/images/releases/solo.png" alt="Solo cover" loading="lazy" decoding="async"></figure>
           </div>
+        </div>
+        <div class="gallery-actions">
+          <a class="action-button primary" href="https://music.apple.com/ru/album/emotions-4-ep/1780288076?l=en-GB" target="_blank" rel="noreferrer">Emotions 4</a>
+          <a class="action-button" href="https://youtube.com/playlist?list=OLAK5uy_kHs_-Qt39mZEkz0U_LQ-y2Rsz1KjQXtfw" target="_blank" rel="noreferrer">YouTube playlist</a>
         </div>
       </div>
     </section>
