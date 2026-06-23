@@ -1,113 +1,54 @@
-# Design
+﻿# Design Variants
 
-## Overview
+Root design index for A/B testing of the AreYouBlind? music site.
 
-Single-page artist landing site for blnfkr rebuilt as a fast futuristic palace. Each scroll section is a distinct room: Atrium, Audio Lab, Gallery, Archive, Signal Room. The site should feel like camera movement through a modern music palace rather than a generic portfolio.
+Product register stays `brand`: the design itself is part of the artist identity. All variants must keep the same content, links, player behavior, credits, local assets, accessibility requirements, and i18n. Only visual material, layout rhythm, motion feel, and atmosphere change.
 
-The design combines local cover art, a generated 3D palace room asset, canvas audio visualization, rotating album covers, and kinetic text. It must remain lightweight: static HTML/CSS/JS, local media, lazy decorative assets, no mandatory heavy runtime.
+## Variants
 
-## Physical Scene
+1. **A: Living Glass**
+   - File: `design-variants/living-glass/DESIGN.md`
+   - Hypothesis: listeners trust the site more when the Story feels like a premium translucent audio cockpit.
+   - Best for: clarity, modern polish, visible UI controls, readable player.
 
-A listener opens the page at night from a social link, often on mobile, while deciding whether to play the artist's tracks. The site should load quickly, give an immediate sense of sound and identity, and make listening or opening social profiles obvious.
+2. **B: Spatial 3D Web**
+   - File: `design-variants/spatial-3d-web/DESIGN.md`
+   - Hypothesis: visitors remember the artist more when the site behaves like a moving 3D room system.
+   - Best for: spectacle, Journey continuity, futuristic web identity.
 
-## Visual Direction
+## Shared Non-Negotiables
 
-- Reference lane: futuristic AI/creative landing pages, Leonardo.ai-style dimensional surfaces, fast camera moves between rooms, glossy black architecture, neon audio instrumentation.
-- Sunday reference influence: confident large typography, friendly high-tech clarity, strong primary CTA contrast, generous first-viewport readability.
-- GT Planar reference influence: midnight mainframe canvas, hard utility borders, compact control density, fluorescent green and electric violet signal roles.
-- Avoid: beige creator sites, clean corporate music portfolios, fake luxury, static social-button grids, decorative 3D that slows the page, repeated card templates, generic purple SaaS gradients.
-- The first viewport must signal the artist and the palace world immediately.
-- Album covers remain the main artifact. 3D architecture frames the music, it does not replace it.
+- First viewport must signal `AreYouBlind?` and the music/story world immediately.
+- Album covers are primary artifacts. No variant may bury them behind decoration.
+- Player and track list stay horizontal on desktop: player left, list right. Stack only on mobile.
+- Credits chips keep long names intact: `SoundCloud Radio`, `Dash Radio`, `RTONTHABEAT`.
+- Gallery headings preserve words. No single trailing letters like `y` or `ии`.
+- Journey uses camera-facing marquee text, not textbox caption panels.
+- iOS Safari/mobile avoids heavy 3D decode stacks and uses lightweight Journey fallback.
+- Body text remains readable over imagery with strong contrast.
+- Reduced motion must leave all content visible and usable.
 
-## Color Palette
+## A/B Test Plan
 
-Use OKLCH tokens in CSS.
+- `?design=glass`: Living Glass.
+- `?design=spatial`: Spatial 3D Web.
+- Store selected variant in `localStorage` only after user clicks a variant control.
+- Compare the same flows in each variant: landing impression, play track, switch language, open gallery, inspect credits, open social/music link, open Journey.
+- Score each variant on: identity memory, readability, mobile stability, player usability, credits trust, performance, and visual uniqueness.
 
-- `--void`: near-black palace shell, primary background.
-- `--floor`: deep violet-black reflective surface.
-- `--paper`: acidic near-white text.
-- `--acid`: neon green from cover art and audio meters.
-- `--violet`: hot violet for room glows and transitions.
-- `--cyan`: cyan scanner light and waveform strokes.
-- `--hot`: red-orange accent for active states and warning energy.
-- `--sunday`: saturated yellow used sparingly for friendly high-tech focus edges.
-- `--glass`: translucent dark surface for controls only.
+## Evidence Required Before Choosing Winner
 
-Palette strategy: full palette on a dark, high-contrast base. Do not drift into one-note purple/blue. Acid green, cyan, violet, and hot red must each have a clear role.
+- Desktop screenshot for Glass and Spatial.
+- Mobile screenshot for Glass and Spatial.
+- Journey/mobile transition screenshot for Spatial, and Glass if it receives a matching Journey material pass.
+- Browser click flow for player, navigation, language toggle, and variant toggle.
+- Static tests:
+  - `node tests\verify-i18n.js`
+  - `node tests\verify-layout-invariants.js`
+  - inline script parse check for `index.html` and `hyperframes-Story/index.html`
 
-## Typography
+## Current Default
 
-Use local/system font stacks only for speed. Display text is heavy, compact, and architectural; body text is readable with generous line height on dark backgrounds.
+Use **Living Glass** as default. It gives the site the premium translucent audio-cockpit surface requested now, while keeping Spatial 3D Web available as a stronger spectacle variant and as the Journey foundation.
 
-- Display headings: `Arial Black`, `Impact`, `Helvetica Neue Condensed Black`, system fallback.
-- Body/UI: `Helvetica Neue`, Arial, system sans.
-- Avoid all-caps body paragraphs. Reserve uppercase for compact navigation, labels, and display phrases.
-- Letter spacing is `0` by default. Display headings may use slight positive spacing only when needed for legibility.
-- Text must not overflow on mobile. Use `clamp()`, `overflow-wrap`, and measured Pretext/canvas fallbacks for kinetic blocks.
 
-## Layout
-
-- Fixed top navigation with room links and language toggle.
-- Hero/Atrium: full-bleed generated palace image plus local logo, rotating covers, and audio cockpit visible in the first viewport.
-- Audio Lab: local track player, equalizer, waveform canvas, live track list.
-- Gallery: rotating album-cover spinner inspired by Pretext text-wrap demos. Covers should feel like objects in a circular room.
-- Archive: proof points, credits, radio notes, release history.
-- Signal Room: direct exits to Apple Music, YouTube, Instagram, SoundCloud, Spotify, Yandex Music, VK.
-- No nested cards. Panels are instruments or room surfaces, not generic cards.
-
-## Motion
-
-- Section changes use a fast camera-travel transition: slight zoom, blur, chromatic flash, and room state update.
-- Album covers rotate continuously in 3D; reduce to static grid under `prefers-reduced-motion`.
-- Text content receives kinetic Pretext-assisted line movement or canvas-rendered flowing text where appropriate.
-- Equalizer and waveform respond to Web Audio analyser data after user starts playback.
-- All continuous animation pauses or simplifies when reduced motion is requested.
-
-## Pretext Usage
-
-Pretext is used as an optional enhancement:
-
-- Lazy-load `@chenglou/pretext` from ESM CDN.
-- Use `prepare`, `layoutWithLines`, or compatible fallbacks to split kinetic phrases into measured lines.
-- If Pretext fails to load, keep content readable with CSS and canvas fallback measurement.
-- The page must never depend on Pretext for essential navigation or content.
-
-## Audio
-
-- Use only local tracks from `assets/tracks/`.
-- Do not autoplay. User clicks Play.
-- Use a single `<audio>` element, Web Audio `AnalyserNode`, and canvas rendering.
-- Draw both spectrum bars and waveform.
-- Keep analyser FFT moderate for performance.
-
-## HyperFrames
-
-HyperFrames is used for a separate palace-room motion composition under `hyperframes-palace/`. It should define rooms, transitions, and cinematic 3D-feeling camera moves for video export or later embedding. The main landing page may reference the composition but should not block on HyperFrames runtime.
-
-## Performance Rules
-
-- Static first render must be useful before JavaScript finishes.
-- Use local compressed assets where available; generated 3D image is decorative and lazy where possible outside hero.
-- Avoid mandatory large libraries on the landing page. No required Three.js for the main page.
-- Defer scripts, lazy-load images outside the first viewport, and respect `prefers-reduced-motion`.
-- Audio analysis starts only after a user gesture.
-- Canvas animation should use one `requestAnimationFrame` loop and stop doing heavy work when audio is paused.
-
-## Accessibility
-
-- Semantic sections and landmarks.
-- Clear focus states.
-- High contrast text on dark backgrounds.
-- Buttons describe actions.
-- Media controls are keyboard reachable.
-- Decorative motion has reduced-motion alternatives.
-- Album covers have descriptive alt text.
-
-## Quality Checklist
-
-- Desktop and mobile screenshots verified in browser.
-- Player buttons, room navigation, language toggle, and A/B variant toggle clicked.
-- No visible text overlap.
-- No broken local assets.
-- No console errors that break interaction.
-- Design rules extracted after iteration.

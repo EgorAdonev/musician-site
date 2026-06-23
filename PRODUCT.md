@@ -1,4 +1,4 @@
-# Product
+﻿# Product
 
 ## Register
 
@@ -6,11 +6,11 @@ brand
 
 ## Users
 
-Listeners, artists, vocalists, rappers, music supervisors, and collaborators who discover blnfkr through social links, streaming platforms, beat snippets, and visual identity. They arrive quickly, often from mobile, and need to understand the sound, credibility, credits, and where to listen or contact.
+Listeners, artists, vocalists, rappers, music supervisors, and collaborators who discover AreYouBlind? through social links, streaming platforms, beat snippets, and visual identity. They arrive quickly, often from mobile, and need to understand the sound, credibility, credits, and where to listen or contact.
 
 ## Product Purpose
 
-This site is a compact artist presence for blnfkr, a young but experienced music producer and beatmaker. It should promote tracks, Apple Music, YouTube, Linktree, and Instagram while turning the album-cover style into a memorable visual world.
+This site is a compact artist presence for AreYouBlind?, a young but experienced music producer and beatmaker. It should promote tracks, Apple Music, YouTube, Linktree, and Instagram while turning the album-cover style into a memorable visual world.
 
 Success means a visitor immediately remembers the name, hears the producer identity, trusts the credits, and moves to Apple Music, YouTube, Instagram, or Linktree.
 
@@ -37,3 +37,5 @@ Avoid using the artist's provocative handle as a cheap shock device. It should a
 ## Accessibility & Inclusion
 
 Use semantic HTML, readable contrast over imagery, clear focus states, descriptive alt text, and reduced-motion support. The site should work on mobile without requiring hover or precise pointer control.
+
+

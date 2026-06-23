@@ -1,16 +1,16 @@
-<!doctype html>
+﻿<!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>blnfkr 3D palace flight</title>
+  <title>AreYouBlind? studio journey</title>
   <style>
     :root {
       --void: oklch(10% 0.026 286);
       --floor: oklch(15% 0.052 301);
       --paper: oklch(95% 0.018 118);
       --acid: oklch(78% 0.24 138);
-      --violet: oklch(64% 0.25 311);
+      --steel blue: oklch(64% 0.25 311);
       --cyan: oklch(82% 0.19 204);
       --glass: rgb(5 7 12 / 0.78);
       --line: rgb(239 255 246 / 0.16);
@@ -38,7 +38,7 @@
         radial-gradient(circle at 82% 38%, rgba(0,255,133,0.42) 0 1px, transparent 1.7px),
         radial-gradient(circle at 34% 74%, rgba(255,255,255,0.38) 0 1px, transparent 1.4px),
         radial-gradient(circle at 73% 78%, rgba(255,255,255,0.45) 0 1px, transparent 1.4px),
-        radial-gradient(circle at 50% 44%, color-mix(in oklch, var(--violet) 18%, transparent), transparent 35%),
+        radial-gradient(circle at 50% 44%, color-mix(in oklch, var(--steel blue) 18%, transparent), transparent 35%),
         var(--void);
       perspective: 980px;
       perspective-origin: 50% 52%;
@@ -96,7 +96,7 @@
         linear-gradient(112deg, color-mix(in oklch, var(--cyan) 86%, var(--void)), color-mix(in oklch, var(--floor) 78%, var(--void)) 42%, var(--void));
       border: 1px solid rgba(255,255,255,0.16);
       box-shadow:
-        inset 0 0 0 2px color-mix(in oklch, var(--violet) 20%, transparent),
+        inset 0 0 0 2px color-mix(in oklch, var(--steel blue) 20%, transparent),
         inset 0 0 160px rgba(0,0,0,0.48);
     }
 
@@ -112,7 +112,7 @@
         radial-gradient(circle at 76% 46%, rgba(255,255,255,0.13) 0 1px, transparent 1.5px),
         linear-gradient(96deg, var(--void), color-mix(in oklch, var(--cyan) 72%, var(--void)) 55%, var(--void));
       border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 0 120px color-mix(in oklch, var(--violet) 26%, transparent);
+      box-shadow: inset 0 0 120px color-mix(in oklch, var(--steel blue) 26%, transparent);
     }
 
     .back-wall {
@@ -144,7 +144,7 @@
         radial-gradient(circle at 66% 58%, rgba(255,255,255,0.12) 0 1px, transparent 1.4px),
         linear-gradient(180deg, color-mix(in oklch, var(--floor) 94%, var(--void)), var(--void));
       border: 1px solid rgba(255,255,255,0.13);
-      box-shadow: inset 0 0 90px color-mix(in oklch, var(--violet) 22%, transparent);
+      box-shadow: inset 0 0 90px color-mix(in oklch, var(--steel blue) 22%, transparent);
     }
 
     .left-wall {
@@ -198,7 +198,7 @@
       border: 1px solid var(--line);
       border-radius: 0;
       box-shadow:
-        0 0 0 1px color-mix(in oklch, var(--violet) 42%, transparent),
+        0 0 0 1px color-mix(in oklch, var(--steel blue) 42%, transparent),
         0 0 54px color-mix(in oklch, var(--acid) 18%, transparent);
     }
 
@@ -242,7 +242,7 @@
       box-shadow:
         0 0 0 2px color-mix(in oklch, var(--acid) 30%, transparent),
         0 0 74px color-mix(in oklch, var(--acid) 22%, transparent),
-        0 0 110px color-mix(in oklch, var(--violet) 18%, transparent);
+        0 0 110px color-mix(in oklch, var(--steel blue) 18%, transparent);
       background: var(--void);
     }
 
@@ -286,7 +286,7 @@
       height: 90px;
       transform: translateZ(210px) rotateX(5deg);
       background:
-        linear-gradient(90deg, color-mix(in oklch, var(--acid) 0%, transparent), color-mix(in oklch, var(--acid) 90%, transparent) 33%, color-mix(in oklch, var(--violet) 80%, transparent) 66%, color-mix(in oklch, var(--cyan) 0%, transparent));
+        linear-gradient(90deg, color-mix(in oklch, var(--acid) 0%, transparent), color-mix(in oklch, var(--acid) 90%, transparent) 33%, color-mix(in oklch, var(--steel blue) 80%, transparent) 66%, color-mix(in oklch, var(--cyan) 0%, transparent));
       clip-path: polygon(0 50%, 4% 42%, 8% 64%, 12% 24%, 16% 70%, 20% 46%, 24% 62%, 28% 28%, 32% 73%, 36% 36%, 40% 58%, 44% 20%, 48% 78%, 52% 34%, 56% 60%, 60% 25%, 64% 72%, 68% 44%, 72% 66%, 76% 30%, 80% 74%, 84% 42%, 88% 62%, 92% 36%, 96% 56%, 100% 50%, 100% 100%, 0 100%);
       filter: drop-shadow(0 0 18px color-mix(in oklch, var(--acid) 50%, transparent));
     }
@@ -359,10 +359,260 @@
       line-height: 1.28;
     }
 
+    .journey-marquee {
+      position: absolute;
+      left: -8vw;
+      right: -8vw;
+      bottom: clamp(34px, 6vh, 78px);
+      z-index: 44;
+      overflow: hidden;
+      padding: 12px 0;
+      border-block: 1px solid rgba(219,178,112,0.42);
+      background: linear-gradient(90deg, transparent, rgba(5,7,12,0.82) 15%, rgba(5,7,12,0.82) 85%, transparent);
+      transform: perspective(900px) rotateX(57deg) rotateZ(-2deg) translate3d(0, 0, 0);
+      transform-origin: 50% 100%;
+      pointer-events: none;
+    }
+
+    .journey-marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 2rem;
+      color: #f3ead8;
+      font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+      font-size: clamp(20px, 4vw, 56px);
+      line-height: 1;
+      white-space: nowrap;
+      text-transform: uppercase;
+      text-shadow: 0 0 18px rgba(219,178,112,0.36), 0 0 30px rgba(84,215,255,0.18);
+      animation: camera-marquee 10s linear infinite;
+      will-change: transform;
+    }
+
+    .journey-marquee-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .journey-marquee-track span::after {
+      content: "";
+      width: 72px;
+      height: 8px;
+      background: linear-gradient(90deg, #d9b270, #f3ead8);
+      box-shadow: 0 0 18px rgba(219,178,112,0.45);
+    }
+
+    @keyframes camera-marquee {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .mobile-journey {
+      display: none;
+    }
+
+    #palace-rooms.is-mobile-journey {
+      perspective: none;
+    }
+
+    #palace-rooms.is-mobile-journey .camera {
+      display: none;
+    }
+
+    #palace-rooms.is-mobile-journey .journey-caption {
+      display: none;
+    }
+
+    #palace-rooms.is-mobile-journey .journey-marquee {
+      bottom: 26px;
+      transform: none;
+      will-change: auto;
+    }
+
+    #palace-rooms.is-mobile-journey .journey-marquee-track {
+      animation: none;
+      transform: none;
+      will-change: auto;
+    }
+
+    #palace-rooms.is-mobile-journey .mobile-journey {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: 1fr;
+      gap: 18px;
+      overflow: hidden;
+      padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(22px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+      box-sizing: border-box;
+      background:
+        radial-gradient(circle at 22% 16%, rgba(219,178,112,0.18), transparent 32%),
+        radial-gradient(circle at 84% 32%, rgba(84,215,255,0.18), transparent 34%),
+        linear-gradient(180deg, #070a13, #05070c 72%);
+    }
+
+    .mobile-stage {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 58%, rgba(84,215,255,0.16), transparent 34%),
+        linear-gradient(90deg, rgba(5,7,12,0.26), rgba(5,7,12,0.08) 46%, rgba(5,7,12,0.32)),
+        linear-gradient(180deg, rgba(239,255,246,0.08), rgba(239,255,246,0)),
+        url("../assets/images/brand/spatial-transition-tunnel-mobile.jpg"),
+        var(--glass);
+      background-size: cover, cover, cover, cover, auto;
+      background-position: center, center, center, center, center;
+      box-shadow: inset 0 0 80px rgba(0,0,0,0.42);
+    }
+
+    .mobile-grid {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(239,255,246,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(239,255,246,0.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.8), transparent 74%);
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.8), transparent 74%);
+    }
+
+    .mobile-cover {
+      position: absolute;
+      width: min(48vw, 190px);
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 1px solid rgba(239,255,246,0.52);
+      box-shadow: 0 0 42px rgba(219,178,112,0.2);
+      opacity: 0.92;
+    }
+
+    .mobile-cover.a {
+      left: 8%;
+      top: 16%;
+    }
+
+    .mobile-cover.b {
+      right: 7%;
+      top: 34%;
+    }
+
+    .mobile-cover.c {
+      left: 24%;
+      bottom: 10%;
+    }
+
+    .mobile-bars {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 8%;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      align-items: end;
+      gap: 5px;
+      height: 92px;
+      opacity: 0.82;
+    }
+
+    .mobile-bars i {
+      display: block;
+      height: calc(var(--h) * 1%);
+      min-height: 10px;
+      background: linear-gradient(180deg, var(--paper), var(--cyan) 52%, var(--acid));
+      box-shadow: 0 0 18px rgba(84,215,255,0.35);
+      transform-origin: 50% 100%;
+    }
+
+    .mobile-caption {
+      display: none;
+      min-width: 0;
+      width: 100%;
+      max-width: calc(100vw - 32px);
+      padding: 18px;
+      box-sizing: border-box;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 92% 10%, rgba(219,178,112,0.18), transparent 35%),
+        var(--glass);
+    }
+
+    .mobile-caption.is-active {
+      display: block;
+    }
+
+    .mobile-caption .label {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .mobile-caption h2 {
+      max-width: 100%;
+      margin: 0;
+      font-family: "Arial Black", "Helvetica Neue", Arial, sans-serif;
+      font-size: clamp(25px, 7.6vw, 34px);
+      line-height: 0.92;
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+    }
+
+    .mobile-caption p {
+      max-width: 100%;
+      margin-top: 10px;
+      color: var(--paper);
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    @media (max-width: 760px), (pointer: coarse) {
+      #palace-rooms {
+        perspective: none;
+      }
+
+      #palace-rooms .camera {
+        display: none;
+      }
+
+      #palace-rooms .journey-caption {
+        display: none;
+      }
+
+      #palace-rooms .journey-marquee {
+        bottom: 26px;
+        transform: none;
+      }
+
+      #palace-rooms .journey-marquee-track {
+        animation: none;
+        transform: none;
+        will-change: auto;
+      }
+
+      #palace-rooms .mobile-journey {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-rows: 1fr;
+        overflow: hidden;
+        padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(22px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+        box-sizing: border-box;
+        background:
+          radial-gradient(circle at 22% 16%, rgba(219,178,112,0.18), transparent 32%),
+          radial-gradient(circle at 84% 32%, rgba(84,215,255,0.18), transparent 34%),
+          linear-gradient(180deg, #070a13, #05070c 72%);
+      }
+
+      .exit-button {
+        right: max(14px, env(safe-area-inset-right));
+        top: max(14px, env(safe-area-inset-top));
+      }
+    }
+
   </style>
 </head>
 <body>
-  <a class="exit-button" href="../index.html" aria-label="Back to main page">← Back to Palace</a>
+  <a class="exit-button" href="../index.html" aria-label="Back to main page">← Back to site</a>
   <div id="palace-rooms" data-composition-id="palace-rooms" data-start="0" data-duration="12" data-width="1920" data-height="1080">
     <div class="camera" data-layout-allow-overflow>
       <div class="world" data-layout-allow-overflow>
@@ -380,9 +630,9 @@
           <div class="plane column b"></div>
           <div class="plane column c"></div>
           <div class="plane column d"></div>
-          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/dear-father.png" alt=""></div>
-          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/done-cover.jpg" alt=""></div>
-          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/foreva-ballin.jpg" alt=""></div>
+          <div class="plane cover-plane cover-a"><img data-cover-src="../assets/images/releases/dear-father.png" alt=""></div>
+          <div class="plane cover-plane cover-b"><img data-cover-src="../assets/images/releases/done-cover.jpg" alt=""></div>
+          <div class="plane cover-plane cover-c"><img data-cover-src="../assets/images/releases/foreva-ballin.jpg" alt=""></div>
         </section>
 
         <section class="room3d audio" data-layout-allow-overflow>
@@ -401,9 +651,9 @@
             <i class="bar" style="--h:38"></i><i class="bar" style="--h:78"></i><i class="bar" style="--h:48"></i><i class="bar" style="--h:92"></i><i class="bar" style="--h:62"></i><i class="bar" style="--h:84"></i><i class="bar" style="--h:44"></i><i class="bar" style="--h:72"></i><i class="bar" style="--h:58"></i><i class="bar" style="--h:96"></i><i class="bar" style="--h:52"></i><i class="bar" style="--h:80"></i><i class="bar" style="--h:46"></i><i class="bar" style="--h:88"></i><i class="bar" style="--h:60"></i>
           </div>
           <div class="plane waveform"></div>
-          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/done-cover.jpg?room=audio" alt=""></div>
-          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/dear-father.png?room=audio" alt=""></div>
-          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/foreva-ballin.jpg?room=audio" alt=""></div>
+          <div class="plane cover-plane cover-a"><img data-cover-src="../assets/images/releases/done-cover.jpg?room=audio" alt=""></div>
+          <div class="plane cover-plane cover-b"><img data-cover-src="../assets/images/releases/dear-father.png?room=audio" alt=""></div>
+          <div class="plane cover-plane cover-c"><img data-cover-src="../assets/images/releases/foreva-ballin.jpg?room=audio" alt=""></div>
         </section>
 
         <section class="room3d gallery" data-layout-allow-overflow>
@@ -418,9 +668,9 @@
           <div class="plane depth-rib r4"></div>
           <div class="plane column c"></div>
           <div class="plane column d"></div>
-          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/radio-waves.png" alt=""></div>
-          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/solo.png" alt=""></div>
-          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/no-love.png" alt=""></div>
+          <div class="plane cover-plane cover-a"><img data-cover-src="../assets/images/releases/radio-waves.png" alt=""></div>
+          <div class="plane cover-plane cover-b"><img data-cover-src="../assets/images/releases/solo.png" alt=""></div>
+          <div class="plane cover-plane cover-c"><img data-cover-src="../assets/images/releases/no-love.png" alt=""></div>
         </section>
 
         <section class="room3d archive" data-layout-allow-overflow>
@@ -433,9 +683,9 @@
           <div class="plane depth-rib r2"></div>
           <div class="plane depth-rib r3"></div>
           <div class="plane depth-rib r4"></div>
-          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/emotions-3.png" alt=""></div>
-          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/emotions-4.jpg" alt=""></div>
-          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/emotions-cover.jpg" alt=""></div>
+          <div class="plane cover-plane cover-a"><img data-cover-src="../assets/images/releases/emotions-3.png" alt=""></div>
+          <div class="plane cover-plane cover-b"><img data-cover-src="../assets/images/releases/emotions-4.jpg" alt=""></div>
+          <div class="plane cover-plane cover-c"><img data-cover-src="../assets/images/releases/emotions-cover.jpg" alt=""></div>
         </section>
 
         <section class="room3d signal" data-layout-allow-overflow>
@@ -448,10 +698,31 @@
           <div class="plane depth-rib r2"></div>
           <div class="plane depth-rib r3"></div>
           <div class="plane depth-rib r4"></div>
-          <div class="plane cover-plane cover-a"><img src="../assets/images/releases/radio-waves.png?room=signal" alt=""></div>
-          <div class="plane cover-plane cover-b"><img src="../assets/images/releases/no-love.png?room=signal" alt=""></div>
-          <div class="plane cover-plane cover-c"><img src="../assets/images/releases/solo.png?room=signal" alt=""></div>
+          <div class="plane cover-plane cover-a"><img data-cover-src="../assets/images/releases/radio-waves.png?room=signal" alt=""></div>
+          <div class="plane cover-plane cover-b"><img data-cover-src="../assets/images/releases/no-love.png?room=signal" alt=""></div>
+          <div class="plane cover-plane cover-c"><img data-cover-src="../assets/images/releases/solo.png?room=signal" alt=""></div>
         </section>
+      </div>
+    </div>
+
+    <div class="journey-marquee" aria-hidden="true">
+      <div class="journey-marquee-track" data-marquee-track>
+        <span>START 01 / AREYOUBLIND STUDIO JOURNEY</span>
+        <span>START 01 / AREYOUBLIND STUDIO JOURNEY</span>
+        <span>START 01 / AREYOUBLIND STUDIO JOURNEY</span>
+        <span>START 01 / AREYOUBLIND STUDIO JOURNEY</span>
+      </div>
+    </div>
+
+    <div class="mobile-journey" data-mobile-journey aria-hidden="true">
+      <div class="mobile-stage" aria-hidden="true">
+        <div class="mobile-grid"></div>
+        <img class="mobile-cover a" data-mobile-src="../assets/images/releases/dear-father.png" alt="">
+        <img class="mobile-cover b" data-mobile-src="../assets/images/releases/done-cover.jpg" alt="">
+        <img class="mobile-cover c" data-mobile-src="../assets/images/releases/foreva-ballin.jpg" alt="">
+        <div class="mobile-bars">
+          <i style="--h:38"></i><i style="--h:82"></i><i style="--h:48"></i><i style="--h:92"></i><i style="--h:62"></i><i style="--h:78"></i><i style="--h:44"></i><i style="--h:88"></i><i style="--h:56"></i><i style="--h:96"></i><i style="--h:52"></i><i style="--h:74"></i>
+        </div>
       </div>
     </div>
 
@@ -459,12 +730,78 @@
 
   <script src="../assets/vendor/gsap.min.js"></script>
   <script>
+    const palaceRooms = document.querySelector("#palace-rooms");
+    const query = new URLSearchParams(window.location.search);
+    const ua = navigator.userAgent;
+    const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const isSafari = /Safari/i.test(ua) && !/CriOS|FxiOS|EdgiOS|Chrome/i.test(ua);
+    const useMobileJourney = (isIOS && isSafari) || matchMedia("(max-width: 760px), (pointer: coarse)").matches;
+
+    const loadImages = selector => {
+      document.querySelectorAll(selector).forEach(img => {
+        const src = img.dataset.coverSrc || img.dataset.mobileSrc;
+        if (src && !img.getAttribute("src")) img.setAttribute("src", src);
+      });
+    };
+
+    const showExit = () => document.body.classList.add("show-exit");
+    const marqueeMessages = [
+      "START 01 / AREYOUBLIND STUDIO JOURNEY",
+      "AUDIO LAB 02 / PLAY BEATS LIVE",
+      "GALLERY 03 / ALBUM RELEASES ORBITING AROUND THE GLOBE",
+      "ARCHIVE 04 / MUSIC INDUSTRY STORY PROOF TRAIL",
+      "SIGNAL 05 / DIRECT LINKS"
+    ];
+    const setMarquee = index => {
+      const track = document.querySelector("[data-marquee-track]");
+      if (!track) return;
+      const text = marqueeMessages[index] || marqueeMessages[0];
+      track.innerHTML = Array.from({ length: 4 }, () => `<span>${text}</span>`).join("");
+    };
+
+    const runMobileJourney = () => {
+      palaceRooms.classList.add("is-mobile-journey");
+      const mobileJourney = document.querySelector("[data-mobile-journey]");
+      mobileJourney?.setAttribute("aria-hidden", "false");
+      loadImages("[data-mobile-src]");
+      if (isIOS && isSafari) {
+        setMarquee(0);
+        showExit();
+        return;
+      }
+
+      const mobileTl = gsap.timeline({ paused: true, onComplete: showExit });
+      mobileTl.call(() => setMarquee(0), null, 0);
+      mobileTl.from(".mobile-stage", { y: 18, duration: 0.45, immediateRender: false, ease: "power2.out" }, 0.05);
+      mobileTl.from(".mobile-cover", { y: 34, scale: 0.92, duration: 0.55, stagger: 0.08, immediateRender: false, ease: "power3.out" }, 0.16);
+      mobileTl.from(".mobile-bars i", { scaleY: 0.18, duration: 0.38, stagger: 0.025, immediateRender: false, ease: "power4.out" }, 0.36);
+      mobileTl.to(".mobile-cover.a", { x: "18vw", y: "4vh", scale: 0.88, duration: 1.6, ease: "power1.inOut" }, 1.1);
+      mobileTl.to(".mobile-cover.b", { x: "-12vw", y: "-5vh", scale: 1.04, duration: 1.6, ease: "power1.inOut" }, 1.1);
+      mobileTl.call(() => setMarquee(1), null, 2.0);
+      mobileTl.to(".mobile-bars i", { scaleY: 0.52, duration: 0.32, stagger: 0.018, yoyo: true, repeat: 1, ease: "power2.inOut" }, 2.05);
+      mobileTl.to(".mobile-cover.c", { x: "10vw", y: "-12vh", scale: 1.06, duration: 1.7, ease: "power1.inOut" }, 2.35);
+      mobileTl.call(() => setMarquee(2), null, 3.7);
+      mobileTl.to(".mobile-cover.a", { x: "-4vw", y: "20vh", scale: 1.02, duration: 1.55, ease: "power1.inOut" }, 3.8);
+      mobileTl.to(".mobile-cover.b", { x: "-22vw", y: "11vh", scale: 0.9, duration: 1.55, ease: "power1.inOut" }, 3.8);
+      mobileTl.call(() => setMarquee(4), null, 5.35);
+      mobileTl.to(".mobile-stage", { opacity: 0.82, scale: 0.98, duration: 0.7, ease: "power2.out" }, 5.4);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["palace-rooms"] = mobileTl;
+
+      if (query.has("flight")) mobileTl.play(0);
+      else showExit();
+    };
+
     window.__timelines = window.__timelines || {};
+    if (useMobileJourney) {
+      runMobileJourney();
+    } else {
+    loadImages("[data-cover-src]");
     const tl = gsap.timeline({ paused: true });
 
     tl.set(".world", { z: 620, rotationX: 0, rotationY: 0, y: -60 }, 0);
     tl.set(".room3d", { opacity: 1 }, 0);
-    tl.set(".caption-atrium", { opacity: 1, x: 0 }, 0);
+    tl.call(() => setMarquee(0), null, 0);
 
     tl.from(".atrium .copy-block", { y: 80, z: -220, opacity: 0, duration: 0.8, immediateRender: false, ease: "expo.out" }, 0.2);
     tl.from(".atrium .column", { y: 120, opacity: 0, duration: 0.6, stagger: 0.08, immediateRender: false, ease: "power3.out" }, 0.35);
@@ -472,46 +809,44 @@
     tl.from(".atrium .cover-plane", { z: -420, rotationY: -55, opacity: 0, duration: 0.75, stagger: 0.12, immediateRender: false, ease: "power4.out" }, 0.55);
 
     tl.to(".world", { z: 2050, rotationY: -2, rotationX: 0, y: -70, duration: 2.35, ease: "power2.inOut" }, 1.6);
-    tl.to(".caption-atrium", { opacity: 0, x: -18, duration: 0.35, ease: "power2.in" }, 2.65);
-    tl.to(".caption-audio", { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 3.0);
+    tl.call(() => setMarquee(1), null, 3.0);
     tl.from(".audio .copy-block", { x: -80, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 3.0);
     tl.from(".audio .cover-plane", { z: -360, rotationY: -34, opacity: 0, duration: 0.62, stagger: 0.1, immediateRender: false, ease: "power4.out" }, 3.06);
     tl.from(".audio .meter-bars .bar", { scaleY: 0.15, opacity: 0, transformOrigin: "50% 100%", duration: 0.45, stagger: 0.035, immediateRender: false, ease: "power4.out" }, 3.16);
     tl.from(".audio .waveform", { scaleX: 0.1, opacity: 0, transformOrigin: "0% 50%", duration: 0.55, immediateRender: false, ease: "power3.out" }, 3.25);
 
     tl.to(".world", { z: 3560, rotationY: 2, rotationX: 0, y: -70, duration: 2.45, ease: "power2.inOut" }, 4.2);
-    tl.to(".caption-audio", { opacity: 0, x: -18, duration: 0.35, ease: "power2.in" }, 5.35);
-    tl.to(".caption-gallery", { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 5.7);
+    tl.call(() => setMarquee(2), null, 5.7);
     tl.from(".gallery .copy-block", { x: 90, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 5.7);
     tl.from(".gallery .cover-plane", { y: 90, rotationY: -44, opacity: 0, duration: 0.6, stagger: 0.12, immediateRender: false, ease: "power4.out" }, 5.86);
 
     tl.to(".world", { z: 5080, rotationY: -2, rotationX: 0, y: -70, duration: 2.45, ease: "power2.inOut" }, 7.0);
-    tl.to(".caption-gallery", { opacity: 0, x: -18, duration: 0.35, ease: "power2.in" }, 8.15);
-    tl.to(".caption-archive", { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 8.5);
+    tl.call(() => setMarquee(3), null, 8.5);
     tl.from(".archive .copy-block", { x: -80, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 8.5);
     tl.from(".archive .cover-plane", { z: -420, rotationY: 44, opacity: 0, duration: 0.62, stagger: 0.12, immediateRender: false, ease: "power4.out" }, 8.7);
 
     tl.to(".world", { z: 6620, rotationY: 2, rotationX: 0, y: -70, duration: 2.35, ease: "power2.inOut" }, 9.8);
-    tl.to(".caption-archive", { opacity: 0, x: -18, duration: 0.35, ease: "power2.in" }, 10.9);
-    tl.to(".caption-signal", { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 11.25);
+    tl.call(() => setMarquee(4), null, 11.25);
     tl.from(".signal .copy-block", { x: 90, z: -260, opacity: 0, duration: 0.65, immediateRender: false, ease: "expo.out" }, 11.25);
     tl.from(".signal .cover-plane", { y: 80, rotationY: -28, opacity: 0, duration: 0.62, stagger: 0.1, immediateRender: false, ease: "power4.out" }, 11.36);
 
     tl.to(".world", { z: 6900, rotationY: 0, rotationX: 0, y: -80, duration: 1.9, ease: "power2.out" }, 12.5);
-    tl.to(".signal .copy-block, .caption-signal", { opacity: 0, y: -28, duration: 0.65, ease: "power2.in" }, 14.25);
+    tl.to(".signal .copy-block", { opacity: 0, y: -28, duration: 0.65, ease: "power2.in" }, 14.25);
     tl.timeScale(1.25);
 
     window.__timelines["palace-rooms"] = tl;
-    if (new URLSearchParams(window.location.search).has("flight")) {
+    if (query.has("flight")) {
       gsap.delayedCall(0, () => {
         tl.play(0);
         tl.eventCallback("onComplete", () => {
-          document.body.classList.add("show-exit");
+          showExit();
         });
       });
     } else {
-      document.body.classList.add("show-exit");
+      showExit();
+    }
     }
   </script>
 </body>
 </html>
+
