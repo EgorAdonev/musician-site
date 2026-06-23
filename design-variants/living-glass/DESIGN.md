@@ -1,14 +1,14 @@
-# Design Variant A: Living Glass
+﻿# Design Variant A: Living Glass
 
 ## Concept
 
-Living Glass turns the site into a translucent audio cockpit inside the blnfkr palace. The mood is nocturnal and premium, but still raw: frosted panels, refracted neon, waveform light, and cover art suspended behind glass.
+Living Glass turns the site into a translucent audio cockpit inside the AreYouBlind? Story. The mood is nocturnal and premium, but still raw: frosted panels, refracted neon, waveform light, and cover art suspended behind glass.
 
 The variant should not become generic glassmorphism. Glass is functional material: navigation, player, credits, and social exits feel like touchable panes. Background space stays dark and music-led.
 
 ## Physical Scene
 
-A listener opens the page at night on a phone. The screen feels like looking through a cold studio window into a lit control room: cyan reflections, green meters, violet edges, album covers moving behind translucent surfaces.
+A listener opens the page at night on a phone. The screen feels like looking through a cold studio window into a lit control room: cyan reflections, gold meters, steel blue edges, album covers moving behind translucent surfaces.
 
 # Portal — Style Reference
 > Frosted glass on a gradient dawn
@@ -158,10 +158,10 @@ The page primarily uses a full-bleed layout for background imagery, specifically
 
 - Base: blue-black glass shell.
 - Main signal: cyan and aqua highlights.
-- Active state: acid green, used for Play, active track, active locale, and selected variant.
-- Depth glow: violet.
+- Active state: champagne gold, used for Play, active track, active locale, and selected variant.
+- Depth glow: steel blue.
 - Heat accent: coral/red-orange only for warning energy and tiny motion flares.
-- Text: near-white with blue-green muted copy.
+- Text: near-white with blue-gold muted copy.
 
 Avoid milky white glass, pale SaaS gradients, and low-contrast gray copy.
 
@@ -175,7 +175,7 @@ Avoid milky white glass, pale SaaS gradients, and low-contrast gray copy.
 ## Layout
 
 - Header: translucent fixed glass rail with clear nav separation.
-- Hero: palace image visible through a dark glass gradient. `blnfkr` sits directly on space, not inside a card.
+- Hero: studio image visible through a dark glass gradient. `AreYouBlind?` sits directly on space, not inside a card.
 - Player: strongest expression of the variant. The instrument panel has layered glass, inner highlights, and visible canvas meters.
 - Track list: a second glass pane beside the player, no excess empty vertical space.
 - Gallery: rotating covers seen as glossy objects behind a faint lens surface.
@@ -200,18 +200,20 @@ Avoid milky white glass, pale SaaS gradients, and low-contrast gray copy.
 - Body hook: `body[data-design="glass"]`.
 - Use stronger `backdrop-filter` only on UI panes, not full-page sections.
 - Keep panels at 8-12px radius. Do not over-round.
-- Canvas colors: aqua/cyan dominant, acid active bars, violet tertiary bars.
+- Canvas colors: aqua/cyan dominant, acid active bars, steel blue tertiary bars.
 - If performance drops on mobile, remove blur first and keep transparency via color.
 
 ## Risks
 
 - Can look like generic 2024 glassmorphism if every panel gets the same blur.
-- Can reduce readability if copy sits over bright palace imagery.
+- Can reduce readability if copy sits over bright studio imagery.
 - Can feel too polished for the artist if rough cover texture disappears.
 
 ## Success Criteria
 
 - Player feels premium and usable.
-- Navigation and credits are easiest to read among the three variants.
+- Navigation and credits are easiest to read among the two variants.
 - Album covers still feel central, not decorative.
 - Mobile remains stable without heavy blur cost.
+
+

@@ -1,25 +1,25 @@
-# Design Variant B: Spatial 3D Web
+﻿# Design Variant B: Spatial 3D Web
 
 ## Concept
 
-Spatial 3D Web is the default direction: blnfkr palace as a moving web space. Sections feel like rooms, album covers behave like physical objects, and navigation feels like camera travel rather than normal page scrolling.
+Spatial 3D Web is the alternate spectacle direction: AreYouBlind? site as a moving web space. Sections feel like rooms, album covers behave like physical objects, and navigation feels like camera travel rather than normal page scrolling.
 
 The site should feel futuristic and memorable, but not heavy. 3D is expressed through perspective, transforms, cover objects, generated tunnel imagery, and HyperFrames Journey continuity, not mandatory Three.js.
 
 ## Physical Scene
 
-A listener opens the page at night. The first impression is entering a dark music palace: neon floor, cover artifacts orbiting, local player cockpit, and a fast path into Journey. The site feels like a short spatial intro to the producer identity.
+A listener opens the page at night. The first impression is entering a dark music site: neon floor, cover artifacts orbiting, local player cockpit, and a fast path into Journey. The site feels like a short spatial intro to the producer identity.
 
 ## Palette
 
-- Base: near-black and violet-black palace shell.
-- Main signal: acid green from cover art and meters.
+- Base: near-black and steel blue-black Story shell.
+- Main signal: champagne gold from cover art and meters.
 - Audio signal: cyan waveform and scanner lines.
-- Depth: electric violet for room edges and travel.
+- Depth: electric steel blue for room edges and travel.
 - Heat: red-orange for sharp accent sparks.
 - Text: acidic near-white with cyan-muted body copy.
 
-Palette strategy is full palette on dark base. Do not collapse into one-note purple/blue.
+Palette strategy is full palette on dark base. Do not collapse into one-note deep blue/blue.
 
 # MekaVerse — Style Reference
 > Deep-space holographic command center.
@@ -167,7 +167,7 @@ The site uses a full-bleed page model, where background imagery stretches across
 ## Typography
 
 - Heavy compact display type carries identity.
-- Display clamp max stays `<= 6rem` except the hero name, where `blnfkr` can be larger because it is a short brand object.
+- Display clamp max stays `<= 6rem` except the hero name, where `AreYouBlind?` can be larger because it is a short brand object.
 - Letter spacing stays `0`.
 - Gallery and archive headings must not split words into trailing letters.
 - Body copy stays direct and personal, not overexplained.
@@ -175,7 +175,7 @@ The site uses a full-bleed page model, where background imagery stretches across
 ## Layout
 
 - Header: fixed command rail with room navigation, language toggle, and variant controls.
-- Hero/Atrium: full-bleed palace image, `blnfkr` as first-viewport signal, orbiting release covers, visible CTA to play.
+- Hero/Atrium: full-bleed studio image, `AreYouBlind?` as first-viewport signal, orbiting release covers, visible CTA to play.
 - Player: horizontal desktop board, player left and track list right. This is a real instrument, not a card.
 - Gallery: rotating cover carousel with enough copy width to keep `Discography carousel` and `Карусель дискографии` in two clean lines.
 - Archive: proof panels and credits read as evidence inside the spatial story.
@@ -192,14 +192,14 @@ The site uses a full-bleed page model, where background imagery stretches across
 ## Journey
 
 - Journey is the strongest expression of this variant.
-- Desktop: HyperFrames palace-room camera path, room surfaces, album cover planes, and camera-facing marquee.
+- Desktop: HyperFrames studio-room camera path, room surfaces, album cover planes, and camera-facing marquee.
 - Mobile/iOS Safari: lightweight fallback built from current Journey scene language: generated tunnel slice, album covers, audio bars, and marquee text.
 - Textbox caption panels are forbidden.
 
 ## Implementation Notes
 
 - Body hook: `body[data-design="spatial"]`.
-- Default URL/state: `?design=spatial` or no variant.
+- URL/state: `?design=spatial`. Living Glass remains the default when no variant is set.
 - Generated project asset: `assets/images/brand/spatial-transition-tunnel.png`.
 - Hyperflight AVIF cuts can support desktop transitions but must be disabled or simplified on iOS Safari.
 - Keep static HTML/CSS/JS. No mandatory 3D runtime for main page.
@@ -217,3 +217,5 @@ The site uses a full-bleed page model, where background imagery stretches across
 - Mobile Safari remains stable.
 - Player and links remain usable despite spectacle.
 - Album covers stay the visual anchor.
+
+

@@ -52,8 +52,8 @@ if (translations.ru.galleryTitle.split(/\s+/).length !== 2 || translations.en.ga
 const requiredSnippets = [
   'data-lang="ru"',
   'data-lang="en"',
-  'localStorage.getItem("blnfkr-lang")',
-  'localStorage.setItem("blnfkr-lang", lang)',
+  'localStorage.getItem("areyoublind-lang")',
+  'localStorage.setItem("areyoublind-lang", lang)',
   'document.documentElement.lang = lang',
   'document.documentElement.dir = "ltr"',
   'setPlayButtonState("play")',

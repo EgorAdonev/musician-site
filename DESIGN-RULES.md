@@ -1,11 +1,11 @@
-# Design Rules
+﻿# Design Rules
 
 ## Spatial Brand
 
-- Build the site as a dark spatial music palace, not a generic musician portfolio.
+- Build the site as a dark spatial music site, not a generic musician portfolio.
 - Album covers and audio visuals are the primary artifacts. 3D space frames the music, it does not replace it.
-- Use the full palette deliberately: acid green for active signal, cyan for audio/waveform, violet for depth, hot red-orange only for sharp accents.
-- Avoid one-note purple gradients, beige creator templates, fake luxury, and repeated generic card grids.
+- Use the full palette deliberately: champagne gold for active signal, cyan for audio/waveform, steel blue for depth, hot red-orange only for sharp accents.
+- Avoid one-note deep blue gradients, beige creator templates, fake luxury, and repeated generic card grids.
 
 ## Typography
 
@@ -38,5 +38,7 @@
 
 - Run `node tests\verify-i18n.js`.
 - Run `node tests\verify-layout-invariants.js`.
-- Parse inline scripts for `index.html` and `hyperframes-palace/index.html`.
+- Parse inline scripts for `index.html` and `hyperframes-Story/index.html`.
 - Browser screenshots remain required for final signoff when Browser tooling is available.
+
+

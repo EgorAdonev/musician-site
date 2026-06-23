@@ -1,6 +1,6 @@
-# Design Variants
+﻿# Design Variants
 
-Root design index for A/B testing of the blnfkr palace site.
+Root design index for A/B testing of the AreYouBlind? music site.
 
 Product register stays `brand`: the design itself is part of the artist identity. All variants must keep the same content, links, player behavior, credits, local assets, accessibility requirements, and i18n. Only visual material, layout rhythm, motion feel, and atmosphere change.
 
@@ -8,7 +8,7 @@ Product register stays `brand`: the design itself is part of the artist identity
 
 1. **A: Living Glass**
    - File: `design-variants/living-glass/DESIGN.md`
-   - Hypothesis: listeners trust the site more when the palace feels like a premium translucent audio cockpit.
+   - Hypothesis: listeners trust the site more when the Story feels like a premium translucent audio cockpit.
    - Best for: clarity, modern polish, visible UI controls, readable player.
 
 2. **B: Spatial 3D Web**
@@ -18,7 +18,7 @@ Product register stays `brand`: the design itself is part of the artist identity
 
 ## Shared Non-Negotiables
 
-- First viewport must signal `blnfkr` and the palace/music world immediately.
+- First viewport must signal `AreYouBlind?` and the music/story world immediately.
 - Album covers are primary artifacts. No variant may bury them behind decoration.
 - Player and track list stay horizontal on desktop: player left, list right. Stack only on mobile.
 - Credits chips keep long names intact: `SoundCloud Radio`, `Dash Radio`, `RTONTHABEAT`.
@@ -31,7 +31,7 @@ Product register stays `brand`: the design itself is part of the artist identity
 ## A/B Test Plan
 
 - `?design=glass`: Living Glass.
-- `?design=spatial`: Spatial 3D Web, default.
+- `?design=spatial`: Spatial 3D Web.
 - Store selected variant in `localStorage` only after user clicks a variant control.
 - Compare the same flows in each variant: landing impression, play track, switch language, open gallery, inspect credits, open social/music link, open Journey.
 - Score each variant on: identity memory, readability, mobile stability, player usability, credits trust, performance, and visual uniqueness.
@@ -45,8 +45,10 @@ Product register stays `brand`: the design itself is part of the artist identity
 - Static tests:
   - `node tests\verify-i18n.js`
   - `node tests\verify-layout-invariants.js`
-  - inline script parse check for `index.html` and `hyperframes-palace/index.html`
+  - inline script parse check for `index.html` and `hyperframes-Story/index.html`
 
 ## Current Default
 
-Use **Spatial 3D Web** as default until testing proves another variant performs better. It matches the current product direction, the HyperFrames Journey work, and the generated tunnel asset.
+Use **Living Glass** as default. It gives the site the premium translucent audio-cockpit surface requested now, while keeping Spatial 3D Web available as a stronger spectacle variant and as the Journey foundation.
+
+

@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="blnfkr, producer and beatmaker. Futuristic palace landing with local tracks, album covers, waveform, equalizer, and direct music links.">
-  <title>blnfkr | future palace</title>
+  <meta name="description" content="AreYouBlind?, producer and beatmaker. Living glass music site with local tracks, discography, radio notes, and direct music links.">
+  <title>AreYouBlind? | music producer</title>
   <link rel="icon" href="assets/images/brand/favicon.ico" sizes="any">
   <style>
     :root {
@@ -12,18 +12,18 @@
       --floor: oklch(15% 0.052 301);
       --paper: oklch(95% 0.018 118);
       --muted: oklch(76% 0.045 246);
-      --acid: oklch(78% 0.24 138);
-      --violet: oklch(64% 0.25 311);
+      --acid: oklch(82% 0.14 78);
+      --steel blue: oklch(62% 0.08 235);
       --cyan: oklch(82% 0.19 204);
       --hot: oklch(68% 0.24 30);
       --sunday: oklch(92% 0.19 105);
       --line: rgb(232 255 246 / 0.18);
       --glass: rgb(10 14 21 / 0.72);
       --glass-strong: rgb(4 7 12 / 0.86);
-      --shadow-acid: 0 0 34px rgb(94 255 117 / 0.24);
-      --meter-a: #7fff84;
+      --shadow-acid: 0 0 34px rgb(219 178 112 / 0.24);
+      --meter-a: #d9b270;
       --meter-b: #54d7ff;
-      --meter-c: #d34dff;
+      --meter-c: #d7e6f2;
       --meter-d: #ff653d;
       --wave-stroke: #54d7ff;
       --font-display: "Arial Black", Impact, "Helvetica Neue Condensed Black", "Helvetica Neue", Arial, sans-serif;
@@ -47,8 +47,8 @@
       color: var(--paper);
       font-family: var(--font-body);
       background:
-        radial-gradient(circle at 18% 6%, rgb(109 255 118 / 0.13), rgb(0 0 0 / 0) 30rem),
-        radial-gradient(circle at 86% 32%, rgb(202 62 255 / 0.17), rgb(0 0 0 / 0) 28rem),
+        radial-gradient(circle at 18% 6%, rgb(219 178 112 / 0.13), rgb(0 0 0 / 0) 30rem),
+        radial-gradient(circle at 86% 32%, rgb(84 215 255 / 0.14), rgb(0 0 0 / 0) 28rem),
         linear-gradient(180deg, var(--void), var(--floor) 46%, oklch(8% 0.032 270));
     }
 
@@ -80,50 +80,82 @@
       --floor: oklch(18% 0.075 214);
       --paper: oklch(96% 0.018 190);
       --muted: oklch(80% 0.062 205);
-      --acid: oklch(84% 0.18 176);
-      --violet: oklch(68% 0.22 291);
+      --acid: oklch(82% 0.14 78);
+      --steel blue: oklch(63% 0.08 235);
       --cyan: oklch(88% 0.2 196);
       --hot: oklch(72% 0.21 18);
-      --line: rgb(194 255 244 / 0.28);
+      --line: rgb(235 216 178 / 0.28);
       --glass: rgb(12 24 30 / 0.54);
       --glass-strong: rgb(7 19 25 / 0.72);
-      --shadow-acid: 0 0 34px rgb(105 255 219 / 0.26);
-      --meter-a: #79ffd8;
+      --shadow-acid: 0 0 34px rgb(219 178 112 / 0.26);
+      --meter-a: #d9b270;
       --meter-b: #72ddff;
-      --meter-c: #ba72ff;
+      --meter-c: #d7e6f2;
       --meter-d: #ff775d;
       --wave-stroke: #72ddff;
       background:
-        radial-gradient(circle at 14% 9%, rgb(121 255 216 / 0.18), rgb(0 0 0 / 0) 34rem),
-        radial-gradient(circle at 84% 24%, rgb(186 114 255 / 0.2), rgb(0 0 0 / 0) 30rem),
+        radial-gradient(circle at 14% 9%, rgb(219 178 112 / 0.2), rgb(0 0 0 / 0) 34rem),
+        radial-gradient(circle at 84% 24%, rgb(114 221 255 / 0.18), rgb(0 0 0 / 0) 30rem),
+        radial-gradient(circle at 50% 115%, rgb(114 221 255 / 0.18), rgb(0 0 0 / 0) 34rem),
         linear-gradient(180deg, var(--void), var(--floor) 48%, oklch(8% 0.03 230));
     }
 
     body[data-design="spatial"] {
-      --meter-a: #7fff84;
+      --meter-a: #d9b270;
       --meter-b: #54d7ff;
-      --meter-c: #d34dff;
+      --meter-c: #d7e6f2;
       --meter-d: #ff653d;
       --wave-stroke: #54d7ff;
     }
 
     body[data-design="glass"]::before {
-      opacity: 0.08;
+      opacity: 0.1;
       background-size: 92px 92px;
+      filter: blur(0.2px);
+      mix-blend-mode: screen;
     }
 
     body[data-design="glass"] .topbar,
     body[data-design="glass"] .mobile-panel {
-      background: linear-gradient(180deg, rgb(8 22 28 / 0.72), rgb(8 22 28 / 0.42));
-      backdrop-filter: blur(24px) saturate(1.25);
+      background:
+        linear-gradient(180deg, rgb(226 255 250 / 0.1), rgb(226 255 250 / 0.02)),
+        linear-gradient(180deg, rgb(8 22 28 / 0.74), rgb(8 22 28 / 0.44));
+      backdrop-filter: blur(26px) saturate(1.32);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), 0 18px 70px rgb(0 0 0 / 0.22);
     }
 
     body[data-design="glass"] .hero-bg {
       background:
-        linear-gradient(90deg, rgb(4 10 14 / 0.9), rgb(4 12 18 / 0.24) 46%, rgb(4 10 14 / 0.78)),
+        radial-gradient(circle at 68% 42%, rgb(114 221 255 / 0.28), rgb(0 0 0 / 0) 26rem),
+        linear-gradient(90deg, rgb(4 10 14 / 0.9), rgb(4 12 18 / 0.2) 46%, rgb(4 10 14 / 0.78)),
         linear-gradient(0deg, var(--void), rgb(4 7 12 / 0) 42%),
-        url("assets/images/brand/palace-room-futurist.jpg") center / cover;
+        url("assets/images/brand/living-glass-hero.png") center / cover;
       filter: saturate(1.2) contrast(1.06);
+    }
+
+    body[data-design="glass"] .hero-bg::before,
+    body[data-design="glass"] .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    body[data-design="glass"] .hero-bg::before {
+      background:
+        linear-gradient(118deg, rgb(255 255 255 / 0.14), rgb(255 255 255 / 0) 17% 42%, rgb(114 221 255 / 0.12) 58%, rgb(255 255 255 / 0) 72%);
+      opacity: 0.2;
+      mix-blend-mode: screen;
+      transform: scale(1.04);
+    }
+
+    body[data-design="glass"] .hero-bg::after {
+      background:
+        linear-gradient(90deg, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+        linear-gradient(180deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+      background-size: 7.5rem 7.5rem;
+      mask-image: radial-gradient(circle at 56% 44%, black, transparent 68%);
+      opacity: 0.34;
     }
 
     body[data-design="glass"] .instrument,
@@ -132,10 +164,14 @@
     body[data-design="glass"] .signal-panel,
     body[data-design="glass"] .proof-panel {
       background:
-        linear-gradient(145deg, rgb(210 255 248 / 0.12), rgb(92 174 255 / 0.035)),
-        linear-gradient(180deg, rgb(7 22 29 / 0.7), rgb(6 12 18 / 0.5));
-      backdrop-filter: blur(18px) saturate(1.2);
-      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 52px rgb(114 221 255 / 0.05);
+        linear-gradient(145deg, rgb(234 255 252 / 0.16), rgb(92 174 255 / 0.04) 34%, rgb(186 114 255 / 0.055)),
+        linear-gradient(180deg, rgb(7 22 29 / 0.76), rgb(6 12 18 / 0.52));
+      backdrop-filter: blur(20px) saturate(1.28);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.16),
+        inset 0 -1px 0 rgb(114 221 255 / 0.1),
+        inset 0 0 64px rgb(114 221 255 / 0.07),
+        0 18px 70px rgb(0 0 0 / 0.22);
     }
 
     body[data-design="glass"] .artist-core {
@@ -146,16 +182,126 @@
       box-shadow: 0 28px 90px rgb(0 0 0 / 0.5), 0 0 44px rgb(114 221 255 / 0.2);
     }
 
+    body[data-design="glass"] .studio-stage {
+      perspective: 1450px;
+      transform-style: preserve-3d;
+      filter: drop-shadow(0 34px 70px rgb(0 0 0 / 0.32));
+    }
+
+    body[data-design="glass"] .studio-stage::before,
+    body[data-design="glass"] .studio-stage::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      border: 1px solid rgb(210 255 248 / 0.22);
+      background: linear-gradient(145deg, rgb(255 255 255 / 0.1), rgb(114 221 255 / 0.025));
+      backdrop-filter: blur(12px);
+      transform-style: preserve-3d;
+    }
+
+    body[data-design="glass"] .studio-stage::before {
+      inset: 5% 9% 14% 0;
+      border-radius: 12px;
+      transform: rotateX(62deg) rotateZ(-13deg) translateZ(-62px);
+      box-shadow: inset 0 0 64px rgb(114 221 255 / 0.08);
+    }
+
+    body[data-design="glass"] .studio-stage::after {
+      inset: 20% 2% 8% 54%;
+      border-radius: 10px;
+      transform: rotateY(-34deg) rotateX(7deg) translateZ(-20px);
+      box-shadow: inset 0 0 52px rgb(114 221 255 / 0.1);
+    }
+
+    body[data-design="glass"] .orbital-ring {
+      border-color: rgb(210 255 248 / 0.26);
+      box-shadow:
+        inset 0 0 54px rgb(114 221 255 / 0.16),
+        0 0 54px rgb(219 178 112 / 0.16);
+    }
+
+    body[data-design="glass"] .cover-object,
+    body[data-design="glass"] .spinner-card {
+      border-color: rgb(226 255 250 / 0.42);
+      box-shadow:
+        0 18px 48px rgb(0 0 0 / 0.42),
+        0 0 34px rgb(114 221 255 / 0.16),
+        inset 0 1px 0 rgb(255 255 255 / 0.22);
+    }
+
+    body[data-design="glass"] .track-item {
+      background: linear-gradient(90deg, rgb(226 255 250 / 0.08), rgb(114 221 255 / 0.025));
+    }
+
+    body[data-design="glass"] .track-item.is-active {
+      background: linear-gradient(90deg, rgb(219 178 112 / 0.18), rgb(114 221 255 / 0.08));
+      box-shadow: inset 0 0 34px rgb(114 221 255 / 0.08);
+    }
+
+    body[data-design="glass"] h1,
+    body[data-design="glass"] h2 {
+      text-shadow:
+        0 1px 0 rgb(255 255 255 / 0.12),
+        0 0 34px rgb(114 221 255 / 0.18),
+        0 0 74px rgb(219 178 112 / 0.1);
+    }
+
+    body[data-design="glass"] .room-label::before {
+      height: 3px;
+      background: linear-gradient(90deg, var(--acid), var(--cyan), transparent);
+      box-shadow: 0 0 22px rgb(114 221 255 / 0.72);
+    }
+
+    body[data-design="glass"] .room-nav a,
+    body[data-design="glass"] .chip-button,
+    body[data-design="glass"] .action-button {
+      background:
+        linear-gradient(145deg, rgb(255 255 255 / 0.13), rgb(114 221 255 / 0.04)),
+        rgb(8 22 28 / 0.42);
+      border-color: rgb(226 255 250 / 0.28);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14);
+      backdrop-filter: blur(14px) saturate(1.2);
+    }
+
+    body[data-design="glass"] .chip-button.is-active,
+    body[data-design="glass"] .action-button.primary {
+      color: oklch(8% 0.025 242);
+      background:
+        linear-gradient(145deg, rgb(255 255 255 / 0.36), rgb(219 178 112 / 0.9)),
+        var(--acid);
+      border-color: rgb(226 255 250 / 0.76);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.38),
+        0 0 26px rgb(219 178 112 / 0.34);
+    }
+
+    body[data-design="glass"] .visual-stack {
+      background:
+        linear-gradient(180deg, rgb(255 255 255 / 0.08), rgb(255 255 255 / 0.015)),
+        linear-gradient(90deg, rgb(114 221 255 / 0.08), rgb(219 178 112 / 0.04));
+      border-color: rgb(226 255 250 / 0.22);
+      box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 54px rgb(114 221 255 / 0.08);
+    }
+
+    body[data-design="glass"] .progress {
+      accent-color: var(--acid);
+      filter: drop-shadow(0 0 10px rgb(219 178 112 / 0.28));
+    }
+
+    body[data-design="glass"] .signal-panel img[src*="Spotify"] {
+      filter: grayscale(1) sepia(0.45) saturate(0.9) hue-rotate(352deg) brightness(1.05);
+    }
+
     body[data-design="spatial"] .room::before {
       background:
-        linear-gradient(115deg, rgb(95 255 125 / 0.045), rgb(214 58 255 / 0.045)),
-        radial-gradient(circle at var(--pulse-x, 18%) var(--pulse-y, 30%), rgb(128 255 154 / 0.16), rgb(0 0 0 / 0) 30rem),
+        linear-gradient(115deg, rgb(219 178 112 / 0.045), rgb(84 215 255 / 0.045)),
+        radial-gradient(circle at var(--pulse-x, 18%) var(--pulse-y, 30%), rgb(219 178 112 / 0.16), rgb(0 0 0 / 0) 30rem),
         radial-gradient(circle at 86% 62%, rgb(84 215 255 / 0.08), rgb(0 0 0 / 0) 24rem);
     }
 
     body[data-design="spatial"] .cover-object,
     body[data-design="spatial"] .spinner-card {
-      box-shadow: 0 0 26px rgb(0 0 0 / 0.5), 0 0 34px rgb(128 255 154 / 0.08);
+      box-shadow: 0 0 26px rgb(0 0 0 / 0.5), 0 0 34px rgb(219 178 112 / 0.08);
     }
 
     a {
@@ -225,7 +371,7 @@
       aspect-ratio: 1;
       object-fit: cover;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 16px;
       box-shadow: var(--shadow-acid);
     }
 
@@ -247,14 +393,14 @@
     .room-nav a,
     .chip-button,
     .action-button {
-      min-height: 2.45rem;
+      min-height: 2.6rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.45rem;
-      padding: 0.65rem 0.82rem;
+      padding: 0.7rem 1.08rem;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 999px;
       color: var(--paper);
       background: rgb(232 255 246 / 0.06);
       font-size: 0.78rem;
@@ -269,8 +415,8 @@
     .chip-button:hover,
     .action-button:hover {
       transform: translateY(-2px);
-      border-color: rgb(128 255 154 / 0.64);
-      background: rgb(128 255 154 / 0.14);
+      border-color: rgb(219 178 112 / 0.64);
+      background: rgb(219 178 112 / 0.14);
     }
 
     .chip-button.is-active,
@@ -290,7 +436,7 @@
       transform: scale(0.92);
       background:
         radial-gradient(circle at 48% 42%, rgb(232 255 246 / 0.36), rgb(232 255 246 / 0) 28%),
-        linear-gradient(100deg, rgb(103 255 132 / 0), rgb(103 255 132 / 0.2), rgb(218 64 255 / 0));
+        linear-gradient(100deg, rgb(219 178 112 / 0), rgb(219 178 112 / 0.2), rgb(84 215 255 / 0));
       filter: blur(10px);
       transition: opacity 260ms ease, transform 260ms ease;
     }
@@ -421,8 +567,8 @@
       inset: 0;
       z-index: -2;
       background:
-        linear-gradient(115deg, rgb(95 255 125 / 0.04), rgb(214 58 255 / 0.04)),
-        radial-gradient(circle at var(--pulse-x, 18%) var(--pulse-y, 30%), rgb(128 255 154 / 0.14), rgb(0 0 0 / 0) 30rem);
+        linear-gradient(115deg, rgb(219 178 112 / 0.04), rgb(84 215 255 / 0.04)),
+        radial-gradient(circle at var(--pulse-x, 18%) var(--pulse-y, 30%), rgb(219 178 112 / 0.14), rgb(0 0 0 / 0) 30rem);
     }
 
     .room-grid {
@@ -453,7 +599,7 @@
       width: 2.8rem;
       height: 2px;
       background: var(--acid);
-      box-shadow: 0 0 18px rgb(128 255 154 / 0.7);
+      box-shadow: 0 0 18px rgb(219 178 112 / 0.7);
     }
 
     h1,
@@ -478,7 +624,9 @@
     }
 
     h1 {
-      font-size: clamp(4rem, 15vw, 9.4rem);
+      max-width: 12.5ch;
+      font-size: clamp(3.15rem, 8vw, 7rem);
+      line-height: 0.88;
     }
 
     h2 {
@@ -528,10 +676,10 @@
       background:
         linear-gradient(90deg, rgb(4 7 12 / 0.9), rgb(4 7 12 / 0.45) 42%, rgb(4 7 12 / 0.86)),
         linear-gradient(0deg, var(--void), rgb(4 7 12 / 0) 38%),
-        url("assets/images/brand/palace-room-futurist.jpg") center / cover;
+        url("assets/images/brand/living-glass-hero.png") center / cover;
       transform: scale(1.02);
       transform-origin: center;
-      animation: palaceBreath 14s ease-in-out infinite alternate;
+      animation: glassBreath 14s ease-in-out infinite alternate;
     }
 
     .hero::after {
@@ -547,6 +695,14 @@
 
     .hero .room-grid {
       align-items: end;
+      grid-template-columns: minmax(0, 0.88fr) minmax(360px, 1.12fr);
+      gap: clamp(1.2rem, 4vw, 4rem);
+    }
+
+    .hero .room-copy {
+      position: relative;
+      z-index: 3;
+      max-width: min(620px, 100%);
     }
 
     .hero-actions,
@@ -571,10 +727,12 @@
       font-size: 0.78rem;
     }
 
-    .palace-stage {
+    .studio-stage {
       position: relative;
       min-height: clamp(28rem, 46vw, 38rem);
       perspective: 1100px;
+      justify-self: end;
+      width: min(100%, 650px);
     }
 
     .orbital-ring {
@@ -583,7 +741,7 @@
       border: 1px solid rgb(232 255 246 / 0.13);
       border-radius: 50%;
       transform: rotateX(65deg) rotateZ(-18deg);
-      box-shadow: inset 0 0 50px rgb(98 255 128 / 0.09), 0 0 48px rgb(209 77 255 / 0.12);
+      box-shadow: inset 0 0 50px rgb(219 178 112 / 0.09), 0 0 48px rgb(84 215 255 / 0.12);
     }
 
     .cover-orbit {
@@ -597,14 +755,14 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: clamp(6.4rem, 14vw, 10rem);
+      width: clamp(5.7rem, 12vw, 9.2rem);
       aspect-ratio: 1;
       transform:
         translate(-50%, -50%)
         rotateY(calc(var(--i) * 40deg))
-        translateZ(clamp(12rem, 28vw, 23rem));
+        translateZ(clamp(10rem, 23vw, 19rem));
       border: 1px solid rgb(232 255 246 / 0.28);
-      border-radius: 8px;
+      border-radius: 18px;
       overflow: hidden;
       background: var(--glass-strong);
       box-shadow: 0 0 26px rgb(0 0 0 / 0.5);
@@ -622,8 +780,8 @@
       inset: 27%;
       display: grid;
       place-items: center;
-      border: 1px solid rgb(128 255 154 / 0.28);
-      border-radius: 14px;
+      border: 1px solid rgb(219 178 112 / 0.28);
+      border-radius: 22px;
       background:
         linear-gradient(160deg, rgb(4 7 12 / 0.86), rgb(34 15 42 / 0.8)),
         url("assets/images/brand/logo-light.png") center / cover;
@@ -635,7 +793,7 @@
       padding: 0.45rem 0.55rem;
       color: var(--void);
       background: var(--acid);
-      border-radius: 6px;
+      border-radius: 999px;
       font-weight: 950;
     }
 
@@ -674,13 +832,13 @@
     .signal-panel,
     .proof-panel {
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 22px;
       background: linear-gradient(160deg, rgb(10 14 21 / 0.86), rgb(13 7 20 / 0.76));
     }
 
     .instrument {
       padding: clamp(1rem, 2.5vw, 1.4rem);
-      box-shadow: inset 0 0 70px rgb(128 255 154 / 0.04);
+      box-shadow: inset 0 0 70px rgb(219 178 112 / 0.04);
     }
 
     .player-title {
@@ -773,8 +931,8 @@
     .track-item:hover,
     .track-item.is-active {
       transform: translateX(0.2rem);
-      border-color: rgb(128 255 154 / 0.5);
-      background: rgb(128 255 154 / 0.1);
+      border-color: rgb(219 178 112 / 0.5);
+      background: rgb(219 178 112 / 0.1);
     }
 
     .track-index {
@@ -884,8 +1042,8 @@
 
     a.release-panel:hover {
       transform: translateY(-0.28rem);
-      border-color: rgb(128 255 154 / 0.5);
-      background: rgb(128 255 154 / 0.08);
+      border-color: rgb(219 178 112 / 0.5);
+      background: rgb(219 178 112 / 0.08);
     }
 
     .release-panel img {
@@ -939,9 +1097,9 @@
       min-width: 0;
       width: 100%;
       padding: 0.62rem clamp(0.46rem, 1vw, 0.78rem);
-      border: 1px solid rgb(128 255 154 / 0.18);
+      border: 1px solid rgb(219 178 112 / 0.18);
       border-radius: 8px;
-      background: rgb(128 255 154 / 0.08);
+      background: rgb(219 178 112 / 0.08);
       font-size: clamp(0.82rem, 1.08vw, 1.12rem);
       line-height: 1.05;
       white-space: nowrap;
@@ -961,8 +1119,8 @@
 
     .signal-panel:hover {
       transform: translateY(-0.28rem);
-      border-color: rgb(128 255 154 / 0.48);
-      background: rgb(128 255 154 / 0.08);
+      border-color: rgb(219 178 112 / 0.48);
+      background: rgb(219 178 112 / 0.08);
     }
 
     .signal-panel small {
@@ -1026,8 +1184,8 @@
     }
 
     .menu-toggle:hover {
-      border-color: rgb(128 255 154 / 0.64);
-      background: rgb(128 255 154 / 0.14);
+      border-color: rgb(219 178 112 / 0.64);
+      background: rgb(219 178 112 / 0.14);
     }
 
     .menu-toggle-icon {
@@ -1134,10 +1292,10 @@
 
     .mobile-back:hover {
       color: var(--acid);
-      border-color: rgb(128 255 154 / 0.5);
+      border-color: rgb(219 178 112 / 0.5);
     }
 
-    @keyframes palaceBreath {
+    @keyframes glassBreath {
       from { transform: scale(1.02) translate3d(0, 0, 0); }
       to { transform: scale(1.08) translate3d(-1.4%, -0.6%, 0); }
     }
@@ -1183,7 +1341,15 @@
         align-items: start;
       }
 
-      .palace-stage,
+      body[data-design="glass"] .hero-bg,
+      .hero-bg {
+        background:
+          linear-gradient(90deg, rgb(4 7 12 / 0.9), rgb(4 7 12 / 0.36) 42%, rgb(4 7 12 / 0.86)),
+          linear-gradient(0deg, var(--void), rgb(4 7 12 / 0) 38%),
+          url("assets/images/brand/living-glass-hero-mobile.jpg") center / cover;
+      }
+
+      .studio-stage,
       .spinner-wrap {
         min-height: 28rem;
       }
@@ -1257,15 +1423,15 @@
     }
   </style>
 </head>
-<body data-design="spatial">
+<body data-design="glass">
   <a class="skip-link" href="#audio">К плееру</a>
   <div class="camera-flash" aria-hidden="true"></div>
   <div class="hyperflight" data-hyperflight aria-hidden="true">
     <div class="hyperflight-media" data-hyperflight-media aria-hidden="true">
-      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-01.avif" alt="">
-      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-02.avif" alt="">
-      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-03.avif" alt="">
-      <img class="hyperflight-frame" src="assets/video/hyperflight-cut-04.avif" alt="">
+      <img class="hyperflight-frame" data-src="assets/video/hyperflight-cut-01.avif" alt="">
+      <img class="hyperflight-frame" data-src="assets/video/hyperflight-cut-02.avif" alt="">
+      <img class="hyperflight-frame" data-src="assets/video/hyperflight-cut-03.avif" alt="">
+      <img class="hyperflight-frame" data-src="assets/video/hyperflight-cut-04.avif" alt="">
     </div>
     <div class="hyperflight-panel">
       <button class="action-button small hyperflight-skip" type="button" data-hyperflight-skip>Skip flight</button>
@@ -1273,21 +1439,21 @@
   </div>
 
   <header class="topbar" aria-label="Site navigation">
-    <a class="brand" href="#atrium" aria-label="blnfkr home">
+    <a class="brand" href="#atrium" aria-label="AreYouBlind? home">
       <img src="assets/images/brand/logo.jpg" alt="">
-      <span>blnfkr palace</span>
+      <span>prod. by AreYouBlind?</span>
     </a>
     <nav class="room-nav" aria-label="Rooms">
       <a href="#atrium" data-room-link data-i18n="navAtrium">Атриум</a>
       <a href="#audio" data-room-link data-i18n="navAudio">Плеер</a>
       <a href="#gallery" data-room-link data-i18n="navGallery">Галерея</a>
       <a href="#archive" data-room-link data-i18n="navArchive">Архив</a>
-      <a href="#signals" data-room-link data-i18n="navSignals">Связь</a>
+      <a href="#signals" data-room-link data-i18n="navSignals">Соцсети</a>
       <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer" data-i18n="navJourney">Полет</a>
       <button class="chip-button is-active" type="button" data-lang="ru">RU</button>
       <button class="chip-button" type="button" data-lang="en">EN</button>
-      <button class="chip-button" type="button" data-design-option="glass">Glass</button>
-      <button class="chip-button is-active" type="button" data-design-option="spatial">3D</button>
+      <button class="chip-button is-active" type="button" data-design-option="glass">Glass</button>
+      <button class="chip-button" type="button" data-design-option="spatial">3D</button>
     </nav>
     <button class="menu-toggle" type="button" aria-label="Toggle navigation" data-menu-toggle>
       <span class="menu-toggle-icon"></span>
@@ -1299,7 +1465,7 @@
       <a href="#audio" data-room-link data-i18n="navAudio">Плеер</a>
       <a href="#gallery" data-room-link data-i18n="navGallery">Галерея</a>
       <a href="#archive" data-room-link data-i18n="navArchive">Архив</a>
-      <a href="#signals" data-room-link data-i18n="navSignals">Связь</a>
+      <a href="#signals" data-room-link data-i18n="navSignals">Соцсети</a>
       <a href="hyperframes-palace/index.html?flight=journey" target="_blank" rel="noreferrer" data-i18n="navJourney">Полет</a>
     </nav>
     <button class="mobile-back" type="button" data-mobile-back data-i18n="navBack">← Назад</button>
@@ -1308,8 +1474,8 @@
       <button class="chip-button" type="button" data-lang="en">EN</button>
     </div>
     <div class="mobile-lang" aria-label="Design variant">
-      <button class="chip-button" type="button" data-design-option="glass">Glass</button>
-      <button class="chip-button is-active" type="button" data-design-option="spatial">3D</button>
+      <button class="chip-button is-active" type="button" data-design-option="glass">Glass</button>
+      <button class="chip-button" type="button" data-design-option="spatial">3D</button>
     </div>
   </aside>
 
@@ -1319,16 +1485,15 @@
       <div class="room-grid">
         <div class="room-copy">
           <p class="room-label" data-i18n="heroRoom">Атриум</p>
-          <h1 id="hero-title">blnfkr</h1>
-          <div class="lead kinetic-lines" data-kinetic data-i18n="heroCopy">Футуристичный дворец битов: локальные треки, обложки, радио-след и прямые выходы на музыку.</div>
+          <h1 id="hero-title">AreYouBlind?</h1>
+          <div class="lead kinetic-lines" data-kinetic data-i18n="heroCopy">Я музыкальный продюсер AreYouBlind?. Это мой сайт: здесь треки, дискография, моё появление на радио, а также песни и ссылки, где можно сразу включить треки.</div>
           <div class="hero-actions">
             <button class="action-button primary" type="button" data-play-hero data-i18n="playFirst">Запустить трек</button>
             <a class="action-button" href="https://music.apple.com/us/artist/bln-fkr/1593472766" target="_blank" rel="noreferrer">Apple Music</a>
             <a class="action-button" href="http://www.youtube.com/channel/UCvKMSuaTa2v-M-Keo1Hh6Yw" target="_blank" rel="noreferrer">YouTube</a>
           </div>
         </div>
-        <div class="palace-stage" aria-label="Rotating release covers">
-          <div class="orbital-ring" aria-hidden="true"></div>
+        <div class="studio-stage" aria-label="Rotating release covers">
           <div class="cover-orbit" aria-hidden="true">
             <figure class="cover-object" style="--i:0"><img src="assets/images/releases/dear-father.png" alt=""></figure>
             <figure class="cover-object" style="--i:1"><img src="assets/images/releases/done-cover.jpg" alt=""></figure>
@@ -1364,7 +1529,7 @@
               <canvas class="meter-canvas" data-meter width="900" height="360" aria-label="Equalizer visualization"></canvas>
               <canvas class="wave-canvas" data-wave width="900" height="180" aria-label="Waveform visualization"></canvas>
             </div>
-            <audio hidden class="native-audio" data-audio preload="auto" controls controlslist="nodownload"></audio>
+            <audio hidden class="native-audio" data-audio preload="auto" controls crossorigin="anonymous" controlslist="nodownload"></audio>
             <input class="progress" data-progress type="range" min="0" max="1000" value="0" aria-label="Track position">
             <div class="time-row"><span data-time-current>0:00</span><span data-time-total>0:00</span></div>
             <div class="control-row">
@@ -1391,7 +1556,7 @@
           </div>
         </div>
         <div class="spinner-wrap">
-          <div class="text-wrap-field" data-wrap-text>BLN FKR FUTURE WORLDWIDE</div>
+          <div class="text-wrap-field" data-wrap-text>AREYOUBLIND AUDIO WORLD</div>
           <div class="cover-spinner" aria-label="Album cover spinner">
             <figure class="spinner-card" style="--i:0"><img src="assets/images/releases/dear-father.png" alt="Dear Father cover" loading="lazy" decoding="async"></figure>
             <figure class="spinner-card" style="--i:1"><img src="assets/images/releases/done-cover.jpg" alt="Done cover" loading="lazy" decoding="async"></figure>
@@ -1412,7 +1577,7 @@
         <div class="room-copy">
           <p class="room-label" data-i18n="archiveRoom">Архив</p>
           <h2 id="archive-title" data-i18n="archiveTitle">История</h2>
-          <p class="body-copy" data-i18n="archiveCopy">Привет! Я blnfkr, пишу биты и инструменталы. Начинал как хобби, а теперь это архив релизов, демо и коллабораций.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.</p>
+          <p class="body-copy" data-i18n="archiveCopy">Привет! Я AreYouBlind?, пишу биты и инструменталы. Здесь мои релизы, демо, коллаборации и радио-история. В 2022 году мой трек крутили на американском Dash Radio и SoundCloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.</p>
         </div>
         <div class="proof-grid">
           <article class="proof-panel">
@@ -1456,7 +1621,7 @@
 
     <section class="room signals-room" id="signals" aria-labelledby="signals-title">
       <div class="room-copy" style="width:min(1220px,100%);margin:0 auto 2rem;">
-        <p class="room-label" data-i18n="signalsRoom">Связь</p>
+        <p class="room-label" data-i18n="signalsRoom">Соцсети</p>
         <h2 id="signals-title" data-i18n="signalsTitle">Профили и соцсети</h2>
         <p class="body-copy" data-i18n="signalsCopy">В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы. Остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда.</p>
       </div>
@@ -1467,14 +1632,14 @@
         <a class="signal-panel" href="https://soundcloud.app.goo.gl/xQnkxWEkx9iD5yaE7" target="_blank" rel="noreferrer"><span><img src="assets/images/social/SoundCloudmark_Minimum_size.png" alt="SoundCloud"></span><h3>SoundCloud</h3><p>Sketches and tracks.</p><small>Open profile</small></a>
         <a class="signal-panel" href="https://open.spotify.com/artist/4S5pRffDxl20z3DW8cKjam?si=vJw7X5tSR_CHmpoFORSMfg" target="_blank" rel="noreferrer"><span><img src="assets/Spotify_Primary_Logo_RGB_Green.png" alt="Spotify"></span><h3>Spotify</h3><p>Streaming profile.</p><small>Open profile</small></a>
         <a class="signal-panel" href="https://music.yandex.com/artist/12863666" target="_blank" rel="noreferrer"><span><img src="assets/yandex_music_eng_whitebg.png" alt="Yandex Music"></span><h3>Yandex Music</h3><p>Regional listening link.</p><small>Open profile</small></a>
-        <a class="signal-panel" href="https://vk.com/artist/blnfkr" target="_blank" rel="noreferrer"><span><img class="brand-icon" src="assets/images/social/vk-compact-logo.svg" alt="VK"></span><h3>VK Music</h3><p>Additional regional music link.</p><small>Open profile</small></a>
+        <a class="signal-panel" href="https://vk.com/artist/areyoublind" target="_blank" rel="noreferrer"><span><img class="brand-icon" src="assets/images/social/vk-compact-logo.svg" alt="VK"></span><h3>VK Music</h3><p>Additional regional music link.</p><small>Open profile</small></a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <span>blnfkr, producer & beatmaker</span>
-    <span>© blnfkr, все права защищены</span>
+    <span>AreYouBlind?, producer & beatmaker</span>
+    <span>© AreYouBlind?, все права защищены</span>
   </footer>
 
   <script type="module">
@@ -1494,11 +1659,11 @@
         navAudio: "Плеер",
         navGallery: "Галерея",
         navArchive: "Архив",
-        navSignals: "Связь",
+        navSignals: "Соцсети",
         navJourney: "Полет",
         navBack: "← Назад",
-        heroRoom: "Атриум",
-        heroCopy: "Я молодой музыкальный продюсер. Этот сайт - мой особняк: здесь треки, дискография, моё появление на радио, а также песни и ссылки, где можно сразу включить треки.",
+        heroRoom: "Старт",
+        heroCopy: "Я музыкальный продюсер AreYouBlind?. Это мой сайт: здесь треки, дискография, моё появление на радио, а также песни и ссылки, где можно сразу включить треки.",
         playFirst: "Слушать треки",
         play: "Включить",
         pause: "Пауза",
@@ -1513,30 +1678,30 @@
         galleryCopy: "Альбомы как экспонаты",
         archiveRoom: "Архив",
         archiveTitle: "История",
-        archiveCopy: "Привет! Я blnfkr, пишу биты и инструменталы. Здесь мои релизы, инфо про демо и коллаборации.  В 2022 году мой трек крутили на американском Dash Radio и Soundcloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.",
+        archiveCopy: "Привет! Я AreYouBlind?, пишу биты и инструменталы. Здесь мои релизы, демо, коллаборации и радио-история. В 2022 году мой трек крутили на американском Dash Radio и SoundCloud Radio. Музыку я пишу больше 8 лет, без лишнего шума, но с постоянной практикой и релизами.",
         proofYearLabel: "В 2022 г.",
         proofYears: "лет в битмейкинге и продакшне.",
         proofRadio: "трек звучал на Dash Radio и Soundcloud Radio.",
         proofTracks: "локальных треков доступны прямо на сайте.",
-        signalsRoom: "Связь",
+        signalsRoom: "Соцсети",
         signalsTitle: "Профили и соцсети",
         signalsCopy: "В In$ta сниппеты, фото из жизни. В YouTube, Apple Music биты и релизы, и остальные профили и площадки собраны здесь. Всё собрано здесь: послушать, посмотреть, чекнуть сниппеты, промониторить площадки - это сюда."
       },
       en: {
-        navAtrium: "Atrium",
-        navAudio: "Audio Lab",
+        navAtrium: "Start",
+        navAudio: "Player",
         navGallery: "Gallery",
         navArchive: "Archive",
         navSignals: "Signals",
         navJourney: "Journey",
         navBack: "← Back",
-        heroRoom: "Atrium signal",
-        heroCopy: "I am a young music producer. This site is my mansion: here are tracks, discography, my appearance on the radio, as well as songs and links where you can immediately play tracks.",
+        heroRoom: "Start",
+        heroCopy: "I am music producer AreYouBlind?. This is my site: tracks, discography, my radio appearance, songs, and links where you can play the music right away.",
         playFirst: "Listen to tracks",
         play: "Play",
         pause: "Pause",
         buffering: "Buffering...",
-        audioRoom: "Audio Lab",
+        audioRoom: "Player",
         audioTitle: "Listening to tracks on the site",
         audioCopy: "Here is the player, press Play",
         currentTrackHint: "online radio",
@@ -1546,7 +1711,7 @@
         galleryCopy: "Albums as exhibits",
         archiveRoom: "Archive",
         archiveTitle: "History",
-        archiveCopy: "Hi! I'm blnfkr, I write beats and instrumentals. Here are my releases, info about demos and collaborations. In 2022, my track was played on American Dash Radio and Soundcloud Radio. I've been writing music for more than 8 years, without unnecessary noise, but with constant practice and releases.",
+        archiveCopy: "Hi! I'm AreYouBlind?, I write beats and instrumentals. Here are my releases, demos, collaborations, and radio history. In 2022, my track was played on American Dash Radio and SoundCloud Radio. I've been writing music for more than 8 years, without unnecessary noise, but with constant practice and releases.",
         proofYearLabel: "In 2022",
         proofYears: "years in beatmaking and production.",
         proofRadio: "the track was played on Dash Radio and Soundcloud Radio.",
@@ -1598,6 +1763,7 @@
     const getCssColor = name => getComputedStyle(document.body).getPropertyValue(name).trim();
     if (shouldUseHyperflight) {
       hyperflightMedia?.querySelectorAll("img").forEach(img => {
+        if (!img.src && img.dataset.src) img.src = img.dataset.src;
         img.decode?.().catch(() => {});
       });
     }
@@ -1834,17 +2000,17 @@
       });
       if (resumeAfterBuffer) setPlayButtonState("buffering");
       else setPlayButtonState(audio.paused ? "play" : "pause");
-      localStorage.setItem("blnfkr-lang", lang);
+      localStorage.setItem("areyoublind-lang", lang);
       hydrateKineticText();
     };
 
     const applyDesign = (design, persist = false) => {
-      const nextDesign = designVariants.has(design) ? design : "spatial";
+      const nextDesign = designVariants.has(design) ? design : "glass";
       document.body.dataset.design = nextDesign;
       document.querySelectorAll("[data-design-option]").forEach(button => {
         button.classList.toggle("is-active", button.dataset.designOption === nextDesign);
       });
-      if (persist) localStorage.setItem("blnfkr-design", nextDesign);
+      if (persist) localStorage.setItem("areyoublind-design", nextDesign);
       if (audio.paused) drawIdle();
     };
 
@@ -2076,11 +2242,10 @@
     });
     addEventListener("resize", hydrateKineticText, { passive: true });
     const urlDesign = new URLSearchParams(window.location.search).get("design");
-    applyDesign(urlDesign || localStorage.getItem("blnfkr-design") || "spatial");
-    applyLanguage(localStorage.getItem("blnfkr-lang") || "ru");
+    applyDesign(urlDesign || localStorage.getItem("areyoublind-design") || "glass");
+    applyLanguage(localStorage.getItem("areyoublind-lang") || "ru");
   </script>
-<!-- impeccable-live-start -->
-<script src="http://localhost:8400/live.js"></script>
-<!-- impeccable-live-end -->
 </body>
 </html>
+
+

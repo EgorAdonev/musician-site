@@ -1,15 +1,15 @@
-# Design
+﻿# Design
 
 ## Style Prompt
 
-Fast cinematic journey through a futuristic music palace for blnfkr: glossy black floors, chrome structural ribs, acid green audio meters, violet scanner light, cyan waveform glass, rotating cover artifacts, and sharp camera moves between rooms.
+Fast cinematic journey through a futuristic music site for AreYouBlind?: glossy black floors, chrome structural ribs, champagne gold audio meters, steel blue scanner light, cyan waveform glass, rotating cover artifacts, and sharp camera moves between rooms.
 
 ## Colors
 
 - Void black: `#05070c`
-- Acid signal: `#7fff84`
+- Acid signal: `#d9b270`
 - Cyan waveform: `#54d7ff`
-- Violet scan: `#d34dff`
+- steel blue scan: `#d7e6f2`
 - Hot transition: `#ff653d`
 - Paper text: `#effff6`
 
@@ -25,3 +25,5 @@ Body: Helvetica Neue, Arial, sans-serif.
 - No slow ornamental transitions.
 - No tiny unreadable labels.
 - No scene without entrance motion and transition.
+
+
